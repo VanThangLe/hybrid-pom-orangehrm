@@ -15,6 +15,7 @@ public class User_01_Register_Login {
 				System.getProperty("user.dir") + "/browserDrivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
+		
 		driver.get("http://demo.nopcommerce.com/");
 	}
 	
