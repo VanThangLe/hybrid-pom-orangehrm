@@ -6,8 +6,10 @@ import java.util.Set;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -206,24 +208,41 @@ public class BasePage {
 		driver.switchTo().frame(getWebElement(driver, locator));
 	}
 	
+	public void doubleClickToElement(WebDriver driver, String locator) {
+		action = new Actions(driver);
+		action.doubleClick(getWebElement(driver, locator)).perform();
+	}
 	
+	public void moveMouseToElement(WebDriver driver, String locator) {
+		action = new Actions(driver);
+		action.moveToElement(getWebElement(driver, locator)).perform();
+	}
 	
+	public void rightClickToElement(WebDriver driver, String locator) {
+		action = new Actions(driver);
+		action.contextClick(getWebElement(driver, locator)).perform();
+	}
 	
+	public void dragAndDropElement(WebDriver driver, String sourceLocator, String targetLocator) {
+		action = new Actions(driver);
+		action.dragAndDrop(getWebElement(driver, sourceLocator), getWebElement(driver, targetLocator)).perform();
+	}
 	
+	public void sendkeyBoardToElement(WebDriver driver, String locator, Keys key) {
+		action = new Actions(driver);
+		action.sendKeys(getWebElement(driver, locator), key).perform();
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public void convertRgbaToHexa(WebDriver driver, String locator) {
+		
+	}
 	
 	
 	
 	
 	private WebDriverWait explicitWait;
 	private JavascriptExecutor jsExecutor;
+	private Actions action;
 	private long shortTimeout = 5;
 	private long longTimeout = 30;
 	private Alert alert;
