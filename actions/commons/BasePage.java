@@ -10,6 +10,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -113,7 +115,7 @@ public class BasePage {
 	}
 	
 	public void clickToElement(WebDriver driver, String locator) {
-		getWebElement(driver, locator).click();
+		waitForElementClickAble(driver, locator).click();
 	}
 	
 	public void sendkeyToElement(WebDriver driver, String locator, String value) {
@@ -182,22 +184,22 @@ public class BasePage {
 	
 	public void checkToCheckboxRadio(WebDriver driver, String locator) {
 		if(!isElementSelected(driver, locator)) {
-			getWebElement(driver, locator).click();
+			waitForElementClickAble(driver, locator).click();
 		}
 	}
 	
 	public void uncheckToCheckbox(WebDriver driver, String locator) {
 		if(isElementSelected(driver, locator)) {
-			getWebElement(driver, locator).click();
+			waitForElementClickAble(driver, locator).click();
 		}
 	}
 	
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
-		return getWebElement(driver, locator).isDisplayed();
+		return waitForElementVisible(driver, locator).isDisplayed();
 	}
 	
 	public boolean isElementEnabled(WebDriver driver, String locator) {
-		return getWebElement(driver, locator).isEnabled();
+		return waitForElementVisible(driver, locator).isEnabled();
 	}
 	
 	public boolean isElementSelected(WebDriver driver, String locator) {
@@ -233,18 +235,129 @@ public class BasePage {
 		action.sendKeys(getWebElement(driver, locator), key).perform();
 	}
 	
-	public void convertRgbaToHexa(WebDriver driver, String locator) {
-		
+	public String convertRgbaToHexa(String rgbaValue) {
+		return Color.fromString(rgbaValue).asHex();
 	}
 	
+	public void uploadToElement(WebDriver driver, String locator, String filePath) {
+		getWebElement(driver, locator).sendKeys(filePath);
+	}
 	
+	public Object executeForBrowser(WebDriver driver, String javaScript) {
+		jsExecutor = (JavascriptExecutor) driver;
+		return jsExecutor.executeScript(javaScript);
+	}
+
+	public String getInnerText(WebDriver driver) {
+		jsExecutor = (JavascriptExecutor) driver;
+		return (String) jsExecutor.executeScript("return document.documentElement.innerText;");
+	}
+
+	public boolean areExpectedTextInInnerText(WebDriver driver, String textExpected) {
+		jsExecutor = (JavascriptExecutor) driver;
+		String textActual = (String) jsExecutor.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
+		return textActual.equals(textExpected);
+	}
+
+	public void scrollToBottomPage(WebDriver driver) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	}
+
+	public void navigateToUrlByJS(WebDriver driver, String url) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("window.location = '" + url + "'");
+	}
+
+	public void highlightElement(WebDriver driver, String locator) {
+		jsExecutor = (JavascriptExecutor) driver;
+		WebElement element = getWebElement(driver, locator);
+		String originalStyle = element.getAttribute("style");
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 2px solid red; border-style: dashed;");
+		sleepInSecond(1);
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
+	}
+
+	public void clickToElementByJS(WebDriver driver, String locator) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, locator));
+	}
+
+	public void scrollToElement(WebDriver driver, String locator) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, locator));
+	}
+
+	public void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", getWebElement(driver, locator));
+	}
+
+	public void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", getWebElement(driver, locator));
+	}
+
+	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
+		explicitWait = new WebDriverWait(driver, longTimeout);
+		jsExecutor = (JavascriptExecutor) driver;
+
+		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				try {
+					return ((Long) jsExecutor.executeScript("return jQuery.active") == 0);
+				} catch (Exception e) {
+					return true;
+				}
+			}
+		};
+
+		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+			}
+		};
+
+		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
+	}
+
+	public String getElementValidationMessage(WebDriver driver, String locator) {
+		jsExecutor = (JavascriptExecutor) driver;
+		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", getWebElement(driver, locator));
+	}
+
+	public boolean isImageLoaded(WebDriver driver, String locator) {
+		jsExecutor = (JavascriptExecutor) driver;
+		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof "
+				+ "arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getWebElement(driver, locator));
+		if (status) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
+	public WebElement waitForElementVisible(WebDriver driver, String locator) {
+		explicitWait = new WebDriverWait(driver, longTimeout);
+		return explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+	}
 	
-	private WebDriverWait explicitWait;
-	private JavascriptExecutor jsExecutor;
-	private Actions action;
-	private long shortTimeout = 5;
-	private long longTimeout = 30;
+	public WebElement waitForElementClickAble(WebDriver driver, String locator) {
+		explicitWait = new WebDriverWait(driver, longTimeout);
+		return explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+	}
+	
+	public boolean waitForElementInvisible(WebDriver driver, String locator) {
+		explicitWait = new WebDriverWait(driver, longTimeout);
+		return explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+	}
+	
 	private Alert alert;
 	private Select select;
+	private Actions action;
+	private long longTimeout = 30;
+	private WebDriverWait explicitWait;
+	private JavascriptExecutor jsExecutor;
 }
