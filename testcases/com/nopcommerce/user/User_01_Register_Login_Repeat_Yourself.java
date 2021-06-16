@@ -81,7 +81,24 @@ public class User_01_Register_Login_Repeat_Yourself {
 	
 	@Test
 	public void TC_03_My_Account() {
-		driver.findElement(By.cssSelector(cssSelector))
+		driver.findElement(By.cssSelector("ico-account")).click();
+		
+		Assert.assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "My account - Customer info");
+		Assert.assertTrue(driver.findElement(By.id("gender-male")).isSelected());
+		
+		Assert.assertEquals(driver.findElement(By.id("FirstName")).getAttribute("value"), firstName);
+		Assert.assertEquals(driver.findElement(By.id("LastName")).getAttribute("value"), lastName);
+		Assert.assertEquals(driver.findElement(By.id("Email")).getAttribute("value"), emailAddress);
+		Assert.assertEquals(driver.findElement(By.id("Company")).getAttribute("value"), companyName);
+		
+		select = new Select(driver.findElement(By.name("DateOfBirthDay")));
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), day);
+		
+		select = new Select(driver.findElement(By.name("DateOfBirthMonth")));
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), month);
+		
+		select = new Select(driver.findElement(By.name("DateOfBirthYear")));
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), year);
 	}
 	
 	public int getRandomNumber() {

@@ -3,7 +3,9 @@
 
   <test name="Run on Chrome">
     <classes>
-      <class name="com.nopcommerce.user.User_01_Register_Login_Repeat_Yourself"/>
+      <class name="com.nopcommerce.user.User_02_Register_Login_BasePage_I"/>
+      <class name="com.nopcommerce.user.User_02_Register_Login_BasePage_II"/>
+      <class name="com.nopcommerce.user.User_02_Register_Login_BasePage_III"/>
     </classes>
   </test>
   
