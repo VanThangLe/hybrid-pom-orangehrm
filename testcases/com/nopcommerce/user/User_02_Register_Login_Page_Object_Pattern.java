@@ -4,17 +4,23 @@ import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import commons.BasePage;
+import pageObjects.HomePageObject;
+import pageObjects.LoginPageObject;
+import pageObjects.MyAccountPageObject;
+import pageObjects.RegisterPageObject;
 
-public class User_02_Register_Login_Page_Object_Pattern extends BasePage {
+public class User_02_Register_Login_Page_Object_Pattern {
 	WebDriver driver;
-	Select select;
+	HomePageObject homePage;
+	LoginPageObject loginPage;
+	RegisterPageObject registerPage;
+	MyAccountPageObject myAccountPage;
+	
 	String projectPath = System.getProperty("user.dir");
 	String firstName, lastName, day, month, year, emailAddress, companyName, password;
 	
@@ -23,72 +29,66 @@ public class User_02_Register_Login_Page_Object_Pattern extends BasePage {
 		System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		
-		openPageUrl(driver, "http://demo.nopcommerce.com/");
+		driver.get("http://demo.nopcommerce.com/");
+		homePage = new HomePageObject(driver);
 		
 		firstName = "Automation";
 		lastName = "FC";
 		day = "10";
 		month = "May";
-		year = "1999";
-		emailAddress = "automation" + getRandomNumber() + "@mailinator.com";
+		year = "1960";
+		emailAddress = "automation" + getRandomNumber() + "@mail.net";
 		companyName = "Automation FC";
 		password = "123456";
 	}
 	
 	@Test
 	public void TC_01_Register() {
-		clickToElement(driver, "//a[@class='ico-register']");
+		homePage.clickToRegisterLink();
+		registerPage = new RegisterPageObject(driver);
 		
-		checkToCheckboxRadio(driver, "//input[@id='gender-male']");
-		sendkeyToElement(driver, "//input[@id='FirstName']", firstName);
-		sendkeyToElement(driver, "//input[@id='LastName']", lastName);
+		registerPage.clickToGenderMaleRadio();
+		registerPage.enterToFirstNameTextbox(firstName);
+		registerPage.enterToLastNameTextbox(lastName);
+		registerPage.selectDayDropdown(day);
+		registerPage.selectMonthDropdown(month);
+		registerPage.selectYearDropdown(year);
+		registerPage.enterToEmailTextbox(emailAddress);
+		registerPage.enterToCompanyTextbox(companyName);
+		registerPage.enterToPasswordTextbox(password);
+		registerPage.enterToConfirmPasswordTextbox(password);
+		registerPage.clickToRegisterButton();
+		Assert.assertTrue(registerPage.isRegisterSuccessMessageDisplayed());
 		
-		selectItemInDefaultDropdown(driver, "//select[@name='DateOfBirthDay']", day);
-		selectItemInDefaultDropdown(driver, "//select[@name='DateOfBirthMonth']", month);
-		selectItemInDefaultDropdown(driver, "//select[@name='DateOfBirthYear']", year);
-		
-		sendkeyToElement(driver, "//input[@id='Email']", lastName);
-		sendkeyToElement(driver, "//input[@id='Company']", lastName);
-
-		checkToCheckboxRadio(driver, "//input[@id='Newsletter']");
-		
-		sendkeyToElement(driver, "//input[@id='Password']", password);
-		sendkeyToElement(driver, "//input[@id='ConfirmPassword']", password);
-		
-		clickToElement(driver, "//button[@id='register-button']");
-		
-		Assert.assertEquals(getElementText(driver, "//div[@class='result']"), "Your registration completed");
-		
-		clickToElement(driver, "//a[@class='ico-logout']");
+		registerPage.clickToLogoutLink();
+		homePage = new HomePageObject(driver);
 	}
 	
 	@Test
 	public void TC_02_Login() {
-		clickToElement(driver, "//a[@class='ico-login']");
+		homePage.clickToLoginLink();
+		loginPage = new LoginPageObject(driver);
 		
-		sendkeyToElement(driver, "//input[@id='Email']", emailAddress);
-		sendkeyToElement(driver, "//input[@id='Password']", password);
-		clickToElement(driver, "//button[text()='Log In']");
+		loginPage.enterToEmailTextbox(emailAddress);
+		loginPage.enterToPasswordTextbox(password);
 		
-		Assert.assertTrue(isElementDisplayed(driver, "//a[@class='icon-account']"));
-		Assert.assertTrue(isElementDisplayed(driver, "//a[@class='icon-logout']"));
+		loginPage.clickToLoginButton();
+		homePage = new HomePageObject(driver);
 	}
 	
 	@Test
 	public void TC_03_My_Account() {
-		clickToElement(driver, "//a[@class='ico-account']");
+		homePage.clickToMyAccountLink();
+		myAccountPage = new MyAccountPageObject(driver);
 		
-		Assert.assertEquals(getElementText(driver, "//h1"), "My account - Customer info");
-		Assert.assertTrue(isElementSelected(driver, "//input[@id='gender-male']"));
-		
-		Assert.assertEquals(getAttributeValue(driver, "//input[@id='FirstName']", "value"), firstName);
-		Assert.assertEquals(getAttributeValue(driver, "//input[@id='LastName']", "value"), lastName);
-		Assert.assertEquals(getAttributeValue(driver, "//input[@id='Email']", "value"), emailAddress);
-		Assert.assertEquals(getAttributeValue(driver, "//input[@id='Company']", "value"), companyName);
-		
-		Assert.assertEquals(getFirstSelectedItemInDefaultDropdown(driver, "//select[@name='DateOfBirthDay']"), day);
-		Assert.assertEquals(getFirstSelectedItemInDefaultDropdown(driver, "//select[@name='DateOfBirthMonth']"), month);
-		Assert.assertEquals(getFirstSelectedItemInDefaultDropdown(driver, "//select[@name='DateOfBirthYear']"), year);
+		Assert.assertTrue(myAccountPage.isGenderMaleRadioSelected());
+		Assert.assertEquals(myAccountPage.getFirstNameTextboxValue(), firstName);
+		Assert.assertEquals(myAccountPage.getLastNameTextboxValue(), lastName);
+		Assert.assertEquals(myAccountPage.getEmailTextboxValue(), emailAddress);
+		Assert.assertEquals(myAccountPage.getCompanyTextboxValue(), companyName);
+		Assert.assertEquals(myAccountPage.getDayDropdownValue(), day);
+		Assert.assertEquals(myAccountPage.getMonthDropdownValue(), month);
+		Assert.assertEquals(myAccountPage.getYearDropdownValue(), year);
 	}
 	
 	public int getRandomNumber() {
