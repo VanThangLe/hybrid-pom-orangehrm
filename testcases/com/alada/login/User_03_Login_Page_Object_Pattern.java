@@ -9,91 +9,80 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import pageObjects.nopCommerce.HomePageObject;
-import pageObjects.nopCommerce.LoginPageObject;
-import pageObjects.nopCommerce.MyAccountPageObject;
-import pageObjects.nopCommerce.RegisterPageObject;
+import pageObjects.alada.HomePageObject;
+import pageObjects.alada.LoginPageObject;
 
 public class User_03_Login_Page_Object_Pattern {
 	WebDriver driver;
-	HomePageObject homePage;
 	LoginPageObject loginPage;
-	RegisterPageObject registerPage;
-	MyAccountPageObject myAccountPage;
+	HomePageObject homePage;
 	
 	String projectPath = System.getProperty("user.dir");
-	String firstName, lastName, day, month, year, emailAddress, companyName, password;
 	
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		
-		driver.get("http://demo.nopcommerce.com/");
-		homePage = new HomePageObject(driver);
-		
-		firstName = "Automation";
-		lastName = "FC";
-		day = "10";
-		month = "May";
-		year = "1960";
-		emailAddress = "automation" + getRandomNumber() + "@mail.net";
-		companyName = "Automation FC";
-		password = "123456";
-	}
-	
-	@Test
-	public void TC_01_Register() {
-		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
-		
-		registerPage.clickToGenderMaleRadio();
-		registerPage.enterToFirstNameTextbox(firstName);
-		registerPage.enterToLastNameTextbox(lastName);
-		registerPage.selectDayDropdown(day);
-		registerPage.selectMonthDropdown(month);
-		registerPage.selectYearDropdown(year);
-		registerPage.enterToEmailTextbox(emailAddress);
-		registerPage.enterToCompanyTextbox(companyName);
-		registerPage.enterToPasswordTextbox(password);
-		registerPage.enterToConfirmPasswordTextbox(password);
-		registerPage.clickToRegisterButton();
-		Assert.assertTrue(registerPage.isRegisterSuccessMessageDisplayed());
-		
-		registerPage.clickToLogoutLink();
-		homePage = new HomePageObject(driver);
-	}
-	
-	@Test
-	public void TC_02_Login() {
-		homePage.clickToLoginLink();
+		driver.get("https://alada.vn/tai-khoan/dang-nhap.html");
 		loginPage = new LoginPageObject(driver);
-		
-		loginPage.enterToEmailTextbox(emailAddress);
-		loginPage.enterToPasswordTextbox(password);
-		
-		loginPage.clickToLoginButton();
-		homePage = new HomePageObject(driver);
 	}
 	
 	@Test
-	public void TC_03_My_Account() {
-		homePage.clickToMyAccountLink();
-		myAccountPage = new MyAccountPageObject(driver);
+	public void TC_01_Login_With_Empty_Email_Password() {
+		loginPage.enterToEmailTextbox("");
+		loginPage.enterToPasswordTextbox("");
+		loginPage.clickLoginButton();
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Vui lòng nhập email");
+		Assert.assertEquals(loginPage.getErrorMessageAtPasswordTextbox(), "Vui lòng nhập mật khẩu");
+	}
+	
+	@Test
+	public void TC_02_Login_With_Invalid_Email() {
+		loginPage.enterToEmailTextbox("automation@&^*");
+		loginPage.enterToPasswordTextbox("123456");
+		loginPage.clickLoginButton();
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Vui lòng nhập email hợp lệ");
 		
-		Assert.assertTrue(myAccountPage.isGenderMaleRadioSelected());
-		Assert.assertEquals(myAccountPage.getFirstNameTextboxValue(), firstName);
-		Assert.assertEquals(myAccountPage.getLastNameTextboxValue(), lastName);
-		Assert.assertEquals(myAccountPage.getEmailTextboxValue(), emailAddress);
-		Assert.assertEquals(myAccountPage.getCompanyTextboxValue(), companyName);
-		Assert.assertEquals(myAccountPage.getDayDropdownValue(), day);
-		Assert.assertEquals(myAccountPage.getMonthDropdownValue(), month);
-		Assert.assertEquals(myAccountPage.getYearDropdownValue(), year);
+		loginPage.enterToEmailTextbox("123456789");
+		loginPage.enterToPasswordTextbox("123456");
+		loginPage.clickLoginButton();
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Vui lòng nhập email hợp lệ");
+	}
+	
+	@Test
+	public void TC_03_Login_With_Email_Not_Registed() {
+		loginPage.enterToEmailTextbox("automation" + getRandomNumber() + "@hotmail.com");
+		loginPage.enterToPasswordTextbox("123456");
+		loginPage.clickLoginButton();
+		Assert.assertEquals(loginPage.getErrorMessageAtLoginForm(), "Email này chưa được đăng ký.");
+	}
+	
+	@Test
+	public void TC_04_Login_Password_Invalid() {
+		//Invalid Password
+		loginPage.enterToEmailTextbox("automationfc.vn@hotmail.com");
+		loginPage.enterToPasswordTextbox("123");
+		loginPage.clickLoginButton();
+		Assert.assertEquals(loginPage.getErrorMessageAtLoginForm(), "Mật khẩu sai.");
+		
+		//Incorrect Password
+		loginPage.enterToEmailTextbox("automationfc.vn@hotmail.com");
+		loginPage.enterToPasswordTextbox("123456789");
+		loginPage.clickLoginButton();
+		Assert.assertEquals(loginPage.getErrorMessageAtLoginForm(), "Mật khẩu sai.");
+	}
+	
+	@Test
+	public void TC_05_Login_Valid_Email_Password() {
+		loginPage.loginToSystem("automationfc.vn@hotmail.com", "123456");
+		homePage = new HomePageObject(driver);
+		Assert.assertTrue(homePage.isMyCourseDisplayed());
 	}
 	
 	public int getRandomNumber() {
 		Random rand = new Random();
-		return rand.nextInt(9999);
+		return rand.nextInt(99999);
 	}
 	
 	@AfterClass

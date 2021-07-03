@@ -1,35 +1,30 @@
 package com.nopcommerce.user;
 
-import java.util.Random;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import commons.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
 import pageObjects.nopCommerce.MyAccountPageObject;
 import pageObjects.nopCommerce.RegisterPageObject;
 
-public class User_03_Register_Login_Page_Object_Pattern {
+public class User_04_Register_Login_Muliple_Browser extends BaseTest {
 	WebDriver driver;
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
 	MyAccountPageObject myAccountPage;
-	
-	String projectPath = System.getProperty("user.dir");
 	String firstName, lastName, day, month, year, emailAddress, companyName, password;
 	
+	@Parameters({"browser", "url"} )
 	@BeforeClass
-	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
-		driver = new ChromeDriver();
-		
-		driver.get("http://demo.nopcommerce.com/");
+	public void beforeClass(String browserName, String url) {
+		getBrowserDriver(browserName, url);
 		homePage = new HomePageObject(driver);
 		
 		firstName = "Automation";
@@ -89,11 +84,6 @@ public class User_03_Register_Login_Page_Object_Pattern {
 		Assert.assertEquals(myAccountPage.getDayDropdownValue(), day);
 		Assert.assertEquals(myAccountPage.getMonthDropdownValue(), month);
 		Assert.assertEquals(myAccountPage.getYearDropdownValue(), year);
-	}
-	
-	public int getRandomNumber() {
-		Random rand = new Random();
-		return rand.nextInt(9999);
 	}
 	
 	@AfterClass
