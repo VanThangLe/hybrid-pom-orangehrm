@@ -22,5 +22,12 @@
 	      <class name="com.nopcommerce.user.User_04_Register_Login_Multiple_Browser"/>
 	    </classes>
 	  </test>
+	  
+	  <test name="Run on COCCOC">
+	  <parameter name="brower" value="coccoc" />
+	    <classes>
+	      <class name="com.nopcommerce.user.User_04_Register_Login_Multiple_Browser"/>
+	    </classes>
+	  </test>
   
 </suite>
