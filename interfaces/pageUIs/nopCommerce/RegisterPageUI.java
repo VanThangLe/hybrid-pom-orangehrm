@@ -8,7 +8,7 @@ public class RegisterPageUI {
 	public static final String MONTH_DROPDOWN = "//select[@name='DateOfBirthMonth']";
 	public static final String YEAR_DROPDOWN = "//select[@name='DateOfBirthYear']";
 	public static final String EMAIL_TEXTBOX = "//input[@id='Email']";
-	public static final String COMPANY_TEXTBOX = "//input[@id='Compay']";
+	public static final String COMPANY_TEXTBOX = "//input[@id='Company']";
 	public static final String PASSWORD_TEXTBOX = "//input[@id='Password']";
 	public static final String CONFIRM_PASSWORD_TEXTBOX = "//input[@id='ComfirmPassword']";
 	public static final String REGISTER_BUTTON = "//button[@id='register-button']";
