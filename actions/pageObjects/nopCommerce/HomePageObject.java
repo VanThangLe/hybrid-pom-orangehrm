@@ -12,19 +12,23 @@ public class HomePageObject extends BasePage {
 		this.driver = _driver;
 	}
 
-	public void clickToRegisterLink() {
+	public RegisterPageObject clickToRegisterLink() {
 		waitForElementClickAble(driver, HomePageUI.REGISTER_LINK);
 		clickToElement(driver, HomePageUI.REGISTER_LINK);
+		//Che giấu được việc khởi tạo vào trong hàm (page object class)
+		return PageGenerator.getRegisterPage(driver);
 	}
 
-	public void clickToLoginLink() {
+	public LoginPageObject clickToLoginLink() {
 		waitForElementClickAble(driver, HomePageUI.LOGIN_LINK);
 		clickToElement(driver, HomePageUI.LOGIN_LINK);
+		return PageGenerator.getLoginPage(driver);
 	}
 
-	public void clickToMyAccountLink() {
+	public MyAccountPageObject clickToMyAccountLink() {
 		waitForElementClickAble(driver, HomePageUI.MY_ACCOUNT_LINK);
 		clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);
+		return PageGenerator.getMyAccountPage(driver);
 	}
 
 }
