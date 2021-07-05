@@ -23,8 +23,7 @@ public class User_02_Register_Login_BasePage_II {
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
 		driver = new ChromeDriver();
-		
-		//Tính che giấu việc khởi tạo của đối tượng (Đóng gói)
+	
 		basePage = BasePage.getBasePage();
 		
 		basePage.openPageUrl(driver, "http://demo.nopcommerce.com/");

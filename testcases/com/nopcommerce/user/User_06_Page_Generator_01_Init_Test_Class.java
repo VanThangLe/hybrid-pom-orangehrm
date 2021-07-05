@@ -26,9 +26,6 @@ public class User_06_Page_Generator_01_Init_Test_Class extends BaseTest {
 	@BeforeClass
 	public void beforeClass(String browserName, String url) {
 		getBrowserDriver(browserName, url);
-		//Cứ từ page này chuyển qua page kia sẽ new page mới đó lên
-		//Không quan tâm việc che giấu khởi tạo đối tượng
-		//Khởi tạo page nhiều lần
 		homePage = new HomePageObject(driver);
 		
 		firstName = "Automation";

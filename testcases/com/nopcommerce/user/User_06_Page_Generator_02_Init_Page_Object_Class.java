@@ -40,10 +40,6 @@ public class User_06_Page_Generator_02_Init_Page_Object_Class extends BaseTest {
 	
 	@Test
 	public void TC_01_Register() {
-		//Đưa việc khởi tạo 1 page vào trong hàm của page object class
-		//Từ page A chuyển qua page B
-		//Có tính chất kết nối giữa 2 page (khi đọc code)
-		//Page B sẽ chạy tiếp các step
 		registerPage = homePage.clickToRegisterLink();
 		
 		registerPage.clickToGenderMaleRadio();
@@ -60,7 +56,6 @@ public class User_06_Page_Generator_02_Init_Page_Object_Class extends BaseTest {
 		Assert.assertTrue(registerPage.isRegisterSuccessMessageDisplayed());
 		
 		homePage = registerPage.clickToLogoutLink();
-		//Kết thúc của testcase này sẽ là mở đầu của testcase kia (flow)
 	}
 	
 	@Test

@@ -15,7 +15,6 @@ public class HomePageObject extends BasePage {
 	public RegisterPageObject clickToRegisterLink() {
 		waitForElementClickAble(driver, HomePageUI.REGISTER_LINK);
 		clickToElement(driver, HomePageUI.REGISTER_LINK);
-		//Che giấu được việc khởi tạo vào trong hàm (page object class)
 		return PageGenerator.getRegisterPage(driver);
 	}
 

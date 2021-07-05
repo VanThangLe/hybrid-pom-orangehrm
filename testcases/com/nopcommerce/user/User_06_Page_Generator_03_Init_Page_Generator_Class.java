@@ -26,8 +26,6 @@ public class User_06_Page_Generator_03_Init_Page_Generator_Class extends BaseTes
 	@BeforeClass
 	public void beforeClass(String browserName, String url) {
 		getBrowserDriver(browserName, url);
-		//Che giấu việc khởi tạo
-		//Tránh việc khởi tạo thông qua việc new nhiều lần
 		homePage = PageGenerator.getHomePage(driver);
 		firstName = "Automation";
 		lastName = "FC";

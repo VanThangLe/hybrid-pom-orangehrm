@@ -33,7 +33,6 @@ public class BaseTest {
 			driver = new EdgeDriver();
 			break;
 		case COCCOC:
-			//Chrome driver trừ 5 verison
 			WebDriverManager.chromedriver().driverVersion("89.0.4389.23").setup();
 			System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
 			ChromeOptions options = new ChromeOptions();
