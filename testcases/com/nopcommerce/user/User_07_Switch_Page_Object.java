@@ -1,37 +1,32 @@
 package com.nopcommerce.user;
 
-import java.util.Random;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import commons.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
 import pageObjects.nopCommerce.CustomerInforPageObject;
+import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.RegisterPageObject;
 
-public class User_03_Register_Login_Page_Object_Pattern {
+public class User_07_Switch_Page_Object extends BaseTest {
 	WebDriver driver;
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
-	CustomerInforPageObject myAccountPage;
-	
-	String projectPath = System.getProperty("user.dir");
+	CustomerInforPageObject customerInforPage;
 	String firstName, lastName, day, month, year, emailAddress, companyName, password;
 	
+	@Parameters({"browser", "url"} )
 	@BeforeClass
-	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
-		driver = new ChromeDriver();
-		
-		driver.get("http://demo.nopcommerce.com/");
-		homePage = new HomePageObject(driver);
-		
+	public void beforeClass(String browserName, String url) {
+		getBrowserDriver(browserName, url);
+		homePage = PageGenerator.getHomePage(driver);
 		firstName = "Automation";
 		lastName = "FC";
 		day = "10";
@@ -44,9 +39,7 @@ public class User_03_Register_Login_Page_Object_Pattern {
 	
 	@Test
 	public void TC_01_Register() {
-		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
-		
+		registerPage = homePage.clickToRegisterLink();
 		registerPage.clickToGenderMaleRadio();
 		registerPage.enterToFirstNameTextbox(firstName);
 		registerPage.enterToLastNameTextbox(lastName);
@@ -59,41 +52,28 @@ public class User_03_Register_Login_Page_Object_Pattern {
 		registerPage.enterToConfirmPasswordTextbox(password);
 		registerPage.clickToRegisterButton();
 		Assert.assertTrue(registerPage.isRegisterSuccessMessageDisplayed());
-		
-		registerPage.clickToLogoutLink();
-		homePage = new HomePageObject(driver);
+		homePage = registerPage.clickToLogoutLink();
 	}
 	
 	@Test
 	public void TC_02_Login() {
-		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
-		
+		loginPage = homePage.clickToLoginLink();
 		loginPage.enterToEmailTextbox(emailAddress);
 		loginPage.enterToPasswordTextbox(password);
-		
-		loginPage.clickToLoginButton();
-		homePage = new HomePageObject(driver);
+		homePage = loginPage.clickToLoginButton();
 	}
 	
 	@Test
 	public void TC_03_My_Account() {
-		homePage.clickToMyAccountLink();
-		myAccountPage = new CustomerInforPageObject(driver);
-		
-		Assert.assertTrue(myAccountPage.isGenderMaleRadioSelected());
-		Assert.assertEquals(myAccountPage.getFirstNameTextboxValue(), firstName);
-		Assert.assertEquals(myAccountPage.getLastNameTextboxValue(), lastName);
-		Assert.assertEquals(myAccountPage.getEmailTextboxValue(), emailAddress);
-		Assert.assertEquals(myAccountPage.getCompanyTextboxValue(), companyName);
-		Assert.assertEquals(myAccountPage.getDayDropdownValue(), day);
-		Assert.assertEquals(myAccountPage.getMonthDropdownValue(), month);
-		Assert.assertEquals(myAccountPage.getYearDropdownValue(), year);
-	}
-	
-	public int getRandomNumber() {
-		Random rand = new Random();
-		return rand.nextInt(9999);
+		customerInforPage = homePage.clickToMyAccountLink();
+		Assert.assertTrue(customerInforPage.isGenderMaleRadioSelected());
+		Assert.assertEquals(customerInforPage.getFirstNameTextboxValue(), firstName);
+		Assert.assertEquals(customerInforPage.getLastNameTextboxValue(), lastName);
+		Assert.assertEquals(customerInforPage.getEmailTextboxValue(), emailAddress);
+		Assert.assertEquals(customerInforPage.getCompanyTextboxValue(), companyName);
+		Assert.assertEquals(customerInforPage.getDayDropdownValue(), day);
+		Assert.assertEquals(customerInforPage.getMonthDropdownValue(), month);
+		Assert.assertEquals(customerInforPage.getYearDropdownValue(), year);
 	}
 	
 	@AfterClass

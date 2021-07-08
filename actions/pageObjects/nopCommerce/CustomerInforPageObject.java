@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import commons.BasePage;
 import pageUIs.nopCommerce.MyAccountPageUI;
 
-public class MyAccountPageObject extends BasePage {
+public class CustomerInforPageObject extends BasePage {
 	private WebDriver driver;
 	
-	public MyAccountPageObject(WebDriver _driver) {
+	public CustomerInforPageObject(WebDriver _driver) {
 		this.driver = _driver;
 	}
 

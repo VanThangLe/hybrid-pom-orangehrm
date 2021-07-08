@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
-import pageObjects.nopCommerce.MyAccountPageObject;
+import pageObjects.nopCommerce.CustomerInforPageObject;
 import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.RegisterPageObject;
 
@@ -19,7 +19,7 @@ public class User_06_Page_Generator_03_Init_Page_Generator_Class extends BaseTes
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
-	MyAccountPageObject myAccountPage;
+	CustomerInforPageObject myAccountPage;
 	String firstName, lastName, day, month, year, emailAddress, companyName, password;
 	
 	@Parameters({"browser", "url"} )
