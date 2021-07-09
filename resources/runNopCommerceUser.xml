@@ -2,20 +2,20 @@
 <suite name="User NopCommerce" parallel="false">
 	<parameter name="url" value="http://demo.nopcommerce.com/" />
 
- 	<test name="Run on FIREFOX">
+<!--  	<test name="Run on FIREFOX">
   		<parameter name="brower" value="firefox" />
     	<classes>
     	<class name="com.nopcommerce.user.User_04_Register_Login_Multiple_Browser"/>
     	</classes>
-  	</test>
+  	</test> -->
   
 	  <test name="Run on CHROME">
 	  <parameter name="brower" value="chrome" />
 	    <classes>
-	      <class name="com.nopcommerce.user.User_04_Register_Login_Multiple_Browser"/>
+	      <class name="com.nopcommerce.user.User_07_Switch_Page_Object"/>
 	    </classes>
 	  </test>
-	  
+<!-- 	  
 	  <test name="Run on EDGE">
 	  <parameter name="brower" value="edge" />
 	    <classes>
@@ -28,6 +28,6 @@
 	    <classes>
 	      <class name="com.nopcommerce.user.User_04_Register_Login_Multiple_Browser"/>
 	    </classes>
-	  </test>
+	  </test> -->
   
 </suite>

@@ -3,7 +3,7 @@ package pageObjects.nopCommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.nopCommerce.MyAccountPageUI;
+import pageUIs.nopCommerce.CustomerInfoPageUI;
 
 public class CustomerInforPageObject extends BasePage {
 	private WebDriver driver;
@@ -13,43 +13,42 @@ public class CustomerInforPageObject extends BasePage {
 	}
 
 	public boolean isGenderMaleRadioSelected() {
-		waitForElementVisible(driver, MyAccountPageUI.GENDER_MALE_RADIO);
-		return isElementSelected(driver, MyAccountPageUI.GENDER_MALE_RADIO);
+		waitForElementVisible(driver, CustomerInfoPageUI.GENDER_MALE_RADIO);
+		return isElementSelected(driver, CustomerInfoPageUI.GENDER_MALE_RADIO);
 	}
 
 	public String getFirstNameTextboxValue() {
-		waitForElementVisible(driver, MyAccountPageUI.FIRSTNAME_TEXTBOX);
-		return getAttributeValue(driver, MyAccountPageUI.FIRSTNAME_TEXTBOX, "value");
+		waitForElementVisible(driver, CustomerInfoPageUI.FIRSTNAME_TEXTBOX);
+		return getAttributeValue(driver, CustomerInfoPageUI.FIRSTNAME_TEXTBOX, "value");
 	}
 
 	public String getLastNameTextboxValue() {
-		waitForElementVisible(driver, MyAccountPageUI.LASTNAME_TEXTBOX);
-		return getAttributeValue(driver, MyAccountPageUI.LASTNAME_TEXTBOX, "value");
+		waitForElementVisible(driver, CustomerInfoPageUI.LASTNAME_TEXTBOX);
+		return getAttributeValue(driver, CustomerInfoPageUI.LASTNAME_TEXTBOX, "value");
 	}
 
 	public String getCompanyTextboxValue() {
-		waitForElementVisible(driver, MyAccountPageUI.COMPANY_TEXTBOX);
-		return getAttributeValue(driver, MyAccountPageUI.COMPANY_TEXTBOX, "value");
+		waitForElementVisible(driver, CustomerInfoPageUI.COMPANY_TEXTBOX);
+		return getAttributeValue(driver, CustomerInfoPageUI.COMPANY_TEXTBOX, "value");
 	}
 
 	public String getEmailTextboxValue() {
-		waitForElementVisible(driver, MyAccountPageUI.EMAIL_TEXTBOX);
-		return getAttributeValue(driver, MyAccountPageUI.EMAIL_TEXTBOX, "value");
+		waitForElementVisible(driver, CustomerInfoPageUI.EMAIL_TEXTBOX);
+		return getAttributeValue(driver, CustomerInfoPageUI.EMAIL_TEXTBOX, "value");
 	}
 
 	public String getDayDropdownValue() {
-		waitForElementVisible(driver, MyAccountPageUI.DAY_DROPDOWN);
-		return getFirstSelectedItemInDefaultDropdown(driver, MyAccountPageUI.DAY_DROPDOWN);
+		waitForElementVisible(driver, CustomerInfoPageUI.DAY_DROPDOWN);
+		return getFirstSelectedItemInDefaultDropdown(driver, CustomerInfoPageUI.DAY_DROPDOWN);
 	}
 
 	public String getMonthDropdownValue() {
-		waitForElementVisible(driver, MyAccountPageUI.MONTH_DROPDOWN);
-		return getFirstSelectedItemInDefaultDropdown(driver, MyAccountPageUI.MONTH_DROPDOWN);
+		waitForElementVisible(driver, CustomerInfoPageUI.MONTH_DROPDOWN);
+		return getFirstSelectedItemInDefaultDropdown(driver, CustomerInfoPageUI.MONTH_DROPDOWN);
 	}
 
 	public String getYearDropdownValue() {
-		waitForElementVisible(driver, MyAccountPageUI.YEAR_DROPDOWN);
-		return getFirstSelectedItemInDefaultDropdown(driver, MyAccountPageUI.YEAR_DROPDOWN);
+		waitForElementVisible(driver, CustomerInfoPageUI.YEAR_DROPDOWN);
+		return getFirstSelectedItemInDefaultDropdown(driver, CustomerInfoPageUI.YEAR_DROPDOWN);
 	}
-
 }

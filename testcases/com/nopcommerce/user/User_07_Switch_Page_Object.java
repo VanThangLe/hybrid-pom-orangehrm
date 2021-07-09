@@ -10,9 +10,12 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
+import pageObjects.nopCommerce.OrdersPageObject;
+import pageObjects.nopCommerce.AddressesPageObject;
 import pageObjects.nopCommerce.CustomerInforPageObject;
 import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.RegisterPageObject;
+import pageObjects.nopCommerce.RewardPointsPageObject;
 
 public class User_07_Switch_Page_Object extends BaseTest {
 	WebDriver driver;
@@ -20,6 +23,9 @@ public class User_07_Switch_Page_Object extends BaseTest {
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
 	CustomerInforPageObject customerInforPage;
+	AddressesPageObject addressesPage;
+	OrdersPageObject ordersPage;
+	RewardPointsPageObject rewardPointPage;
 	String firstName, lastName, day, month, year, emailAddress, companyName, password;
 	
 	@Parameters({"browser", "url"} )
@@ -74,6 +80,18 @@ public class User_07_Switch_Page_Object extends BaseTest {
 		Assert.assertEquals(customerInforPage.getDayDropdownValue(), day);
 		Assert.assertEquals(customerInforPage.getMonthDropdownValue(), month);
 		Assert.assertEquals(customerInforPage.getYearDropdownValue(), year);
+	}
+
+	
+	@Test
+	public void TC_04_Switch_Page_Common() {
+		ordersPage = customerInforPage.openOrdersPage(driver);
+		rewardPointPage = ordersPage.openRewardPointsPage(driver);
+		addressesPage = rewardPointPage.openAddressesPage(driver);
+		customerInforPage = addressesPage.openCustomerInfoPage(driver);
+		rewardPointPage = customerInforPage.openRewardPointsPage(driver);
+		ordersPage = rewardPointPage.openOrdersPage(driver);
+		addressesPage = ordersPage.openAddressesPage(driver);
 	}
 	
 	@AfterClass

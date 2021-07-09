@@ -6,8 +6,8 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class MyAccountPageObject extends BasePageFactory {
-	public MyAccountPageObject(WebDriver driver) {
+public class CustomerInfoPageObject extends BasePageFactory {
+	public CustomerInfoPageObject(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 	}
