@@ -12,7 +12,7 @@
 	  <test name="Run on CHROME">
 	  <parameter name="brower" value="chrome" />
 	    <classes>
-	      <class name="com.nopcommerce.user.User_07_Switch_Page_Object"/>
+	      <class name="com.nopcommerce.user.User_08_Dynamic_Locator"/>
 	    </classes>
 	  </test>
 <!-- 	  
