@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import commons.BasePage;
 
-public class User_02_Register_Login_BasePage_I {
+public class Level_02_Register_Login_BasePage_I {
 	WebDriver driver;
 	BasePage basePage;
 	Select select;

@@ -10,28 +10,22 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
-import pageObjects.nopCommerce.OrdersPageObject;
-import pageObjects.nopCommerce.AddressesPageObject;
 import pageObjects.nopCommerce.CustomerInforPageObject;
 import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.RegisterPageObject;
-import pageObjects.nopCommerce.RewardPointsPageObject;
 
-public class User_08_Dynamic_Locator extends BaseTest {
+public class Level_06_Page_Generator_03_Init_Page_Generator_Class extends BaseTest {
 	WebDriver driver;
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
-	CustomerInforPageObject customerInforPage;
-	AddressesPageObject addressesPage;
-	OrdersPageObject ordersPage;
-	RewardPointsPageObject rewardPointPage;
+	CustomerInforPageObject myAccountPage;
 	String firstName, lastName, day, month, year, emailAddress, companyName, password;
 	
 	@Parameters({"browser", "url"} )
 	@BeforeClass
 	public void beforeClass(String browserName, String url) {
-		getBrowserDriver(browserName, url);
+		driver = getBrowserDriver(browserName, url);
 		homePage = PageGenerator.getHomePage(driver);
 		firstName = "Automation";
 		lastName = "FC";
@@ -71,33 +65,15 @@ public class User_08_Dynamic_Locator extends BaseTest {
 	
 	@Test
 	public void TC_03_My_Account() {
-		customerInforPage = homePage.clickToMyAccountLink();
-		Assert.assertTrue(customerInforPage.isGenderMaleRadioSelected());
-		Assert.assertEquals(customerInforPage.getFirstNameTextboxValue(), firstName);
-		Assert.assertEquals(customerInforPage.getLastNameTextboxValue(), lastName);
-		Assert.assertEquals(customerInforPage.getEmailTextboxValue(), emailAddress);
-		Assert.assertEquals(customerInforPage.getCompanyTextboxValue(), companyName);
-		Assert.assertEquals(customerInforPage.getDayDropdownValue(), day);
-		Assert.assertEquals(customerInforPage.getMonthDropdownValue(), month);
-		Assert.assertEquals(customerInforPage.getYearDropdownValue(), year);
-	}
-
-	
-	@Test
-	public void TC_04_Switch_Page_Common() {
-		ordersPage = (OrdersPageObject) customerInforPage.openSiderBarPageByName(driver, "Orders");
-		rewardPointPage = (RewardPointsPageObject) ordersPage.openSiderBarPageByName(driver, "Reward points");
-		addressesPage = (AddressesPageObject) rewardPointPage.openSiderBarPageByName(driver, "Addresses");
-		customerInforPage = (CustomerInforPageObject) addressesPage.openSiderBarPageByName(driver, "Customer info");
-		rewardPointPage = (RewardPointsPageObject) customerInforPage.openSiderBarPageByName(driver, "Reward points");
-		ordersPage = (OrdersPageObject) rewardPointPage.openSiderBarPageByName(driver, "Orders");
-		addressesPage = (AddressesPageObject) ordersPage.openSiderBarPageByName(driver, "Addresses");
-	}
-	
-	@Test
-	public void TC_05_Switch_Page_Common() {
-		addressesPage.openSiderBarPageByPageName(driver, "Customer info");
-		customerInforPage = PageGenerator.getCustomerInforPage(driver);
+		myAccountPage = homePage.clickToMyAccountLink();
+		Assert.assertTrue(myAccountPage.isGenderMaleRadioSelected());
+		Assert.assertEquals(myAccountPage.getFirstNameTextboxValue(), firstName);
+		Assert.assertEquals(myAccountPage.getLastNameTextboxValue(), lastName);
+		Assert.assertEquals(myAccountPage.getEmailTextboxValue(), emailAddress);
+		Assert.assertEquals(myAccountPage.getCompanyTextboxValue(), companyName);
+		Assert.assertEquals(myAccountPage.getDayDropdownValue(), day);
+		Assert.assertEquals(myAccountPage.getMonthDropdownValue(), month);
+		Assert.assertEquals(myAccountPage.getYearDropdownValue(), year);
 	}
 	
 	@AfterClass

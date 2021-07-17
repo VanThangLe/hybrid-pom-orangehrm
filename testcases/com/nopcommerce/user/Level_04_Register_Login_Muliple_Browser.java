@@ -13,7 +13,7 @@ import pageObjects.nopCommerce.LoginPageObject;
 import pageObjects.nopCommerce.CustomerInforPageObject;
 import pageObjects.nopCommerce.RegisterPageObject;
 
-public class User_04_Register_Login_Muliple_Browser extends BaseTest {
+public class Level_04_Register_Login_Muliple_Browser extends BaseTest {
 	WebDriver driver;
 	HomePageObject homePage;
 	LoginPageObject loginPage;
@@ -24,7 +24,7 @@ public class User_04_Register_Login_Muliple_Browser extends BaseTest {
 	@Parameters({"browser", "url"} )
 	@BeforeClass
 	public void beforeClass(String browserName, String url) {
-		getBrowserDriver(browserName, url);
+		driver = getBrowserDriver(browserName, url);
 		homePage = new HomePageObject(driver);
 		
 		firstName = "Automation";

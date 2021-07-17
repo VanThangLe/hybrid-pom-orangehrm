@@ -13,7 +13,7 @@ import pageObjects.nopCommerce.LoginPageObject;
 import pageObjects.nopCommerce.CustomerInforPageObject;
 import pageObjects.nopCommerce.RegisterPageObject;
 
-public class User_06_Page_Generator_02_Init_Page_Object_Class extends BaseTest {
+public class Level_06_Page_Generator_02_Init_Page_Object_Class extends BaseTest {
 	WebDriver driver;
 	HomePageObject homePage;
 	LoginPageObject loginPage;
@@ -25,7 +25,7 @@ public class User_06_Page_Generator_02_Init_Page_Object_Class extends BaseTest {
 	@Parameters({"browser", "url"} )
 	@BeforeClass
 	public void beforeClass(String browserName, String url) {
-		getBrowserDriver(browserName, url);
+		driver = getBrowserDriver(browserName, url);
 		homePage = new HomePageObject(driver);
 		
 		firstName = "Automation";

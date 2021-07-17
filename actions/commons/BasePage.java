@@ -289,6 +289,11 @@ public class BasePage {
 		action.sendKeys(getWebElement(driver, locator), key).perform();
 	}
 	
+	public void sendkeyBoardToElement(WebDriver driver, String locator, Keys key, String... values) {
+		action = new Actions(driver);
+		action.sendKeys(getWebElement(driver, castRestParameter(locator, values)), key).perform();
+	}
+	
 	public String convertRgbaToHexa(String rgbaValue) {
 		return Color.fromString(rgbaValue).asHex();
 	}
