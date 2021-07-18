@@ -51,6 +51,17 @@ public class Level_09_DataTable extends BaseTest {
 		homePage.clickToRowActionByCountry("Albania","edit");
 	}
 	
+	@Test
+	public void TC_05_Editable() {
+		homePage.openPageUrl(driver, "https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/");
+		homePage.enterToTextboxAtColumnNameAndRowNumber("Contact Person", "3", "Automation FC");
+		homePage.selectDropdownAtColumnNameAndRowNumber("Country", "2", "Malaysia");
+		homePage.clickToIconAtRowNumber("1", "Insert");
+		homePage.clickToIconAtRowNumber("3", "Up");
+		homePage.clickToIconAtRowNumber("2", "Down");
+		homePage.clickToIconAtRowNumber("1", "Remove");
+	}
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();

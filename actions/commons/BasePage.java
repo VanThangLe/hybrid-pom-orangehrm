@@ -245,15 +245,15 @@ public class BasePage {
 	}
 	
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
-		return waitForElementVisible(driver, locator).isDisplayed();
+		return getWebElement(driver, locator).isDisplayed();
 	}
 	
 	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
-		return waitForElementVisible(driver, castRestParameter(locator, values)).isDisplayed();
+		return getWebElement(driver, castRestParameter(locator, values)).isDisplayed();
 	}
 	
 	public boolean isElementEnabled(WebDriver driver, String locator) {
-		return waitForElementVisible(driver, locator).isEnabled();
+		return getWebElement(driver, locator).isEnabled();
 	}
 	
 	public boolean isElementSelected(WebDriver driver, String locator) {
