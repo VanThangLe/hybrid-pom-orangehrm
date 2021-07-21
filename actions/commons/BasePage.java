@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.nopCommerce.AddressesPageObject;
 import pageObjects.nopCommerce.BackInStockSubcriptionsPageObject;
 import pageObjects.nopCommerce.ChangePasswordPageObject;
-import pageObjects.nopCommerce.CustomerInforPageObject;
+import pageObjects.nopCommerce.CustomerInfoPageObject;
 import pageObjects.nopCommerce.DownloadableProductsPageObject;
 import pageObjects.nopCommerce.MyProductReviewsPageObject;
 import pageObjects.nopCommerce.OrdersPageObject;
@@ -442,7 +442,7 @@ public class BasePage {
 		return explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator, values)));
 	}
 	
-	public CustomerInforPageObject openCustomerInfoPage(WebDriver driver) {
+	public CustomerInfoPageObject openCustomerInfoPage(WebDriver driver) {
 		waitForElementClickAble(driver, BasePageUI.CUSTOMER_INFOR_PAGE_LINK);
 		clickToElement(driver, BasePageUI.CUSTOMER_INFOR_PAGE_LINK);
 		return PageGenerator.getCustomerInforPage(driver);

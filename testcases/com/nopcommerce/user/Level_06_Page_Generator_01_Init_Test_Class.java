@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
-import pageObjects.nopCommerce.CustomerInforPageObject;
+import pageObjects.nopCommerce.CustomerInfoPageObject;
 import pageObjects.nopCommerce.RegisterPageObject;
 
 public class Level_06_Page_Generator_01_Init_Test_Class extends BaseTest {
@@ -18,7 +18,7 @@ public class Level_06_Page_Generator_01_Init_Test_Class extends BaseTest {
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
-	CustomerInforPageObject myAccountPage;
+	CustomerInfoPageObject myAccountPage;
 	
 	String firstName, lastName, day, month, year, emailAddress, companyName, password;
 	
@@ -75,7 +75,7 @@ public class Level_06_Page_Generator_01_Init_Test_Class extends BaseTest {
 	@Test
 	public void TC_03_My_Account() {
 		homePage.clickToMyAccountLink();
-		myAccountPage = new CustomerInforPageObject(driver);
+		myAccountPage = new CustomerInfoPageObject(driver);
 		
 		Assert.assertTrue(myAccountPage.isGenderMaleRadioSelected());
 		Assert.assertEquals(myAccountPage.getFirstNameTextboxValue(), firstName);

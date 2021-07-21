@@ -15,8 +15,8 @@ public class PageGenerator {
 		return new RegisterPageObject(driver);
 	}
 	
-	public static CustomerInforPageObject getCustomerInforPage(WebDriver driver) {
-		return new CustomerInforPageObject(driver);
+	public static CustomerInfoPageObject getCustomerInforPage(WebDriver driver) {
+		return new CustomerInfoPageObject(driver);
 	}
 	
 	public static AddressesPageObject getAddressesPage(WebDriver driver) {

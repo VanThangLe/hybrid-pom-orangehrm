@@ -12,7 +12,7 @@ import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
 import pageObjects.nopCommerce.OrdersPageObject;
 import pageObjects.nopCommerce.AddressesPageObject;
-import pageObjects.nopCommerce.CustomerInforPageObject;
+import pageObjects.nopCommerce.CustomerInfoPageObject;
 import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.RegisterPageObject;
 import pageObjects.nopCommerce.RewardPointsPageObject;
@@ -22,7 +22,7 @@ public class Level_07_Switch_Page_Object extends BaseTest {
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
-	CustomerInforPageObject customerInforPage;
+	CustomerInfoPageObject customerInforPage;
 	AddressesPageObject addressesPage;
 	OrdersPageObject ordersPage;
 	RewardPointsPageObject rewardPointPage;

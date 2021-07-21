@@ -12,7 +12,7 @@ import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
 import pageObjects.nopCommerce.OrdersPageObject;
 import pageObjects.nopCommerce.AddressesPageObject;
-import pageObjects.nopCommerce.CustomerInforPageObject;
+import pageObjects.nopCommerce.CustomerInfoPageObject;
 import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.RegisterPageObject;
 import pageObjects.nopCommerce.RewardPointsPageObject;
@@ -22,7 +22,7 @@ public class Level_08_Dynamic_Locator extends BaseTest {
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
-	CustomerInforPageObject customerInforPage;
+	CustomerInfoPageObject customerInforPage;
 	AddressesPageObject addressesPage;
 	OrdersPageObject ordersPage;
 	RewardPointsPageObject rewardPointPage;
@@ -88,7 +88,7 @@ public class Level_08_Dynamic_Locator extends BaseTest {
 		ordersPage = (OrdersPageObject) customerInforPage.openSiderBarPageByName(driver, "Orders");
 		rewardPointPage = (RewardPointsPageObject) ordersPage.openSiderBarPageByName(driver, "Reward points");
 		addressesPage = (AddressesPageObject) rewardPointPage.openSiderBarPageByName(driver, "Addresses");
-		customerInforPage = (CustomerInforPageObject) addressesPage.openSiderBarPageByName(driver, "Customer info");
+		customerInforPage = (CustomerInfoPageObject) addressesPage.openSiderBarPageByName(driver, "Customer info");
 		rewardPointPage = (RewardPointsPageObject) customerInforPage.openSiderBarPageByName(driver, "Reward points");
 		ordersPage = (OrdersPageObject) rewardPointPage.openSiderBarPageByName(driver, "Orders");
 		addressesPage = (AddressesPageObject) ordersPage.openSiderBarPageByName(driver, "Addresses");
