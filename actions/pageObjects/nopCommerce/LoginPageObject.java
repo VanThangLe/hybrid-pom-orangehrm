@@ -17,8 +17,8 @@ public class LoginPageObject extends BasePage{
 	}
 
 	public void enterToPasswordTextbox(String password) {
-		waitForElementVisible(driver, LoginPageUI.EMAIL_TEXTBOX);
-		sendkeyToElement(driver, LoginPageUI.EMAIL_TEXTBOX, password);
+		waitForElementVisible(driver, LoginPageUI.PASSWORD_TEXTBOX);
+		sendkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
 	}
 
 	public HomePageObject clickToLoginButton() {
