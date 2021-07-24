@@ -83,16 +83,20 @@ public class Level_08_Dynamic_Locator extends BaseTest {
 	}
 
 	
-	@Test
-	public void TC_04_Switch_Page_Common() {
-		ordersPage = (OrdersPageObject) customerInforPage.openSiderBarPageByName(driver, "Orders");
-		rewardPointPage = (RewardPointsPageObject) ordersPage.openSiderBarPageByName(driver, "Reward points");
-		addressesPage = (AddressesPageObject) rewardPointPage.openSiderBarPageByName(driver, "Addresses");
-		customerInforPage = (CustomerInfoPageObject) addressesPage.openSiderBarPageByName(driver, "Customer info");
-		rewardPointPage = (RewardPointsPageObject) customerInforPage.openSiderBarPageByName(driver, "Reward points");
-		ordersPage = (OrdersPageObject) rewardPointPage.openSiderBarPageByName(driver, "Orders");
-		addressesPage = (AddressesPageObject) ordersPage.openSiderBarPageByName(driver, "Addresses");
-	}
+	/*
+	 * @Test public void TC_04_Switch_Page_Common() { ordersPage =
+	 * (OrdersPageObject) customerInforPage.openSiderBarPageByName(driver,
+	 * "Orders"); rewardPointPage = (RewardPointsPageObject)
+	 * ordersPage.openSiderBarPageByName(driver, "Reward points"); addressesPage =
+	 * (AddressesPageObject) rewardPointPage.openSiderBarPageByName(driver,
+	 * "Addresses"); customerInforPage = (CustomerInfoPageObject)
+	 * addressesPage.openSiderBarPageByName(driver, "Customer info");
+	 * rewardPointPage = (RewardPointsPageObject)
+	 * customerInforPage.openSiderBarPageByName(driver, "Reward points"); ordersPage
+	 * = (OrdersPageObject) rewardPointPage.openSiderBarPageByName(driver,
+	 * "Orders"); addressesPage = (AddressesPageObject)
+	 * ordersPage.openSiderBarPageByName(driver, "Addresses"); }
+	 */
 	
 	@Test
 	public void TC_05_Switch_Page_Common() {

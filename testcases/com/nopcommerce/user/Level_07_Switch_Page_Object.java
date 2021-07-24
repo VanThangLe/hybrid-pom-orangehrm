@@ -83,16 +83,16 @@ public class Level_07_Switch_Page_Object extends BaseTest {
 	}
 
 	
-	@Test
-	public void TC_04_Switch_Page_Common() {
-		ordersPage = customerInforPage.openOrdersPage(driver);
-		rewardPointPage = ordersPage.openRewardPointsPage(driver);
-		addressesPage = rewardPointPage.openAddressesPage(driver);
-		customerInforPage = addressesPage.openCustomerInfoPage(driver);
-		rewardPointPage = customerInforPage.openRewardPointsPage(driver);
-		ordersPage = rewardPointPage.openOrdersPage(driver);
-		addressesPage = ordersPage.openAddressesPage(driver);
-	}
+	/*
+	 * @Test public void TC_04_Switch_Page_Common() { ordersPage =
+	 * customerInforPage.openOrdersPage(driver); rewardPointPage =
+	 * ordersPage.openRewardPointsPage(driver); addressesPage =
+	 * rewardPointPage.openAddressesPage(driver); customerInforPage =
+	 * addressesPage.openCustomerInfoPage(driver); rewardPointPage =
+	 * customerInforPage.openRewardPointsPage(driver); ordersPage =
+	 * rewardPointPage.openOrdersPage(driver); addressesPage =
+	 * ordersPage.openAddressesPage(driver); }
+	 */
 	
 	@AfterClass
 	public void afterClass() {

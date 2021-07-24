@@ -1,5 +1,6 @@
 package commons;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
@@ -15,16 +16,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import pageObjects.nopCommerce.AddressesPageObject;
-import pageObjects.nopCommerce.BackInStockSubcriptionsPageObject;
-import pageObjects.nopCommerce.ChangePasswordPageObject;
-import pageObjects.nopCommerce.CustomerInfoPageObject;
-import pageObjects.nopCommerce.DownloadableProductsPageObject;
-import pageObjects.nopCommerce.MyProductReviewsPageObject;
-import pageObjects.nopCommerce.OrdersPageObject;
-import pageObjects.nopCommerce.PageGenerator;
-import pageObjects.nopCommerce.RewardPointsPageObject;
 import pageUIs.nopCommerce.BasePageUI;
 
 public class BasePage {
@@ -260,6 +251,10 @@ public class BasePage {
 		return getWebElement(driver, locator).isSelected();
 	}
 	
+	public boolean isElementSelected(WebDriver driver, String locator, String... values) {
+		return getWebElement(driver, castRestParameter(locator, values)).isSelected();
+	}
+	
 	public void switchToFrame(WebDriver driver, String locator) {
 		driver.switchTo().frame(getWebElement(driver, locator));
 	}
@@ -298,8 +293,20 @@ public class BasePage {
 		return Color.fromString(rgbaValue).asHex();
 	}
 	
-	public void uploadToElement(WebDriver driver, String locator, String filePath) {
-		getWebElement(driver, locator).sendKeys(filePath);
+	public void uploadOneFile(WebDriver driver, String locator, String fileName) {
+		getWebElement(driver, locator).sendKeys(fileName);
+	}
+	
+	public void uploadMultipleFiles(WebDriver driver, String locator, String... fileNames) {
+		String projectLocation = System.getProperty("user.dir");
+		String filePath = "";
+		String fullFileName = "";
+		filePath = projectLocation + File.separator + "uploadFiles" + File.separator;
+		for (String file : fileNames) {
+			fullFileName = fullFileName + filePath + file + "\n";
+		}
+		fullFileName = fullFileName.trim();
+		getWebElement(driver, locator).sendKeys(fullFileName);
 	}
 	
 	public Object executeForBrowser(WebDriver driver, String javaScript) {
@@ -440,78 +447,6 @@ public class BasePage {
 	public boolean waitForElementInvisible(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		return explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator, values)));
-	}
-	
-	public CustomerInfoPageObject openCustomerInfoPage(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.CUSTOMER_INFOR_PAGE_LINK);
-		clickToElement(driver, BasePageUI.CUSTOMER_INFOR_PAGE_LINK);
-		return PageGenerator.getCustomerInforPage(driver);
-	}
-	
-	public AddressesPageObject openAddressesPage(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.ADDRESSES_PAGE_LINK);
-		clickToElement(driver, BasePageUI.ADDRESSES_PAGE_LINK);
-		return PageGenerator.getAddressesPage(driver);
-	}
-	
-	public OrdersPageObject openOrdersPage(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.ORDERS_PAGE_LINK);
-		clickToElement(driver, BasePageUI.ORDERS_PAGE_LINK);
-		return PageGenerator.getOrdersPage(driver);
-	}
-	
-	public DownloadableProductsPageObject openDownloadableProductsPage(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.DOWNLOADABLE_PRODUCTS_PAGE_LINK);
-		clickToElement(driver, BasePageUI.DOWNLOADABLE_PRODUCTS_PAGE_LINK);
-		return PageGenerator.getDownloadableProductsPage(driver);
-	}
-	
-	public BackInStockSubcriptionsPageObject openBackInStockSubcriptionsPage(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.BACK_IN_STOCK_SUBCRIPTIONS_PAGE_LINK);
-		clickToElement(driver, BasePageUI.BACK_IN_STOCK_SUBCRIPTIONS_PAGE_LINK);
-		return PageGenerator.getBackInStockSubcriptionsPage(driver);
-	}
-	
-	public RewardPointsPageObject openRewardPointsPage(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.REWARD_POINTS_PAGE_LINK);
-		clickToElement(driver, BasePageUI.REWARD_POINTS_PAGE_LINK);
-		return PageGenerator.getRewardsPointsPage(driver);
-	}
-	
-	public ChangePasswordPageObject openChangePasswordPage(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.CHANGE_PASSWORD_PAGE_LINK);
-		clickToElement(driver, BasePageUI.CHANGE_PASSWORD_PAGE_LINK);
-		return PageGenerator.getChangePasswordPage(driver);
-	}
-	
-	public MyProductReviewsPageObject openMyProductReviewsPage(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.MY_PRODUCT_REVIEWS_PAGE_LINK);
-		clickToElement(driver, BasePageUI.MY_PRODUCT_REVIEWS_PAGE_LINK);
-		return PageGenerator.getMyProductReviewsPage(driver);
-	}
-	
-	public BasePage openSiderBarPageByName(WebDriver driver, String pageName) {
-		waitForElementClickAble(driver, BasePageUI.DYNAMIC_SIDE_BAR_PAGE_LINK, pageName);
-		clickToElement(driver, BasePageUI.DYNAMIC_SIDE_BAR_PAGE_LINK, pageName);
-		if(pageName.equals("Customer info")) {
-			return PageGenerator.getCustomerInforPage(driver);
-		} else if(pageName.equals("Addresses")) {
-			return PageGenerator.getAddressesPage(driver);
-		} else if(pageName.equals("Orders")) {
-			return PageGenerator.getOrdersPage(driver);
-		} else if(pageName.equals("Downloadable products")) {
-			return PageGenerator.getDownloadableProductsPage(driver);
-		} else if(pageName.equals("Back in stock subscriptions")) {
-			return PageGenerator.getBackInStockSubcriptionsPage(driver);
-		} else if(pageName.equals("Reward points")) {
-			return PageGenerator.getRegisterPage(driver);
-		} else if(pageName.equals("Change password")) {
-			return PageGenerator.getChangePasswordPage(driver);
-		} else if(pageName.equals("My product reviews")) {
-			return PageGenerator.getMyProductReviewsPage(driver);
-		} else {
-			return null;
-		}
 	}
 	
 	public void openSiderBarPageByPageName(WebDriver driver, String pageName) {
