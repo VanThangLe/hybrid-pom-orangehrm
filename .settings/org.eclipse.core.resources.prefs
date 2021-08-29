@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//actions/commons/BaseTest.java=UTF-8
+encoding//actions/pageObjects/facebook/PageGenerator.java=UTF-8
 encoding//actions/pageObjects/jQuery/PageGenerator.java=UTF-8
 encoding//actions/pageObjects/liveGuru/PageGenerator.java=UTF-8
 encoding//actions/pageObjects/nopCommerce/HomePageObject.java=UTF-8
@@ -14,4 +15,5 @@ encoding//testcases/com/nopcommerce/user/Level_04_Register_Login_Muliple_Browser
 encoding//testcases/com/nopcommerce/user/Level_06_Page_Generator_03_Init_Page_Generator_Class.java=UTF-8
 encoding//testcases/com/nopcommerce/user/Level_07_Switch_Page_Object.java=UTF-8
 encoding//testcases/com/nopcommerce/user/Level_08_Dynamic_Locator.java=UTF-8
-encoding//testcases/displayAndUndisplay/NewTest.java=UTF-8
+encoding//testcases/displayAndUndisplay/Level_11_Register_Login_Element_Undisplayed.java=UTF-8
+encoding//testcases/displayAndUndisplay/Level_12_Register_Login_Assert_Verify.java=UTF-8

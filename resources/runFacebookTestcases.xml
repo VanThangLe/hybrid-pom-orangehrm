@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Facebook" parallel="false">
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+	</listeners>
+	
+	<parameter name="url" value="http://www.facebook.com/" />
+  
+	  <test name="Run on CHROME">
+	  <parameter name="brower" value="chrome" />
+	    <classes>
+	      <class name="displayAndUndisplay.Level_12_Register_Login_Assert_Verify"/>
+	    </classes>
+	  </test>
+  
+</suite>

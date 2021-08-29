@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class NewTest {
+public class Level_11_Register_Login_Element_Undisplayed {
 	WebDriver driver;
 	WebDriverWait explicitWait;
 	long shortTimeout = 5;
