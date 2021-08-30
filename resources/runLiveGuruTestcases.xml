@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="LiveGuru DataTable" parallel="false">
+	<parameter name="url" value="http://live.demoguru99.com/index.php/" />
+  
+	  <test name="Run on CHROME">
+	  <parameter name="brower" value="chrome" />
+	    <classes>
+	      <class name="com.liveguru.register.Level_09_DataTable"/>
+	    </classes>
+	  </test>
+  
+</suite>
