@@ -1,5 +1,6 @@
 package commons;
 
+import java.io.File;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +13,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeSuite;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -59,6 +61,10 @@ public class BaseTest {
 		return driver;
 	}
 
+	public WebDriver getWebDriver() {
+		return this.driver;
+	}
+	
 	protected int getRandomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(9999);
@@ -124,5 +130,25 @@ public class BaseTest {
 
 	protected boolean verifyEquals(Object actual, Object expected) {
 		return checkEquals(actual, expected);
+	}
+	
+	@BeforeSuite
+	public void deleteAllFilesInReportNGScreenshot() {
+		log.info("---------- START delete file in folder ----------");
+		try {
+			String workingDir = System.getProperty("user.dir");
+			String pathFolderDownload = workingDir + "/screenshotReportNG";
+			File file = new File(pathFolderDownload);
+			File[] listOfFiles = file.listFiles();
+			for (int i = 0; i < listOfFiles.length; i++) {
+				if (listOfFiles[i].isFile()) {
+					System.out.println(listOfFiles[i].getName());
+					new File(listOfFiles[i].toString()).delete();
+				}
+			}
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		log.info("---------- END delete file in folder ----------");
 	}
 }

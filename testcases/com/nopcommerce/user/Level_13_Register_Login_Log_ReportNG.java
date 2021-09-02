@@ -12,7 +12,7 @@ import pageObjects.nopCommerce.LoginPageObject;
 import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.RegisterPageObject;
 
-public class Level_13_Register_Login_Log_Report extends BaseTest {
+public class Level_13_Register_Login_Log_ReportNG extends BaseTest {
 	WebDriver driver;
 	HomePageObject homePage;
 	LoginPageObject loginPage;
@@ -58,7 +58,7 @@ public class Level_13_Register_Login_Log_Report extends BaseTest {
 		registerPage.clickToRegisterButton();
 		
 		log.info("User_01_Register - Step 11: Verify success message is displayed");
-		verifyTrue(registerPage.isRegisterSuccessMessageDisplayed());
+		verifyFalse(registerPage.isRegisterSuccessMessageDisplayed());
 		
 		log.info("User_01_Register - Step 12: Click to Logout button");
 		homePage = registerPage.clickToLogoutLink();
