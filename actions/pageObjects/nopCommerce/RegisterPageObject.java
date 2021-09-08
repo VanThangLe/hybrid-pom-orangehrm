@@ -3,6 +3,7 @@ package pageObjects.nopCommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import io.qameta.allure.Step;
 import pageUIs.nopCommerce.RegisterPageUI;
 
 public class RegisterPageObject extends BasePage{
@@ -12,16 +13,19 @@ public class RegisterPageObject extends BasePage{
 		this.driver = _driver;
 	}
 
+	@Step("Click to Gender Male radio")
 	public void clickToGenderMaleRadio() {
 		waitForElementClickAble(driver, RegisterPageUI.GENDER_MALE_RADIO);
 		clickToElement(driver, RegisterPageUI.GENDER_MALE_RADIO);
 	}
 
+	@Step("Enter to Firstname textbox with value {0}")
 	public void enterToFirstNameTextbox(String firstName) {
 		waitForElementVisible(driver, RegisterPageUI.FIRSTNAME_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.FIRSTNAME_TEXTBOX, firstName);
 	}
 
+	@Step("Enter to Lastname textbox with value {0}")
 	public void enterToLastNameTextbox(String lastName) {
 		waitForElementVisible(driver, RegisterPageUI.LASTNAME_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.LASTNAME_TEXTBOX, lastName);

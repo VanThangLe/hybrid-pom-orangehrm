@@ -8,6 +8,7 @@
 		<listener class-name="commons.MethodListener" />
 		<listener class-name="reportConfig.ExtentReportListener" />
 		<listener class-name="reportConfig.ReportNGListener" />
+		<listener class-name="reportConfig.AllureTestListener" />
 	</listeners>
 
 	<test name="Run on CHROME">
