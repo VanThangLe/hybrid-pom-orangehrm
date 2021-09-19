@@ -465,6 +465,35 @@ public class BasePage {
 		clickToElement(driver, BasePageUI.DYNAMIC_SIDE_BAR_PAGE_LINK, pageName);
 	}
 	
+	public void openFooterPageByPageName(WebDriver driver, String pageName) {
+		waitForElementClickAble(driver, BasePageUI.DYNAMIC_PAGE_FOOTER, pageName);
+		clickToElement(driver, BasePageUI.DYNAMIC_PAGE_FOOTER, pageName);
+	}
+	
+	public void openHeaderPageByPageName(WebDriver driver, String pageName) {
+		waitForElementClickAble(driver, BasePageUI.DYNAMIC_PAGE_HEADER, pageName);
+		clickToElement(driver, BasePageUI.DYNAMIC_PAGE_HEADER, pageName);
+	}
+	
+	public void enterToTextboxByID(WebDriver driver, String textboxID, String value) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		sendkeyToElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxID);
+	}
+	
+	public void clickToRadioButtonByLabel(WebDriver driver, String radioButtonID) {
+		waitForElementClickAble(driver, BasePageUI.DYNAMIC_RADIO_BY_LABEL, radioButtonID);
+		clickToElement(driver, BasePageUI.DYNAMIC_RADIO_BY_LABEL, radioButtonID);
+	}
+
+	public void selectDropdownByName(WebDriver driver, String dropdownName, String itemText) {
+		selectItemInDefaultDropdown(driver, BasePageUI.DYNAMIC_DROPDOWN_BY_NAME, itemText, dropdownName);
+	}
+	
+	public void clickToButtonByText(WebDriver driver, String buttonText) {
+		waitForElementClickAble(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+		clickToElement(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+	}
+	
 	private Alert alert;
 	private Select select;
 	private Actions action;

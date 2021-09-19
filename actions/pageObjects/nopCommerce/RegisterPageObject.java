@@ -81,5 +81,4 @@ public class RegisterPageObject extends BasePage{
 		clickToElement(driver, RegisterPageUI.LOGOUT_LINK);
 		return PageGenerator.getHomePage(driver);
 	}
-
 }
