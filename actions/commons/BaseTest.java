@@ -1,7 +1,6 @@
 package commons;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +13,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -154,7 +154,21 @@ public class BaseTest {
 		log.info("---------- END delete file in folder ----------");
 	}
 
-	protected void cleanBrowserAndDriver() {
+	protected void cleanDriverInstance() {
+		try {
+			// Browser
+			if (driver != null) {
+				// IE browser
+				driver.manage().deleteAllCookies();
+				driver.quit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@AfterSuite(alwaysRun = true)
+	public void cleanExcutableDriver() {
 		String cmd = "";
 		try {
 			// Executable driver
@@ -186,21 +200,18 @@ public class BaseTest {
 					cmd = "pkill msedgedriver";
 				}
 			}
-			
-			// Browser
 			if (driver != null) {
-			// IE browser
 				driver.manage().deleteAllCookies();
 				driver.quit();
 			}
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			try {
 				Process process = Runtime.getRuntime().exec(cmd);
 				process.waitFor();
 			} catch (Exception e) {
-				log.info(e.getMessage());
+				e.printStackTrace();
 			}
 		}
 	}
