@@ -14,7 +14,7 @@ public class Employee_01_Add_Employee extends BaseTest {
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void beforeClass(String browserName, String appUrl) {
-		log.info("Pre-condition: Open browser '" + browserName + "'and navigate to '" + appUrl + "'");
+		log.info("Pre-condition: Step 01 - Open browser '" + browserName + "'and navigate to '" + appUrl + "'");
 		driver = getBrowserDriver(browserName, appUrl);
 	}
 	
