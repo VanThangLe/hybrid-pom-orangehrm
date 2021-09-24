@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="User - Nop Commerce" parallel="tests" thread-count="1">
+<suite name="OrangeHRM" parallel="tests" thread-count="1">
 	<parameter name="url" value="http://demo.nopcommerce.com/" />
 
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
 		<listener class-name="commons.MethodListener" />
-		<listener class-name="reportConfig.ExtentReportListener" />
 		<listener class-name="reportConfig.ReportNGListener" />
-		<listener class-name="reportConfig.AllureTestListener" />
 	</listeners>
 
 	<test name="Run on CHROME">
 		<parameter name="brower" value="chrome" />
 		<classes>
-			<class name="com.nopcommerce.user.Level_13_Register_Login_Log_Report" />
+			<class name="com.orangehrm.employee.Employee_01_Add_Employee" />
 		</classes>
 	</test>
 
