@@ -1,0 +1,40 @@
+[INFO ] [2021-09-25 23:31:01,967] ---------- START delete file in folder ----------
+[INFO ] [2021-09-25 23:31:01,996] ---------- END delete file in folder ----------
+[INFO ] [2021-09-25 23:31:02,290] OS name = windows 10
+[INFO ] [2021-09-25 23:33:55,006] ---------- START delete file in folder ----------
+[INFO ] [2021-09-25 23:33:55,014] ---------- END delete file in folder ----------
+[INFO ] [2021-09-25 23:33:55,441] OS name = windows 10
+[INFO ] [2021-09-25 23:44:23,727] ---------- START delete file in folder ----------
+[INFO ] [2021-09-25 23:44:23,752] ---------- END delete file in folder ----------
+[INFO ] [2021-09-25 23:44:24,714] OS name = windows 10
+[INFO ] [2021-09-25 23:46:04,423] ---------- START delete file in folder ----------
+[INFO ] [2021-09-25 23:46:04,430] ---------- END delete file in folder ----------
+[INFO ] [2021-09-25 23:46:04,652] OS name = windows 10
+[INFO ] [2021-09-25 23:49:51,648] ---------- START delete file in folder ----------
+[INFO ] [2021-09-25 23:49:51,736] ---------- END delete file in folder ----------
+[INFO ] [2021-09-25 23:49:52,814] OS name = windows 10
+[INFO ] [2021-09-25 23:59:30,562] ---------- START delete file in folder ----------
+[INFO ] [2021-09-25 23:59:30,579] ---------- END delete file in folder ----------
+[INFO ] [2021-09-25 23:59:30,960] OS name = windows 10
+[INFO ] [2021-09-26 00:01:35,620] ---------- START delete file in folder ----------
+[INFO ] [2021-09-26 00:01:35,622] ---------- END delete file in folder ----------
+[INFO ] [2021-09-26 00:01:35,738] OS name = windows 10
+[INFO ] [2021-09-26 00:02:53,338] ---------- START delete file in folder ----------
+[INFO ] [2021-09-26 00:02:53,339] ---------- END delete file in folder ----------
+[INFO ] [2021-09-26 00:02:53,501] OS name = windows 10
+[INFO ] [2021-09-26 00:03:38,577] ---------- START delete file in folder ----------
+[INFO ] [2021-09-26 00:03:38,579] ---------- END delete file in folder ----------
+[INFO ] [2021-09-26 00:03:38,687] OS name = windows 10
+[INFO ] [2021-09-26 00:05:11,049] ---------- START delete file in folder ----------
+[INFO ] [2021-09-26 00:05:11,050] ---------- END delete file in folder ----------
+[INFO ] [2021-09-26 00:05:11,152] OS name = windows 10
+[INFO ] [2021-09-26 00:07:22,843] ---------- START delete file in folder ----------
+[INFO ] [2021-09-26 00:07:22,845] ---------- END delete file in folder ----------
+[INFO ] [2021-09-26 00:07:22,870] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com/index.php/dashboard'
+[INFO ] [2021-09-26 00:08:25,352] Post-condition: Close browser 'chrome'
+[INFO ] [2021-09-26 00:08:28,521] OS name = windows 10
+[INFO ] [2021-09-26 00:10:28,595] ---------- START delete file in folder ----------
+[INFO ] [2021-09-26 00:10:28,596] ---------- END delete file in folder ----------
+[INFO ] [2021-09-26 00:10:28,663] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com/index.php/dashboard'
+[INFO ] [2021-09-26 00:11:16,781] Post-condition: Close browser 'chrome'
+[INFO ] [2021-09-26 00:11:17,075] OS name = windows 10

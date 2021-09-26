@@ -1,0 +1,5 @@
+[INFO ] [2021-09-26 00:10:28,595] ---------- START delete file in folder ----------
+[INFO ] [2021-09-26 00:10:28,596] ---------- END delete file in folder ----------
+[INFO ] [2021-09-26 00:10:28,663] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com/index.php/dashboard'
+[INFO ] [2021-09-26 00:11:16,781] Post-condition: Close browser 'chrome'
+[INFO ] [2021-09-26 00:11:17,075] OS name = windows 10
