@@ -27,6 +27,6 @@ public class Employee_08_Edit_View_Salary extends BaseTest {
 	@AfterClass(alwaysRun = true)
 	public void cleanBrowser(String browserName) {
 		log.info("Post-condition: Close browser '" + browserName + "'");
-		cleanDriverInstance();
+		cleanExcutableDriver();
 	}
 }

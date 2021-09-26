@@ -27,6 +27,6 @@ public class Employee_10_Qualifications extends BaseTest {
 	@AfterClass(alwaysRun = true)
 	public void cleanBrowser(String browserName) {
 		log.info("Post-condition: Close browser '" + browserName + "'");
-		cleanDriverInstance();
+		cleanExcutableDriver();
 	}
 }
