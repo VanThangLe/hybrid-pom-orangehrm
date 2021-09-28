@@ -22,7 +22,36 @@ public class Employee_01_Add_Employee extends BaseTest {
 	
 	@Test
 	public void Employee_01_Add_New_Employee() {
-		log.info("Add_New_01 - Step 01: ");
+		log.info("Add_New_01 - Step 01: Open 'Employee List' page");
+		
+		
+		log.info("Add_New_01 - Step 02: Click to 'Add' button");
+		
+		
+		log.info("Add_New_01 - Step 03: Enter valid info to 'First Name' textbox");
+		
+		
+		log.info("Add_New_01 - Step 04: Enter valid info to 'Last Name' textbox");
+		
+		
+		log.info("Add_New_01 - Step 05: Get value of 'Employee ID'");
+		
+		
+		log.info("Add_New_01 - Step 06: Click to 'Create Login Details' checkbox");
+		
+		
+		log.info("Add_New_01 - Step 07: Enter valid info to 'User Name' textbox");
+		
+		
+		log.info("Add_New_01 - Step 08: Enter valid info to 'Password' textbox");
+		
+		
+		log.info("Add_New_01 - Step 09: Select 'Enabled' value in 'Status' dropdown");
+		
+		
+		log.info("Add_New_01 - Step 10: Click to 'Save' button");
+		
+		
 	}
 	
 	@Parameters({"browser"})
