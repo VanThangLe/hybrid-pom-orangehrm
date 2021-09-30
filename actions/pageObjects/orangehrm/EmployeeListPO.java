@@ -13,17 +13,17 @@ public class EmployeeListPO extends BasePage {
 	}
 
 	public AddEmployeePO clickToAddButton() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public void enterToEmployeeNameTextbox(String string) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	public void clickToSearchButton() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
