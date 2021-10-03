@@ -5,16 +5,10 @@ import org.openqa.selenium.WebDriver;
 import commons.BasePage;
 
 public class PersonalDetailPO extends BasePage {
-	private WebDriver driver;
+//	private WebDriver driver;
 
 	public PersonalDetailPO(WebDriver driver) {
 		super();
-		this.driver = driver;
-	}
-
-	public EmployeeListPO openEmployeeListPage() {
-		return null;
-		
-		
+//		this.driver = driver;
 	}
 }

@@ -1,11 +1,12 @@
 package pageUIs.orangehrm;
 
 public class BasePageUI {
-	public static final String DYNAMIC_SIDE_BAR_PAGE_BY_NAME = "//div[@class='listbox']//a[text()='%s']";
-	public static final String DYNAMIC_TEXTBOX_BY_ID = "//input[@id='%s']";
-	public static final String DYNAMIC_RADIO_BY_LABEL = "//label[text()='%s']/preceding-sibling::input";
-	public static final String DYNAMIC_PAGE_FOOTER = "//div[@class='footer']//a[text()='%s']";
-	public static final String DYNAMIC_PAGE_HEADER = "//div[@class='header']//a[text()='%s']";
-	public static final String DYNAMIC_DROPDOWN_BY_NAME = "//select[@name='%s']";
-	public static final String DYNAMIC_BUTTON_BY_TEXT = "//button[text()='%s']";
+	public static final String BUTTON_BY_ID = "//input[@id='%s']";
+	public static final String TEXTBOX_BY_ID = "//input[@id='%s']";
+	public static final String DROPDOWN_BY_ID = "//select[@id='%s']";
+	public static final String CHECKBOX_BY_LABEL = "//label[text()='%s']/following-sibling::input";
+	public static final String RADIO_BY_LABEL = "//label[text()='%s']/preceding-sibling::input";
+	public static final String TABLE_HEADER_BY_ID_AND_NAME = "//table[@id='%s']//th[string()='%s']/preceding-sibling::th";
+	public static final String TABLE_ROW_BY_COLUMN_INDEX_AND_ROW_INDEX = "//table[@id='%s']/tbody/tr[%s]/td[%s]";
+	public static final String MENU_BY_PAGE_NAME = "//div[@id='mainMenu']//a[string()='%s']";
 }
