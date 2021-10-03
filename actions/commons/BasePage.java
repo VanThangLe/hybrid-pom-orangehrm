@@ -1,6 +1,5 @@
 package commons;
 
-import java.io.File;
 import java.util.List;
 import java.util.Set;
 
@@ -18,13 +17,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.orangehrm.DashboardPO;
+import pageObjects.orangehrm.LoginPO;
+import pageObjects.orangehrm.PageGenerator;
 import pageUIs.orangehrm.BasePageUI;
 
 public class BasePage {
 	private Alert alert;
 	private Select select;
 	private Actions action;
-	private long longTimeout = 30;
 	private WebDriverWait explicitWait;
 	private JavascriptExecutor jsExecutor;
 	
@@ -71,7 +72,7 @@ public class BasePage {
 	}
 	
 	public Alert waitForAlertPresence(WebDriver driver) {
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		return explicitWait.until(ExpectedConditions.alertIsPresent());
 	}
 	
@@ -202,7 +203,7 @@ public class BasePage {
 		getWebElement(driver, parentLocator).click();
 		sleepInSecond(1);
 
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(childItemLocator)));
 
 		for (WebElement item : allItems) {
@@ -332,10 +333,8 @@ public class BasePage {
 	}
 	
 	public void uploadMultipleFiles(WebDriver driver, String locator, String... fileNames) {
-		String projectLocation = System.getProperty("user.dir");
-		String filePath = "";
+		String filePath = GlobalConstants.UPLOAD_FOLDER_PATH;
 		String fullFileName = "";
-		filePath = projectLocation + File.separator + "uploadFiles" + File.separator;
 		for (String file : fileNames) {
 			fullFileName = fullFileName + filePath + file + "\n";
 		}
@@ -413,7 +412,7 @@ public class BasePage {
 	}
 
 	public boolean isJQueryAJAXLoadedSuccess(WebDriver driver){
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		jsExecutor = (JavascriptExecutor) driver;
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
 			@Override
@@ -425,7 +424,7 @@ public class BasePage {
 	}
 	
 	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		jsExecutor = (JavascriptExecutor) driver;
 
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
@@ -466,32 +465,32 @@ public class BasePage {
 	}
 	
 	public WebElement waitForElementVisible(WebDriver driver, String locator, String... values) {
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		return explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator, values)));
 	}
 	
 	public WebElement waitForElementVisible(WebDriver driver, String locator) {
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		return explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
 	}
 	
 	public WebElement waitForElementClickAble(WebDriver driver, String locator) {
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		return explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
 	}
 	
 	public WebElement waitForElementClickAble(WebDriver driver, String locator, String... values) {
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		return explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator, values)));
 	}
 	
 	public boolean waitForElementInvisible(WebDriver driver, String locator) {
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		return explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
 	}
 	
 	public boolean waitForElementInvisible(WebDriver driver, String locator, String... values) {
-		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		return explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator, values)));
 	}
 	
@@ -506,6 +505,8 @@ public class BasePage {
 		
 		waitForElementClickAble(driver, BasePageUI.MENU_BY_PAGE_NAME, subMenuPageName);
 		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, subMenuPageName);
+		
+		isJQueryAJAXLoadedSuccess(driver);
 	}
 	
 	public void openChildSubMenuPage(WebDriver driver, String menuPageName, String subMenuPageName, String childSubMenuPageName) {
@@ -517,6 +518,8 @@ public class BasePage {
 		
 		waitForElementClickAble(driver, BasePageUI.MENU_BY_PAGE_NAME, childSubMenuPageName);
 		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, childSubMenuPageName);
+		
+		isJQueryAJAXLoadedSuccess(driver);
 	}
 	
 	public void clickToButtonByID(WebDriver driver, String buttonIDName) {
@@ -558,5 +561,25 @@ public class BasePage {
 		int columnIndex = getElementSize(driver, BasePageUI.TABLE_HEADER_BY_ID_AND_NAME, tableID, headerName) + 1;
 		waitForElementVisible(driver, BasePageUI.TABLE_ROW_BY_COLUMN_INDEX_AND_ROW_INDEX, tableID, rowIndex, String.valueOf(columnIndex));
 		return getElementText(driver, BasePageUI.TABLE_ROW_BY_COLUMN_INDEX_AND_ROW_INDEX, tableID, rowIndex);
+	}
+	
+	public LoginPO logoutToSystem(WebDriver driver) {
+		waitForElementClickAble(driver, BasePageUI.WELCOME_USER_LINK);
+		clickToElement(driver, BasePageUI.WELCOME_USER_LINK);
+		waitForElementClickAble(driver, BasePageUI.LOGOUT_LINK);
+		clickToElement(driver, BasePageUI.LOGOUT_LINK);
+		return PageGenerator.getLoginPage(driver);
+	}
+	
+	public DashboardPO loginToSystem(WebDriver driver, String username, String password) {
+		waitForElementVisible(driver, BasePageUI.USERNAME_LOGIN_TEXTBOX);
+		sendkeyToElement(driver, BasePageUI.USERNAME_LOGIN_TEXTBOX, username);
+		sendkeyToElement(driver, BasePageUI.PASSWORD_LOGIN_TEXTBOX, password);
+		clickToElement(driver, BasePageUI.LOGIN_BUTTON);
+		return PageGenerator.getDashboardPage(driver);
+	}
+	
+	public void uploadImage(WebDriver driver, String filePath) {
+		getWebElement(driver, BasePageUI.UPLOAD_FILE).sendKeys(filePath);
 	}
 }

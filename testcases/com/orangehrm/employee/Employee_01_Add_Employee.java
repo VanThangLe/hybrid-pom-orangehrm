@@ -7,6 +7,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
+import commons.GlobalConstants;
 import pageObjects.orangehrm.AddEmployeePO;
 import pageObjects.orangehrm.DashboardPO;
 import pageObjects.orangehrm.EmployeeListPO;
@@ -21,7 +22,9 @@ public class Employee_01_Add_Employee extends BaseTest {
 	DashboardPO dashboardPage;
 	EmployeeListPO employeeListPage;
 	PersonalDetailPO personalDetailPage;
-	String employeeID, statusValue;
+	String empFirstName, empLastName, employeeID, statusValue, empFullName;
+	static String empUserName = "automationfc";
+	static String empPassword = "automation123";
 	
 	@Parameters({"browser", "url"})
 	@BeforeClass
@@ -31,16 +34,16 @@ public class Employee_01_Add_Employee extends BaseTest {
 		loginPage = PageGenerator.getLoginPage(driver);
 		
 		statusValue = "Enabled";
+		empFirstName = "Automation";
+		empLastName = "FC";
+		empFullName = empFirstName + " " + empLastName;
 		
 		log.info("Pre-condition: Step 02 - Login with Admin role");
-		loginPage.enterToTextboxByID(driver, "txtUsername", "Admin");
-		loginPage.enterToTextboxByID(driver, "txtPassword", "admin123");
-		loginPage.clickToButtonByID(driver, "btnLogin");
-		dashboardPage = PageGenerator.getDashboardPage(driver);
+		dashboardPage = loginPage.loginToSystem(driver, GlobalConstants.ADMIN_USERNAME, GlobalConstants.ADMIN_PASSWORD);
 	}
 	
 	@Test
-	public void Employee_01_Add_New_Employee() {
+	public void Add_New_Employee() {
 		log.info("Add_New_01 - Step 01: Open 'Employee List' page");
 		dashboardPage.openSubMenuPage(driver, "PIM", "Employee List");
 		employeeListPage = PageGenerator.getEmployeeListPage(driver);
@@ -50,10 +53,10 @@ public class Employee_01_Add_Employee extends BaseTest {
 		addEmployeePage = PageGenerator.getAddEmployeePage(driver);
 		
 		log.info("Add_New_01 - Step 03: Enter valid info to 'First Name' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "firstName", "Automation");
+		addEmployeePage.enterToTextboxByID(driver, "firstName", empFirstName);
 		
 		log.info("Add_New_01 - Step 04: Enter valid info to 'Last Name' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "lastName", "FC");
+		addEmployeePage.enterToTextboxByID(driver, "lastName", empLastName);
 		
 		log.info("Add_New_01 - Step 05: Get value of 'Employee ID'");
 		employeeID = addEmployeePage.getTextboxValueByID(driver, "employeeId");
@@ -62,13 +65,13 @@ public class Employee_01_Add_Employee extends BaseTest {
 		addEmployeePage.clickToCheckboxByLabel(driver, "Create Login Details");;
 		
 		log.info("Add_New_01 - Step 07: Enter valid info to 'User Name' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "user_name", "automationfc");
+		addEmployeePage.enterToTextboxByID(driver, "user_name", empUserName);
 		
 		log.info("Add_New_01 - Step 08: Enter valid info to 'Password' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "user_password", "automationfc");
+		addEmployeePage.enterToTextboxByID(driver, "user_password", empPassword);
 		
 		log.info("Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "re_password", "automationfc");
+		addEmployeePage.enterToTextboxByID(driver, "re_password", empPassword);
 		
 		log.info("Add_New_01 - Step 10: Select '" + statusValue + "' value in 'Status' dropdown");
 		addEmployeePage.selectItemInDropdownByID(driver, "status", statusValue);
@@ -83,7 +86,7 @@ public class Employee_01_Add_Employee extends BaseTest {
 		
 		log.info("Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox");
 		verifyTrue(employeeListPage.isJQueryAJAXLoadedSuccess(driver));
-		employeeListPage.enterToTextboxByID(driver, "empsearch_employee_name_empName", "Automation FC");
+		employeeListPage.enterToTextboxByID(driver, "empsearch_employee_name_empName", empFullName);
 		verifyTrue(employeeListPage.isJQueryAJAXLoadedSuccess(driver));
 		
 		log.info("Add_New_01 - Step 14: Click to 'Search' button");
@@ -92,8 +95,11 @@ public class Employee_01_Add_Employee extends BaseTest {
 		
 		log.info("Add_New_01 - Step 15: Verify Employee Information displayed at 'Result Table'");
 		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "ID", "1"), employeeID);
-		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "First (& Middle) Name", "1"), "Automation");
-		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "Last Name", "1"), "FC");
+		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "First (& Middle) Name", "1"), empFirstName);
+		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "Last Name", "1"), empLastName);
+	
+		log.info("Add_New_01 - Step 16: Logout to System");
+		employeeListPage.logoutToSystem(driver);
 	}
 	
 	@Parameters({"browser"})
