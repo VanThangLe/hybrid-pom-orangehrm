@@ -22,9 +22,8 @@ public class Employee_01_Add_Employee extends BaseTest {
 	DashboardPO dashboardPage;
 	EmployeeListPO employeeListPage;
 	PersonalDetailPO personalDetailPage;
-	String empFirstName, empLastName, employeeID, statusValue, empFullName;
-	static String empUserName = "automationfc";
-	static String empPassword = "automation123";
+	String empFirstName, empLastName, employeeID, statusValue, empFullName, empUserName, empPassword;
+	public static String USERNAME, PASSWORD;
 	
 	@Parameters({"browser", "url"})
 	@BeforeClass
@@ -37,6 +36,10 @@ public class Employee_01_Add_Employee extends BaseTest {
 		empFirstName = "Automation";
 		empLastName = "FC";
 		empFullName = empFirstName + " " + empLastName;
+		empUserName = "automationfc";
+		empPassword = "automation123";
+		USERNAME = empUserName;
+		PASSWORD = empPassword;
 		
 		log.info("Pre-condition: Step 02 - Login with Admin role");
 		dashboardPage = loginPage.loginToSystem(driver, GlobalConstants.ADMIN_USERNAME, GlobalConstants.ADMIN_PASSWORD);
@@ -94,7 +97,7 @@ public class Employee_01_Add_Employee extends BaseTest {
 		verifyTrue(employeeListPage.isJQueryAJAXLoadedSuccess(driver));
 		
 		log.info("Add_New_01 - Step 15: Verify Employee Information displayed at 'Result Table'");
-		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "ID", "1"), employeeID);
+		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "Id", "1"), employeeID);
 		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "First (& Middle) Name", "1"), empFirstName);
 		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "Last Name", "1"), empLastName);
 	
@@ -106,6 +109,6 @@ public class Employee_01_Add_Employee extends BaseTest {
 	@AfterClass(alwaysRun = true)
 	public void cleanBrowser(String browserName) {
 		log.info("Post-condition: Close browser '" + browserName + "'");
-		cleanExcutableDriver();
+		cleanDriverInstance();
 	}
 }

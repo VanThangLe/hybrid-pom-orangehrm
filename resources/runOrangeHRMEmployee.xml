@@ -13,6 +13,7 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.orangehrm.employee.Employee_01_Add_Employee" />
+			<class name="com.orangehrm.employee.Employee_02_Upload_Avatar" />
 		</classes>
 	</test>
 

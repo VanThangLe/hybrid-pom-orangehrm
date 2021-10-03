@@ -57,6 +57,7 @@ public class BaseTest {
 			throw new RuntimeException("Browser name is not correct!");
 		}
 		driver.get(appUrl);
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		return driver;
 	}
@@ -151,28 +152,28 @@ public class BaseTest {
 	}
 	
 	@AfterSuite(alwaysRun = true)
-	public void cleanExcutableDriver() {
+	public void cleanDriverInstance() {
 		String cmd = "";
 		try {
 			String osName = System.getProperty("os.name").toLowerCase();
 			log.info("OS name = " + osName);
-			if (driver.toString().toLowerCase().contains("chrome")) {
+			if (driver.toString().contains("chrome")) {
 				if (osName.contains("window")) {
 					cmd = "taskkill /F /FI \"IMAGENAME eq chromedriver*\"";
 				} else {
 					cmd = "pkill chromedriver";
 				}
-			} else if (driver.toString().toLowerCase().contains("internetexplorer")) {
+			} else if (driver.toString().contains("internetexplorer")) {
 				if (osName.contains("window")) {
 					cmd = "taskkill /F /FI \"IMAGENAME eq IEDriverServer*\"";
 				}
-			} else if (driver.toString().toLowerCase().contains("firefox")) {
+			} else if (driver.toString().contains("firefox")) {
 				if (osName.contains("window")) {
 					cmd = "taskkill /F /FI \"IMAGENAME eq geckodriver*\"";
 				} else {
 					cmd = "pkill geckodriver";
 				}
-			} else if (driver.toString().toLowerCase().contains("edge")) {
+			} else if (driver.toString().contains("edge")) {
 				if (osName.contains("window")) {
 					cmd = "taskkill /F /FI \"IMAGENAME eq msedgedriver*\"";
 				} else {

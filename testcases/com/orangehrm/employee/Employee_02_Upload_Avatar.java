@@ -25,30 +25,30 @@ public class Employee_02_Upload_Avatar extends BaseTest {
 	public void beforeClass(String browserName, String appUrl) {
 		log.info("Pre-condition: Step 01 - Open browser '" + browserName + "'and navigate to '" + appUrl + "'");
 		driver = getBrowserDriver(browserName, appUrl);
+		
+		log.info("Pre-condition: Step 02: Login with Employee role");
+		dashboardPage = loginPage.loginToSystem(driver, Employee_01_Add_Employee.USERNAME , Employee_01_Add_Employee.PASSWORD);
 	}
 	
 	@Test
 	public void Upload_Avatar() {
-		log.info("Upload_Avatar_02 - Step 01: Login with Employee role");
-		dashboardPage = loginPage.loginToSystem(driver, Employee_01_Add_Employee.empUserName , Employee_01_Add_Employee.empPassword);
-		
-		log.info("Upload_Avatar_02 - Step 02: Open Personal Detail page");
+		log.info("Upload_Avatar_02 - Step 01: Open Personal Detail page");
 		dashboardPage.openMenuPage(driver, "My Info");
 		personalDetailPage = PageGenerator.getPersonalDetailPage(driver);
 		
-		log.info("Upload_Avatar_02 - Step 03: Click to Change Photo image");
+		log.info("Upload_Avatar_02 - Step 02: Click to Change Photo image");
 		personalDetailPage.clickToChangePhotoImage();
 		
-		log.info("Upload_Avatar_02 - Step 04: Upload new Avatar image");
+		log.info("Upload_Avatar_02 - Step 03: Upload new Avatar image");
 		personalDetailPage.uploadImage(driver, avatarFilePath);
 		
-		log.info("Upload_Avatar_02 - Step 05: Click to Upload button");
+		log.info("Upload_Avatar_02 - Step 04: Click to Upload button");
 		personalDetailPage.clickToButtonByID(driver, "btnSave");
 		
-		log.info("Upload_Avatar_02 - Step 06: Verify Success message is displayed");
+		log.info("Upload_Avatar_02 - Step 05: Verify Success message is displayed");
 		verifyTrue(personalDetailPage.isUploadAvaterSuccessMessageDisplayed());
 		
-		log.info("Upload_Avatar_02 - Step 07: Verify new Avatar image is displayed");
+		log.info("Upload_Avatar_02 - Step 06: Verify new Avatar image is displayed");
 		verifyTrue(personalDetailPage.isNewAvatarImageDisplayed());
 	}
 	
@@ -56,6 +56,6 @@ public class Employee_02_Upload_Avatar extends BaseTest {
 	@AfterClass(alwaysRun = true)
 	public void cleanBrowser(String browserName) {
 		log.info("Post-condition: Close browser '" + browserName + "'");
-		cleanExcutableDriver();
+		cleanDriverInstance();
 	}
 }
