@@ -2,7 +2,7 @@ package com.orangehrm.employee;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -26,7 +26,7 @@ public class Employee_01_Add_Employee extends BaseTest {
 	public static String USERNAME, PASSWORD;
 	
 	@Parameters({"browser", "url"})
-	@BeforeClass
+	@BeforeTest
 	public void beforeClass(String browserName, String appUrl) {
 		log.info("Pre-condition: Step 01 - Open browser '" + browserName + "'and navigate to '" + appUrl + "'");
 		driver = getBrowserDriver(browserName, appUrl);

@@ -25,6 +25,7 @@ public class Employee_02_Upload_Avatar extends BaseTest {
 	public void beforeClass(String browserName, String appUrl) {
 		log.info("Pre-condition: Step 01 - Open browser '" + browserName + "'and navigate to '" + appUrl + "'");
 		driver = getBrowserDriver(browserName, appUrl);
+		loginPage = PageGenerator.getLoginPage(driver);
 		
 		log.info("Pre-condition: Step 02: Login with Employee role");
 		dashboardPage = loginPage.loginToSystem(driver, Employee_01_Add_Employee.USERNAME , Employee_01_Add_Employee.PASSWORD);
