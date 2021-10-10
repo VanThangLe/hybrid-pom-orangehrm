@@ -385,3 +385,71 @@
 [INFO ] [2021-10-03 23:10:51,845] Post-condition: Close browser 'chrome'
 [INFO ] [2021-10-03 23:10:51,845] OS name = windows 10
 [INFO ] [2021-10-03 23:10:54,137] OS name = windows 10
+[INFO ] [2021-10-09 23:04:53,515] ---------- START delete file in folder ----------
+[INFO ] [2021-10-09 23:04:53,560] ---------- END delete file in folder ----------
+[INFO ] [2021-10-09 23:04:53,576] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com'
+[INFO ] [2021-10-09 23:05:26,560] Pre-condition: Step 02 - Login with Admin role
+[INFO ] [2021-10-09 23:05:35,386] Add_New_01 - Step 01: Open 'Employee List' page
+[INFO ] [2021-10-09 23:05:40,853] Add_New_01 - Step 02: Click to 'Add' button
+[INFO ] [2021-10-09 23:05:43,066] Add_New_01 - Step 03: Enter valid info to 'First Name' textbox
+[INFO ] [2021-10-09 23:05:43,772] Add_New_01 - Step 04: Enter valid info to 'Last Name' textbox
+[INFO ] [2021-10-09 23:05:44,333] Add_New_01 - Step 05: Get value of 'Employee ID'
+[INFO ] [2021-10-09 23:05:44,528] Add_New_01 - Step 06: Click to 'Create Login Details' checkbox
+[INFO ] [2021-10-09 23:05:44,926] Add_New_01 - Step 07: Enter valid info to 'User Name' textbox
+[INFO ] [2021-10-09 23:05:45,527] Add_New_01 - Step 08: Enter valid info to 'Password' textbox
+[INFO ] [2021-10-09 23:05:46,049] Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox
+[INFO ] [2021-10-09 23:05:46,461] Add_New_01 - Step 10: Select 'Enabled' value in 'Status' dropdown
+[INFO ] [2021-10-09 23:05:46,879] Add_New_01 - Step 11: Click to 'Save' button
+[INFO ] [2021-10-09 23:05:50,136] Add_New_01 - Step 12: Open 'Employee List' page
+[INFO ] [2021-10-09 23:05:55,274] Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox
+[INFO ] [2021-10-09 23:05:55,296]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-09 23:05:56,355]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-09 23:05:56,355] Add_New_01 - Step 14: Click to 'Search' button
+[INFO ] [2021-10-09 23:05:58,283]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-09 23:05:58,283] Add_New_01 - Step 15: Verify Employee Information displayed at 'Result Table'
+[INFO ] [2021-10-09 23:05:58,600]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-09 23:05:58,849]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-09 23:05:59,059]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-09 23:05:59,059] Add_New_01 - Step 16: Logout to System
+[INFO ] [2021-10-09 23:06:02,245] Post-condition: Close browser 'chrome'
+[INFO ] [2021-10-09 23:06:02,246] OS name = windows 10
+[INFO ] [2021-10-09 23:06:04,746] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com'
+[INFO ] [2021-10-09 23:06:16,762] Pre-condition: Step 02: Login with Employee role
+[INFO ] [2021-10-09 23:06:17,015] Post-condition: Close browser 'chrome'
+[INFO ] [2021-10-09 23:06:17,015] OS name = windows 10
+[INFO ] [2021-10-09 23:06:18,401] OS name = windows 10
+[INFO ] [2021-10-10 00:09:19,485] ---------- START delete file in folder ----------
+[INFO ] [2021-10-10 00:09:19,510] ---------- END delete file in folder ----------
+[INFO ] [2021-10-10 00:09:19,525] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com'
+[INFO ] [2021-10-10 00:09:48,098] Pre-condition: Step 02 - Login with Admin role
+[INFO ] [2021-10-10 00:09:59,228] Add_New_01 - Step 01: Open 'Employee List' page
+[INFO ] [2021-10-10 00:10:04,428] Add_New_01 - Step 02: Click to 'Add' button
+[INFO ] [2021-10-10 00:10:06,103] Add_New_01 - Step 03: Enter valid info to 'First Name' textbox
+[INFO ] [2021-10-10 00:10:07,164] Add_New_01 - Step 04: Enter valid info to 'Last Name' textbox
+[INFO ] [2021-10-10 00:10:07,738] Add_New_01 - Step 05: Get value of 'Employee ID'
+[INFO ] [2021-10-10 00:10:08,008] Add_New_01 - Step 06: Click to 'Create Login Details' checkbox
+[INFO ] [2021-10-10 00:10:08,745] Add_New_01 - Step 07: Enter valid info to 'User Name' textbox
+[INFO ] [2021-10-10 00:10:09,409] Add_New_01 - Step 08: Enter valid info to 'Password' textbox
+[INFO ] [2021-10-10 00:10:09,976] Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox
+[INFO ] [2021-10-10 00:10:10,506] Add_New_01 - Step 10: Select 'Enabled' value in 'Status' dropdown
+[INFO ] [2021-10-10 00:10:11,248] Add_New_01 - Step 11: Click to 'Save' button
+[INFO ] [2021-10-10 00:10:14,126] Add_New_01 - Step 12: Open 'Employee List' page
+[INFO ] [2021-10-10 00:10:18,624] Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox
+[INFO ] [2021-10-10 00:10:18,648]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-10 00:10:19,683]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-10 00:10:19,684] Add_New_01 - Step 14: Click to 'Search' button
+[INFO ] [2021-10-10 00:10:22,010]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-10 00:10:22,010] Add_New_01 - Step 15: Verify Employee Information displayed at 'Result Table'
+[INFO ] [2021-10-10 00:10:22,277]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-10 00:10:22,412]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-10 00:10:22,589]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-10 00:10:22,589] Add_New_01 - Step 16: Logout to System
+[INFO ] [2021-10-10 00:10:25,581] Post-condition: Close browser 'chrome'
+[INFO ] [2021-10-10 00:10:25,581] OS name = windows 10
+[INFO ] [2021-10-10 00:10:27,658] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com'
+[INFO ] [2021-10-10 00:10:37,740] Pre-condition: Step 02: Login with Employee role
+[INFO ] [2021-10-10 00:10:41,646] Upload_Avatar_02 - Step 01: Open Personal Detail page
+[INFO ] [2021-10-10 00:10:43,881] Upload_Avatar_02 - Step 02: Click to Change Photo image
+[INFO ] [2021-10-10 00:10:45,066] Upload_Avatar_02 - Step 03: Upload new Avatar image
+[INFO ] [2021-10-10 00:10:45,218] Upload_Avatar_02 - Step 04: Click to Upload button
+[INFO ] [2021-10-10 00:10:50,249] Upload_Avatar_02 - Step 05: Verify Success message is displayed
