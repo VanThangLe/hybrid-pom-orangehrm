@@ -453,3 +453,40 @@
 [INFO ] [2021-10-10 00:10:45,066] Upload_Avatar_02 - Step 03: Upload new Avatar image
 [INFO ] [2021-10-10 00:10:45,218] Upload_Avatar_02 - Step 04: Click to Upload button
 [INFO ] [2021-10-10 00:10:50,249] Upload_Avatar_02 - Step 05: Verify Success message is displayed
+[INFO ] [2021-10-19 18:00:53,136] ---------- START delete file in folder ----------
+[INFO ] [2021-10-19 18:00:53,148] ---------- END delete file in folder ----------
+[INFO ] [2021-10-19 18:00:53,159] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com'
+[INFO ] [2021-10-19 18:01:04,372] Pre-condition: Step 02 - Login with Admin role
+[INFO ] [2021-10-19 18:01:11,563] Add_New_01 - Step 01: Open 'Employee List' page
+[INFO ] [2021-10-19 18:01:15,112] Add_New_01 - Step 02: Click to 'Add' button
+[INFO ] [2021-10-19 18:01:15,928] Add_New_01 - Step 03: Enter valid info to 'First Name' textbox
+[INFO ] [2021-10-19 18:01:16,103] Add_New_01 - Step 04: Enter valid info to 'Last Name' textbox
+[INFO ] [2021-10-19 18:01:16,253] Add_New_01 - Step 05: Get value of 'Employee ID'
+[INFO ] [2021-10-19 18:01:16,318] Add_New_01 - Step 06: Click to 'Create Login Details' checkbox
+[INFO ] [2021-10-19 18:01:16,467] Add_New_01 - Step 07: Enter valid info to 'User Name' textbox
+[INFO ] [2021-10-19 18:01:16,603] Add_New_01 - Step 08: Enter valid info to 'Password' textbox
+[INFO ] [2021-10-19 18:01:16,752] Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox
+[INFO ] [2021-10-19 18:01:16,890] Add_New_01 - Step 10: Select 'Enabled' value in 'Status' dropdown
+[INFO ] [2021-10-19 18:01:16,998] Add_New_01 - Step 11: Click to 'Save' button
+[INFO ] [2021-10-19 18:01:17,121] Add_New_01 - Step 12: Open 'Employee List' page
+[INFO ] [2021-10-19 18:01:20,618] Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox
+[INFO ] [2021-10-19 18:01:20,635]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-19 18:01:20,817]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-19 18:01:20,817] Add_New_01 - Step 14: Click to 'Search' button
+[INFO ] [2021-10-19 18:01:21,938]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-19 18:01:21,938] Add_New_01 - Step 15: Verify Employee Information displayed at 'Result Table'
+[INFO ] [2021-10-19 18:01:22,013]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-19 18:01:22,092]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-19 18:01:22,187]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-19 18:01:22,200] Upload_Avatar_02 - Step 01: Login with Employee role
+[INFO ] [2021-10-19 18:01:25,297] Upload_Avatar_02 - Step 02: Open Personal Detail page
+[INFO ] [2021-10-19 18:01:26,400] Upload_Avatar_02 - Step 03: Click to Change Photo image
+[INFO ] [2021-10-19 18:01:27,252] Upload_Avatar_02 - Step 04: Upload new Avatar image
+[INFO ] [2021-10-19 18:01:27,298] Upload_Avatar_02 - Step 05: Click to Upload button
+[INFO ] [2021-10-19 18:01:28,954] Upload_Avatar_02 - Step 06: Verify Success message is displayed
+[INFO ] [2021-10-19 18:01:29,010]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-19 18:01:29,010] Upload_Avatar_02 - Step 07: Verify new Avatar image is displayed
+[INFO ] [2021-10-19 18:01:29,101]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-19 18:01:29,117] Post-condition: Close browser 'chrome'
+[INFO ] [2021-10-19 18:01:29,117] OS name = windows 10
+[INFO ] [2021-10-19 18:01:30,692] OS name = windows 10
