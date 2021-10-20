@@ -13,7 +13,7 @@ import pageObjects.orangehrm.DashboardPO;
 import pageObjects.orangehrm.EmployeeListPO;
 import pageObjects.orangehrm.LoginPO;
 import pageObjects.orangehrm.PageGenerator;
-import pageObjects.orangehrm.PersonalDetailPO;
+import pageObjects.orangehrm.MyInfoPO;
 
 public class Employee extends BaseTest {
 	WebDriver driver;
@@ -21,7 +21,7 @@ public class Employee extends BaseTest {
 	AddEmployeePO addEmployeePage;
 	DashboardPO dashboardPage;
 	EmployeeListPO employeeListPage;
-	PersonalDetailPO personalDetailPage;
+	MyInfoPO myInfoPage;
 	String empFirstName, empLastName, employeeID, statusValue, empFullName, empUserName, empPassword;
 	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
 
@@ -79,10 +79,10 @@ public class Employee extends BaseTest {
 
 		log.info("Employee_01 - Step 11: Click to 'Save' button");
 		addEmployeePage.clickToButtonByID(driver, "btnSave");
-		personalDetailPage = PageGenerator.getPersonalDetailPage(driver);
+		myInfoPage = PageGenerator.getMyInfoPage(driver);
 
 		log.info("Employee_01 - Step 12: Open 'Employee List' page");
-		personalDetailPage.openSubMenuPage(driver, "PIM", "Employee List");
+		myInfoPage.openSubMenuPage(driver, "PIM", "Employee List");
 		employeeListPage = PageGenerator.getEmployeeListPage(driver);
 
 		log.info("Employee_01 - Step 13: Enter valid info to 'Employee Name' textbox");
@@ -108,35 +108,58 @@ public class Employee extends BaseTest {
 
 		log.info("Employee_02 - Step 02: Open Personal Detail page");
 		dashboardPage.openMenuPage(driver, "My Info");
-		personalDetailPage = PageGenerator.getPersonalDetailPage(driver);
+		myInfoPage = PageGenerator.getMyInfoPage(driver);
 
 		log.info("Employee_02 - Step 03: Click to Change Photo image");
-		personalDetailPage.clickToChangePhotoImage();
+		myInfoPage.clickToChangePhotoImage();
 
 		log.info("Employee_02 - Step 04: Upload new Avatar image");
-		personalDetailPage.uploadImage(driver, avatarFilePath);
+		myInfoPage.uploadImage(driver, avatarFilePath);
 
 		log.info("Employee_02 - Step 05: Click to Upload button");
-		personalDetailPage.clickToButtonByID(driver, "btnSave");
+		myInfoPage.clickToButtonByID(driver, "btnSave");
 
 		log.info("Employee_02 - Step 06: Verify Success message is displayed");
-		verifyTrue(personalDetailPage.isUploadAvaterSuccessMessageDisplayed());
+		verifyTrue(myInfoPage.isSuccessMessageDisplayed(driver, "Successfully Uploaded"));
 
 		log.info("Employee_02 - Step 07: Verify new Avatar image is displayed");
-		verifyTrue(personalDetailPage.isNewAvatarImageDisplayed());
+		verifyTrue(myInfoPage.isNewAvatarImageDisplayed());
 	}
 
 	@Test
 	public void Employee_03_Personal_Details() {
-		log.info("Employee_03- Step 01: ");
+		log.info("Employee_03- Step 01: Open 'Personal Details' tab at Side bar");
+		myInfoPage.openTabAtSideBarByName("Personal Details");
+		
+		log.info("Employee_03- Step 02: Verify all fields at 'Personal Details' tab are disabled");
 
-		log.info("Employee_03- Step 01: ");
+		log.info("Employee_03- Step 03: Click to 'Edit' button at 'Personal Details' form");
 
-		log.info("Employee_03- Step 01: ");
+		log.info("Employee_03- Step 04: Verify 'Employee Id' textbox is disabled");
+		
+		log.info("Employee_03- Step 05: Verify 'Driver's License Number' textbox is disabled");
+		
+		log.info("Employee_03- Step 06: Verify 'SSN Number' textbox is disabled");
+		
+		log.info("Employee_03- Step 07: Verify 'SIN Number' textbox is disabled");
+		
+		log.info("Employee_03- Step 08: Verify 'Date of Birth' textbox is disabled");
 
-		log.info("Employee_03- Step 01: ");
-
-		log.info("Employee_03- Step 01: ");
+		log.info("Employee_03- Step 09: Enter new value to 'First Name' textbox");
+		
+		log.info("Employee_03- Step 10: Enter new value to 'Last Name' textbox");
+		
+		log.info("Employee_03- Step 11: Enter new value to 'Gender' textbox");
+		
+		log.info("Employee_03- Step 12: Select new value to 'Marital Single' radio button");
+		
+		log.info("Employee_03- Step 13: Select new value to 'Nationality' dropdown");
+		
+		log.info("Employee_03- Step 14: Click to 'Save' button at 'Personal Details' form");
+		
+		log.info("Employee_03- Step 15: Verify");
+		
+		log.info("Employee_03- Step 16: Click to 'Save' button at 'Personal Details' form");
 
 	}
 
@@ -144,9 +167,9 @@ public class Employee extends BaseTest {
 	public void Employee_04_Contact_Details() {
 		log.info("Employee_04- Step 01: ");
 
-		log.info("Employee_04- Step 01: ");
+		log.info("Employee_04- Step 02: ");
 
-		log.info("Employee_04- Step 01: ");
+		log.info("Employee_04- Step 03: ");
 
 		log.info("Employee_04- Step 01: ");
 
@@ -158,9 +181,9 @@ public class Employee extends BaseTest {
 	public void Employee_05_Emergency_Details() {
 		log.info("Employee_05- Step 01: ");
 
-		log.info("Employee_05- Step 01: ");
+		log.info("Employee_05- Step 02: ");
 
-		log.info("Employee_05- Step 01: ");
+		log.info("Employee_05- Step 03: ");
 
 		log.info("Employee_05- Step 01: ");
 
@@ -172,9 +195,9 @@ public class Employee extends BaseTest {
 	public void Employee_06_Assigned_Dependents() {
 		log.info("Employee_06- Step 01: ");
 
-		log.info("Employee_06- Step 01: ");
+		log.info("Employee_06- Step 02: ");
 
-		log.info("Employee_06- Step 01: ");
+		log.info("Employee_06- Step 03: ");
 
 		log.info("Employee_06- Step 01: ");
 
@@ -186,9 +209,9 @@ public class Employee extends BaseTest {
 	public void Employee_07_Edit_View_Job() {
 		log.info("Employee_07- Step 01: ");
 
-		log.info("Employee_07- Step 01: ");
+		log.info("Employee_07- Step 02: ");
 
-		log.info("Employee_07- Step 01: ");
+		log.info("Employee_07- Step 03: ");
 
 		log.info("Employee_07- Step 01: ");
 
@@ -200,9 +223,9 @@ public class Employee extends BaseTest {
 	public void Employee_08_Edit_View_Salary() {
 		log.info("Employee_08- Step 01: ");
 
-		log.info("Employee_08- Step 01: ");
+		log.info("Employee_08- Step 02: ");
 
-		log.info("Employee_08- Step 01: ");
+		log.info("Employee_08- Step 03: ");
 
 		log.info("Employee_08- Step 01: ");
 
@@ -214,9 +237,9 @@ public class Employee extends BaseTest {
 	public void Employee_09_Edit_View_Tax() {
 		log.info("Employee_09- Step 01: ");
 
-		log.info("Employee_09- Step 01: ");
+		log.info("Employee_09- Step 02: ");
 
-		log.info("Employee_09- Step 01: ");
+		log.info("Employee_09- Step 03: ");
 
 		log.info("Employee_09- Step 01: ");
 
@@ -228,9 +251,9 @@ public class Employee extends BaseTest {
 	public void Employee_10_Qualifications() {
 		log.info("Employee_10- Step 01: ");
 
-		log.info("Employee_10- Step 01: ");
+		log.info("Employee_10- Step 02: ");
 
-		log.info("Employee_10- Step 01: ");
+		log.info("Employee_10- Step 03: ");
 
 		log.info("Employee_10- Step 01: ");
 
@@ -242,7 +265,7 @@ public class Employee extends BaseTest {
 	public void Employee_11_Search_Employee() {
 		log.info("Employee_11- Step 01: ");
 
-		log.info("Employee_11- Step 01: ");
+		log.info("Employee_11- Step 02: ");
 
 		log.info("Employee_11- Step 01: ");
 

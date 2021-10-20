@@ -9,6 +9,7 @@ public class BasePageUI {
 	public static final String TABLE_HEADER_BY_ID_AND_NAME = "//table[@id='%s']//th[string()='%s']/preceding-sibling::th";
 	public static final String TABLE_ROW_BY_COLUMN_INDEX_AND_ROW_INDEX = "//table[@id='%s']/tbody/tr[%s]/td[%s]";
 	public static final String MENU_BY_PAGE_NAME = "//div[@id='mainMenu']//a[string()='%s']";
+	public static final String SUCCESS_MESSAGE_VALUE = "//div[@class='inner']/div[contains(text(), '%s')]";
 	
 	public static final String WELCOME_USER_LINK = "//a[@id='welcome']";
 	public static final String LOGOUT_LINK = "//div[@id='welcome-menu']//a[text()='Logout']";

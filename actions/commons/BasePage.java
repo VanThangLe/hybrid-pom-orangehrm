@@ -582,4 +582,9 @@ public class BasePage {
 	public void uploadImage(WebDriver driver, String filePath) {
 		getWebElement(driver, BasePageUI.UPLOAD_FILE).sendKeys(filePath);
 	}
+	
+	public boolean isSuccessMessageDisplayed(WebDriver driver, String messageValue) {
+		waitForElementVisible(driver, BasePageUI.SUCCESS_MESSAGE_VALUE, messageValue);
+		return isElementDisplayed(driver, BasePageUI.SUCCESS_MESSAGE_VALUE, messageValue);
+	}
 }
