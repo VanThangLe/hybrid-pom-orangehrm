@@ -23,6 +23,7 @@ public class Employee extends BaseTest {
 	EmployeeListPO employeeListPage;
 	MyInfoPO myInfoPage;
 	String empFirstName, empLastName, employeeID, statusValue, empFullName, empUserName, empPassword;
+	String editEmpFirstName, editEmpLastName, editEmpGender, editEmpMaritalStatus, editEmpNationality;
 	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
 
 	@Parameters({ "browser", "url" })
@@ -33,12 +34,18 @@ public class Employee extends BaseTest {
 		loginPage = PageGenerator.getLoginPage(driver);
 
 		statusValue = "Enabled";
-		empFirstName = "Automation";
-		empLastName = "FC";
+		empFirstName = "Thang";
+		empLastName = "Le";
 		empFullName = empFirstName + " " + empLastName;
-		empUserName = "automationfc";
-		empPassword = "automation123";
-
+		empUserName = "thanglevan";
+		empPassword = "12345678";
+		
+		editEmpFirstName = "VanThang";
+		editEmpLastName = "Le";
+		editEmpGender = "Male";
+		editEmpMaritalStatus = "Single";
+		editEmpNationality = "Vietnamese";
+		
 		log.info("Pre-condition: Step 02 - Login with Admin role");
 		dashboardPage = loginPage.loginToSystem(driver, GlobalConstants.ADMIN_USERNAME, GlobalConstants.ADMIN_PASSWORD);
 	}
@@ -128,94 +135,124 @@ public class Employee extends BaseTest {
 
 	@Test
 	public void Employee_03_Personal_Details() {
-		log.info("Employee_03- Step 01: Open 'Personal Details' tab at Side bar");
+		log.info("Employee_03 - Step 01: Open 'Personal Details' tab at Side bar");
 		myInfoPage.openTabAtSideBarByName("Personal Details");
 		
-		log.info("Employee_03- Step 02: Verify all fields at 'Personal Details' tab are disabled");
+		log.info("Employee_03 - Step 02: Verify all fields at 'Personal Details' tab are disabled");
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmpFirstName"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmpLastName"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmployeeId"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_optGender_1"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_optGender_2"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_cmbMarital"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_cmbNation"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_DOB"));
+		
+		log.info("Employee_03 - Step 03: Click to 'Edit' button at 'Personal Details' form");
+		myInfoPage.clickToButtonByID(driver, "btnSave");
+		
+		log.info("Employee_03 - Step 04: Verify 'Employee Id' textbox is disabled");
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmployeeId"));
+		
+		log.info("Employee_03 - Step 05: Verify 'Driver's License Number' textbox is disabled");
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtLicenNo"));
+		
+		log.info("Employee_03 - Step 06: Verify 'Date of Birth' textbox is disabled");
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_DOB"));
+		
+		log.info("Employee_03 - Step 07: Enter new value to 'First Name' textbox");
+		myInfoPage.enterToTextboxByID(driver, "personal_txtEmpFirstName", editEmpFirstName);
+		
+		log.info("Employee_03 - Step 08: Enter new value to 'Last Name' textbox");
+		myInfoPage.enterToTextboxByID(driver, "personal_txtEmpLastName", editEmpLastName);
+		
+		log.info("Employee_03 - Step 09: Enter new value to 'Gender' textbox");
+		myInfoPage.clickToRadioByLabel(driver, editEmpGender);
+		
+		log.info("Employee_03 - Step 10: Select new value to 'Marital Single' radio button");
+		myInfoPage.selectItemInDropdownByID(driver, "personal_cmbMarital", editEmpMaritalStatus);
+		
+		log.info("Employee_03 - Step 11: Select new value to 'Nationality' dropdown");
+		myInfoPage.selectItemInDropdownByID(driver, "personal_cmbNation", editEmpNationality);
+		
+		log.info("Employee_03 - Step 12: Click to 'Save' button at 'Personal Details' form");
+		myInfoPage.clickToButtonByID(driver, "btnSave");
 
-		log.info("Employee_03- Step 03: Click to 'Edit' button at 'Personal Details' form");
-
-		log.info("Employee_03- Step 04: Verify 'Employee Id' textbox is disabled");
+		log.info("Employee_03 - Step 13: Verify Succcess message is displayed");
+		verifyTrue(myInfoPage.isSuccessMessageDisplayed(driver, "Successfully Saved"));
 		
-		log.info("Employee_03- Step 05: Verify 'Driver's License Number' textbox is disabled");
+		log.info("Employee_03 - Step 14: Verify 'First Name' textbox is updated success");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "personal_txtEmpFirstName"), editEmpFirstName);
 		
-		log.info("Employee_03- Step 06: Verify 'SSN Number' textbox is disabled");
+		log.info("Employee_03 - Step 15: Verify 'Last Name' textbox is updated success");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "personal_txtEmpLastName"), editEmpLastName);
 		
-		log.info("Employee_03- Step 07: Verify 'SIN Number' textbox is disabled");
+		log.info("Employee_03 - Step 16: Verify 'Gender' radio button is updated success");
+		verifyTrue(myInfoPage.isRadioButtonSelectedByLabel(driver, editEmpGender));
 		
-		log.info("Employee_03- Step 08: Verify 'Date of Birth' textbox is disabled");
-
-		log.info("Employee_03- Step 09: Enter new value to 'First Name' textbox");
+		log.info("Employee_03 - Step 17: Verify 'Marital Single' dropdown is updated success");
+		verifyEquals(myInfoPage.getSelectedValueInDropdownByID(driver, "personal_cmbMarital"), editEmpMaritalStatus);
 		
-		log.info("Employee_03- Step 10: Enter new value to 'Last Name' textbox");
+		log.info("Employee_03 - Step 18: Verify 'Nationality' dropdown is updated success");
+		verifyEquals(myInfoPage.getSelectedValueInDropdownByID(driver, "personal_cmbNation"), editEmpNationality);
 		
-		log.info("Employee_03- Step 11: Enter new value to 'Gender' textbox");
-		
-		log.info("Employee_03- Step 12: Select new value to 'Marital Single' radio button");
-		
-		log.info("Employee_03- Step 13: Select new value to 'Nationality' dropdown");
-		
-		log.info("Employee_03- Step 14: Click to 'Save' button at 'Personal Details' form");
-		
-		log.info("Employee_03- Step 15: Verify");
-		
-		log.info("Employee_03- Step 16: Click to 'Save' button at 'Personal Details' form");
-
+		log.info("Employee_03 - Step 19: Verify 'Empployee Id' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "personal_txtEmployeeId"), employeeID);
 	}
 
 	@Test
 	public void Employee_04_Contact_Details() {
-		log.info("Employee_04- Step 01: ");
+		log.info("Employee_04 - Step 01: ");
 
-		log.info("Employee_04- Step 02: ");
+		log.info("Employee_04 - Step 02: ");
 
-		log.info("Employee_04- Step 03: ");
+		log.info("Employee_04 - Step 03: ");
 
-		log.info("Employee_04- Step 01: ");
+		log.info("Employee_04 - Step 04: ");
 
-		log.info("Employee_04- Step 01: ");
+		log.info("Employee_04 - Step 05: ");
 
 	}
 
 	@Test
 	public void Employee_05_Emergency_Details() {
-		log.info("Employee_05- Step 01: ");
+		log.info("Employee_05 - Step 01: ");
 
-		log.info("Employee_05- Step 02: ");
+		log.info("Employee_05 - Step 02: ");
 
-		log.info("Employee_05- Step 03: ");
+		log.info("Employee_05 - Step 03: ");
 
-		log.info("Employee_05- Step 01: ");
+		log.info("Employee_05 - Step 01: ");
 
-		log.info("Employee_05- Step 01: ");
+		log.info("Employee_05 - Step 01: ");
 
 	}
 
 	@Test
 	public void Employee_06_Assigned_Dependents() {
-		log.info("Employee_06- Step 01: ");
+		log.info("Employee_06 - Step 01: ");
 
-		log.info("Employee_06- Step 02: ");
+		log.info("Employee_06 - Step 02: ");
 
-		log.info("Employee_06- Step 03: ");
+		log.info("Employee_06 - Step 03: ");
 
-		log.info("Employee_06- Step 01: ");
+		log.info("Employee_06 - Step 01: ");
 
-		log.info("Employee_06- Step 01: ");
+		log.info("Employee_06 - Step 01: ");
 
 	}
 
 	@Test
 	public void Employee_07_Edit_View_Job() {
-		log.info("Employee_07- Step 01: ");
+		log.info("Employee_07 - Step 01: ");
 
-		log.info("Employee_07- Step 02: ");
+		log.info("Employee_07 - Step 02: ");
 
-		log.info("Employee_07- Step 03: ");
+		log.info("Employee_07 - Step 03: ");
 
-		log.info("Employee_07- Step 01: ");
+		log.info("Employee_07 - Step 01: ");
 
-		log.info("Employee_07- Step 01: ");
+		log.info("Employee_07 - Step 01: ");
 
 	}
 

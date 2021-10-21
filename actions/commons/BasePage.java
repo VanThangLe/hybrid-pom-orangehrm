@@ -277,6 +277,10 @@ public class BasePage {
 		return getWebElement(driver, locator).isEnabled();
 	}
 	
+	public boolean isElementEnabled(WebDriver driver, String locator, String... values) {
+		return getWebElement(driver, castRestParameter(locator, values)).isEnabled();
+	}
+	
 	public boolean isElementSelected(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).isSelected();
 	}
@@ -543,8 +547,8 @@ public class BasePage {
 	}
 	
 	public String getSelectedValueInDropdownByID(WebDriver driver, String dropdownID) {
-		waitForElementVisible(driver, BasePageUI.TEXTBOX_BY_ID, dropdownID);
-		return getFirstSelectedItemInDefaultDropdown(driver, BasePageUI.TEXTBOX_BY_ID, dropdownID);
+		waitForElementVisible(driver, BasePageUI.DROPDOWN_BY_ID, dropdownID);
+		return getFirstSelectedItemInDefaultDropdown(driver, BasePageUI.DROPDOWN_BY_ID, dropdownID);
 	}
 	
 	public void clickToCheckboxByLabel(WebDriver driver, String checkboxLabelName) {
@@ -552,9 +556,19 @@ public class BasePage {
 		checkToCheckboxOrRadio(driver, BasePageUI.CHECKBOX_BY_LABEL, checkboxLabelName);
 	}
 	
+	public boolean isCheckboxButtonSelectedByLabel(WebDriver driver, String checkboxLabelName) {
+		waitForElementVisible(driver, BasePageUI.CHECKBOX_BY_LABEL, checkboxLabelName);
+		return isElementSelected(driver, BasePageUI.CHECKBOX_BY_LABEL, checkboxLabelName);
+	}
+	
 	public void clickToRadioByLabel(WebDriver driver, String radioLabelName) {
 		waitForElementClickAble(driver, BasePageUI.RADIO_BY_LABEL, radioLabelName);
 		checkToCheckboxOrRadio(driver, BasePageUI.RADIO_BY_LABEL, radioLabelName);
+	}
+	
+	public boolean isRadioButtonSelectedByLabel(WebDriver driver, String radioLabelName) {
+		waitForElementVisible(driver, BasePageUI.RADIO_BY_LABEL, radioLabelName);
+		return isElementSelected(driver, BasePageUI.RADIO_BY_LABEL, radioLabelName);
 	}
 	
 	public String getValueInTableIDAtColumnNameAndRowIndex(WebDriver driver, String tableID, String headerName, String rowIndex) {
@@ -586,5 +600,10 @@ public class BasePage {
 	public boolean isSuccessMessageDisplayed(WebDriver driver, String messageValue) {
 		waitForElementVisible(driver, BasePageUI.SUCCESS_MESSAGE_VALUE, messageValue);
 		return isElementDisplayed(driver, BasePageUI.SUCCESS_MESSAGE_VALUE, messageValue);
+	}
+	
+	public boolean isFieldEnabledByName(WebDriver driver, String fieldID) {
+		waitForElementVisible(driver, BasePageUI.ANY_FIELD_BY_ID, fieldID);
+		return isElementEnabled(driver, BasePageUI.ANY_FIELD_BY_ID, fieldID);
 	}
 }

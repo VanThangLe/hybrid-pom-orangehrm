@@ -1,37 +1,114 @@
-[INFO ] [2021-10-19 18:00:53,136] ---------- START delete file in folder ----------
-[INFO ] [2021-10-19 18:00:53,148] ---------- END delete file in folder ----------
-[INFO ] [2021-10-19 18:00:53,159] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com'
-[INFO ] [2021-10-19 18:01:04,372] Pre-condition: Step 02 - Login with Admin role
-[INFO ] [2021-10-19 18:01:11,563] Add_New_01 - Step 01: Open 'Employee List' page
-[INFO ] [2021-10-19 18:01:15,112] Add_New_01 - Step 02: Click to 'Add' button
-[INFO ] [2021-10-19 18:01:15,928] Add_New_01 - Step 03: Enter valid info to 'First Name' textbox
-[INFO ] [2021-10-19 18:01:16,103] Add_New_01 - Step 04: Enter valid info to 'Last Name' textbox
-[INFO ] [2021-10-19 18:01:16,253] Add_New_01 - Step 05: Get value of 'Employee ID'
-[INFO ] [2021-10-19 18:01:16,318] Add_New_01 - Step 06: Click to 'Create Login Details' checkbox
-[INFO ] [2021-10-19 18:01:16,467] Add_New_01 - Step 07: Enter valid info to 'User Name' textbox
-[INFO ] [2021-10-19 18:01:16,603] Add_New_01 - Step 08: Enter valid info to 'Password' textbox
-[INFO ] [2021-10-19 18:01:16,752] Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox
-[INFO ] [2021-10-19 18:01:16,890] Add_New_01 - Step 10: Select 'Enabled' value in 'Status' dropdown
-[INFO ] [2021-10-19 18:01:16,998] Add_New_01 - Step 11: Click to 'Save' button
-[INFO ] [2021-10-19 18:01:17,121] Add_New_01 - Step 12: Open 'Employee List' page
-[INFO ] [2021-10-19 18:01:20,618] Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox
-[INFO ] [2021-10-19 18:01:20,635]  -------------------------- PASSED -------------------------- 
-[INFO ] [2021-10-19 18:01:20,817]  -------------------------- PASSED -------------------------- 
-[INFO ] [2021-10-19 18:01:20,817] Add_New_01 - Step 14: Click to 'Search' button
-[INFO ] [2021-10-19 18:01:21,938]  -------------------------- PASSED -------------------------- 
-[INFO ] [2021-10-19 18:01:21,938] Add_New_01 - Step 15: Verify Employee Information displayed at 'Result Table'
-[INFO ] [2021-10-19 18:01:22,013]  -------------------------- PASSED -------------------------- 
-[INFO ] [2021-10-19 18:01:22,092]  -------------------------- PASSED -------------------------- 
-[INFO ] [2021-10-19 18:01:22,187]  -------------------------- PASSED -------------------------- 
-[INFO ] [2021-10-19 18:01:22,200] Upload_Avatar_02 - Step 01: Login with Employee role
-[INFO ] [2021-10-19 18:01:25,297] Upload_Avatar_02 - Step 02: Open Personal Detail page
-[INFO ] [2021-10-19 18:01:26,400] Upload_Avatar_02 - Step 03: Click to Change Photo image
-[INFO ] [2021-10-19 18:01:27,252] Upload_Avatar_02 - Step 04: Upload new Avatar image
-[INFO ] [2021-10-19 18:01:27,298] Upload_Avatar_02 - Step 05: Click to Upload button
-[INFO ] [2021-10-19 18:01:28,954] Upload_Avatar_02 - Step 06: Verify Success message is displayed
-[INFO ] [2021-10-19 18:01:29,010]  -------------------------- PASSED -------------------------- 
-[INFO ] [2021-10-19 18:01:29,010] Upload_Avatar_02 - Step 07: Verify new Avatar image is displayed
-[INFO ] [2021-10-19 18:01:29,101]  -------------------------- PASSED -------------------------- 
-[INFO ] [2021-10-19 18:01:29,117] Post-condition: Close browser 'chrome'
-[INFO ] [2021-10-19 18:01:29,117] OS name = windows 10
-[INFO ] [2021-10-19 18:01:30,692] OS name = windows 10
+[INFO ] [2021-10-21 18:36:07,416] ---------- START delete file in folder ----------
+[INFO ] [2021-10-21 18:36:07,417] ---------- END delete file in folder ----------
+[INFO ] [2021-10-21 18:36:07,426] Pre-condition: Step 01 - Open browser 'chrome'and navigate to 'https://opensource-demo.orangehrmlive.com'
+[INFO ] [2021-10-21 18:36:12,811] Pre-condition: Step 02 - Login with Admin role
+[INFO ] [2021-10-21 18:36:16,795] Employee_01 - Step 01: Open 'Employee List' page
+[INFO ] [2021-10-21 18:36:20,081] Employee_01 - Step 02: Click to 'Add' button
+[INFO ] [2021-10-21 18:36:20,959] Employee_01 - Step 03: Enter valid info to 'First Name' textbox
+[INFO ] [2021-10-21 18:36:21,121] Employee_01 - Step 04: Enter valid info to 'Last Name' textbox
+[INFO ] [2021-10-21 18:36:21,247] Employee_01 - Step 05: Get value of 'Employee ID'
+[INFO ] [2021-10-21 18:36:21,347] Employee_01 - Step 06: Click to 'Create Login Details' checkbox
+[INFO ] [2021-10-21 18:36:21,458] Employee_01 - Step 07: Enter valid info to 'User Name' textbox
+[INFO ] [2021-10-21 18:36:21,592] Employee_01 - Step 08: Enter valid info to 'Password' textbox
+[INFO ] [2021-10-21 18:36:21,732] Employee_01 - Step 09: Enter valid info to 'Confirm Password' textbox
+[INFO ] [2021-10-21 18:36:21,873] Employee_01 - Step 10: Select 'Enabled' value in 'Status' dropdown
+[INFO ] [2021-10-21 18:36:22,020] Employee_01 - Step 11: Click to 'Save' button
+[INFO ] [2021-10-21 18:36:22,136] Employee_01 - Step 12: Open 'Employee List' page
+[INFO ] [2021-10-21 18:36:26,173] Employee_01 - Step 13: Enter valid info to 'Employee Name' textbox
+[INFO ] [2021-10-21 18:36:26,183]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:26,355]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:26,355] Employee_01 - Step 14: Click to 'Search' button
+[INFO ] [2021-10-21 18:36:27,439]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:27,439] Employee_01 - Step 15: Verify Employee Information displayed at 'Result Table'
+[INFO ] [2021-10-21 18:36:27,506]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:27,600]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:27,676]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:27,695] Employee_02 - Step 01: Login with Employee role
+[INFO ] [2021-10-21 18:36:32,766] Employee_02 - Step 02: Open Personal Detail page
+[INFO ] [2021-10-21 18:36:33,649] Employee_02 - Step 03: Click to Change Photo image
+[INFO ] [2021-10-21 18:36:34,530] Employee_02 - Step 04: Upload new Avatar image
+[INFO ] [2021-10-21 18:36:34,571] Employee_02 - Step 05: Click to Upload button
+[INFO ] [2021-10-21 18:36:36,017] Employee_02 - Step 06: Verify Success message is displayed
+[INFO ] [2021-10-21 18:36:36,095]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:36,095] Employee_02 - Step 07: Verify new Avatar image is displayed
+[INFO ] [2021-10-21 18:36:36,234]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:36,235] Employee_03 - Step 01: Open 'Personal Details' tab at Side bar
+[INFO ] [2021-10-21 18:36:37,107] Employee_03 - Step 02: Verify all fields at 'Personal Details' tab are disabled
+[INFO ] [2021-10-21 18:36:37,190]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,263]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,309]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,385]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,475]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,544]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,590]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,636]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,636] Employee_03 - Step 03: Click to 'Edit' button at 'Personal Details' form
+[INFO ] [2021-10-21 18:36:37,858] Employee_03 - Step 04: Verify 'Employee Id' textbox is disabled
+[INFO ] [2021-10-21 18:36:37,917]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:37,917] Employee_03 - Step 05: Verify 'Driver's License Number' textbox is disabled
+[INFO ] [2021-10-21 18:36:38,026]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:38,027] Employee_03 - Step 06: Verify 'Date of Birth' textbox is disabled
+[INFO ] [2021-10-21 18:36:38,101]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:38,101] Employee_03 - Step 07: Enter new value to 'First Name' textbox
+[INFO ] [2021-10-21 18:36:38,241] Employee_03 - Step 08: Enter new value to 'Last Name' textbox
+[INFO ] [2021-10-21 18:36:38,411] Employee_03 - Step 09: Enter new value to 'Gender' textbox
+[INFO ] [2021-10-21 18:36:38,513] Employee_03 - Step 10: Select new value to 'Marital Single' radio button
+[INFO ] [2021-10-21 18:36:38,689] Employee_03 - Step 11: Select new value to 'Nationality' dropdown
+[INFO ] [2021-10-21 18:36:38,864] Employee_03 - Step 12: Click to 'Save' button at 'Personal Details' form
+[INFO ] [2021-10-21 18:36:40,449] Employee_03 - Step 13: Verify Succcess message is displayed
+[INFO ] [2021-10-21 18:36:40,517]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:40,517] Employee_03 - Step 14: Verify 'First Name' textbox is updated success
+[INFO ] [2021-10-21 18:36:40,576]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:40,576] Employee_03 - Step 15: Verify 'Last Name' textbox is updated success
+[INFO ] [2021-10-21 18:36:40,639]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:40,639] Employee_03 - Step 16: Verify 'Gender' radio button is updated success
+[INFO ] [2021-10-21 18:36:40,737]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:40,737] Employee_03 - Step 17: Verify 'Marital Single' dropdown is updated success
+[INFO ] [2021-10-21 18:36:40,840]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:40,840] Employee_03 - Step 18: Verify 'Nationality' dropdown is updated success
+[INFO ] [2021-10-21 18:36:42,189]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:42,190] Employee_03 - Step 19: Verify 'Empployee Id' textbox value is correct
+[INFO ] [2021-10-21 18:36:42,255]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-10-21 18:36:42,257] Employee_04 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,257] Employee_04 - Step 02: 
+[INFO ] [2021-10-21 18:36:42,258] Employee_04 - Step 03: 
+[INFO ] [2021-10-21 18:36:42,258] Employee_04 - Step 04: 
+[INFO ] [2021-10-21 18:36:42,258] Employee_04 - Step 05: 
+[INFO ] [2021-10-21 18:36:42,260] Employee_05 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,260] Employee_05 - Step 02: 
+[INFO ] [2021-10-21 18:36:42,260] Employee_05 - Step 03: 
+[INFO ] [2021-10-21 18:36:42,260] Employee_05 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,261] Employee_05 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,263] Employee_06 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,263] Employee_06 - Step 02: 
+[INFO ] [2021-10-21 18:36:42,263] Employee_06 - Step 03: 
+[INFO ] [2021-10-21 18:36:42,263] Employee_06 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,263] Employee_06 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,265] Employee_07 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,265] Employee_07 - Step 02: 
+[INFO ] [2021-10-21 18:36:42,265] Employee_07 - Step 03: 
+[INFO ] [2021-10-21 18:36:42,265] Employee_07 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,265] Employee_07 - Step 01: 
+[INFO ] [2021-10-21 18:36:42,268] Employee_08- Step 01: 
+[INFO ] [2021-10-21 18:36:42,268] Employee_08- Step 02: 
+[INFO ] [2021-10-21 18:36:42,268] Employee_08- Step 03: 
+[INFO ] [2021-10-21 18:36:42,268] Employee_08- Step 01: 
+[INFO ] [2021-10-21 18:36:42,268] Employee_08- Step 01: 
+[INFO ] [2021-10-21 18:36:42,271] Employee_09- Step 01: 
+[INFO ] [2021-10-21 18:36:42,271] Employee_09- Step 02: 
+[INFO ] [2021-10-21 18:36:42,271] Employee_09- Step 03: 
+[INFO ] [2021-10-21 18:36:42,271] Employee_09- Step 01: 
+[INFO ] [2021-10-21 18:36:42,271] Employee_09- Step 01: 
+[INFO ] [2021-10-21 18:36:42,272] Employee_10- Step 01: 
+[INFO ] [2021-10-21 18:36:42,272] Employee_10- Step 02: 
+[INFO ] [2021-10-21 18:36:42,272] Employee_10- Step 03: 
+[INFO ] [2021-10-21 18:36:42,273] Employee_10- Step 01: 
+[INFO ] [2021-10-21 18:36:42,273] Employee_10- Step 01: 
+[INFO ] [2021-10-21 18:36:42,274] Employee_11- Step 01: 
+[INFO ] [2021-10-21 18:36:42,274] Employee_11- Step 02: 
+[INFO ] [2021-10-21 18:36:42,274] Employee_11- Step 01: 
+[INFO ] [2021-10-21 18:36:42,274] Employee_11- Step 01: 
+[INFO ] [2021-10-21 18:36:42,274] Employee_11- Step 01: 
+[INFO ] [2021-10-21 18:36:42,275] Post-condition: Close browser 'chrome'
+[INFO ] [2021-10-21 18:36:42,275] OS name = windows 10
+[INFO ] [2021-10-21 18:36:43,062] OS name = windows 10
