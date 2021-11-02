@@ -24,6 +24,7 @@ public class Employee extends BaseTest {
 	MyInfoPO myInfoPage;
 	String empFirstName, empLastName, employeeID, statusValue, empFullName, empUserName, empPassword;
 	String editEmpFirstName, editEmpLastName, editEmpGender, editEmpMaritalStatus, editEmpNationality;
+	String a;
 	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
 
 	@Parameters({ "browser", "url" })
@@ -138,7 +139,7 @@ public class Employee extends BaseTest {
 		log.info("Employee_03 - Step 01: Open 'Personal Details' tab at Side bar");
 		myInfoPage.openTabAtSideBarByName("Personal Details");
 		
-		log.info("Employee_03 - Step 02: Verify all fields at 'Personal Details' tab are disabled");
+		log.info("Employee_03 - Step 02: Verify all fields at 'Personal Details' form are disabled");
 		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmpFirstName"));
 		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmpLastName"));
 		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmployeeId"));
@@ -202,13 +203,27 @@ public class Employee extends BaseTest {
 
 	@Test
 	public void Employee_04_Contact_Details() {
-		log.info("Employee_04 - Step 01: ");
+		log.info("Employee_04 - Step 01: Open 'Contact Details' tab at Side bar");
+		myInfoPage.openTabAtSideBarByName("Contact Details");
+		
+		log.info("Employee_04 - Step 02: Verify all fields at 'Contact Details' form are disabled");
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_street1"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_street2"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_city"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_province"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_zipcode"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_country"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_hm_telephone"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_mobile"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_work_telephone"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_work_email"));
+		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_oth_email"));
+		
+		log.info("Employee_04 - Step 03: Click to 'Edit' button at 'Contact Details' form");
+		myInfoPage.clickToButtonByID(driver, "btnSave");
 
-		log.info("Employee_04 - Step 02: ");
-
-		log.info("Employee_04 - Step 03: ");
-
-		log.info("Employee_04 - Step 04: ");
+		log.info("Employee_04 - Step 04: Enter new value to '' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_street1", editEmpFirstName);
 
 		log.info("Employee_04 - Step 05: ");
 
