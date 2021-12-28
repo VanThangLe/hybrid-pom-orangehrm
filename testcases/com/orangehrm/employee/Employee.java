@@ -24,7 +24,7 @@ public class Employee extends BaseTest {
 	MyInfoPO myInfoPage;
 	String empFirstName, empLastName, employeeID, statusValue, empFullName, empUserName, empPassword;
 	String editEmpFirstName, editEmpLastName, editEmpGender, editEmpMaritalStatus, editEmpNationality;
-	String a;
+	String editEmpContactStreet1, editEmpContactStreet2, editEmpCity, editEmpProvince, editEmpZipCode, editEmpCountry, editEmpTelephone, editEmpMobile, editEmpWorkTelephone, editEmpWorkEmail, editEmpOthEmail;
 	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
 
 	@Parameters({ "browser", "url" })
@@ -34,6 +34,7 @@ public class Employee extends BaseTest {
 		driver = getBrowserDriver(browserName, appUrl);
 		loginPage = PageGenerator.getLoginPage(driver);
 
+		//Employee_01_Add_New_Employee
 		statusValue = "Enabled";
 		empFirstName = "Thang";
 		empLastName = "Le";
@@ -41,11 +42,25 @@ public class Employee extends BaseTest {
 		empUserName = "thanglevan";
 		empPassword = "12345678";
 		
+		//Employee_03_Personal_Details
 		editEmpFirstName = "VanThang";
 		editEmpLastName = "Le";
 		editEmpGender = "Male";
 		editEmpMaritalStatus = "Single";
 		editEmpNationality = "Vietnamese";
+		
+		//Employee_04_Contact_Details
+		editEmpContactStreet1 = "Duy Tan";
+		editEmpContactStreet2 = "Xuan Thuy";
+		editEmpCity = "Hanoi";
+		editEmpProvince = "Hanoi";
+		editEmpZipCode = "10000";
+		editEmpCountry = "Vietnam";
+		editEmpTelephone = "0973956843";
+		editEmpMobile = "0973956843";
+		editEmpWorkTelephone = "0973956843";
+		editEmpWorkEmail = "thang.le.fc@gmail.com";
+		editEmpOthEmail = "thanglv@a89.com.vn";
 		
 		log.info("Pre-condition: Step 02 - Login with Admin role");
 		dashboardPage = loginPage.loginToSystem(driver, GlobalConstants.ADMIN_USERNAME, GlobalConstants.ADMIN_PASSWORD);
@@ -222,11 +237,40 @@ public class Employee extends BaseTest {
 		log.info("Employee_04 - Step 03: Click to 'Edit' button at 'Contact Details' form");
 		myInfoPage.clickToButtonByID(driver, "btnSave");
 
-		log.info("Employee_04 - Step 04: Enter new value to '' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_street1", editEmpFirstName);
+		log.info("Employee_04 - Step 04: Enter new value to 'Address Street 1' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_street1", editEmpContactStreet1);
 
-		log.info("Employee_04 - Step 05: ");
-
+		log.info("Employee_04 - Step 04: Enter new value to 'Address Street 2' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_street2", editEmpContactStreet2);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'City' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_city", editEmpCity);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'State/Province' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_province", editEmpProvince);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'Zip/Postal Code' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_emp_zipcode", editEmpZipCode);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'Country' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_country", editEmpCountry);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'Home Telephone' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_emp_hm_telephone", editEmpTelephone);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'Mobile' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_emp_mobile", editEmpMobile);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'Work Telephone' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_emp_work_telephone", editEmpWorkTelephone);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'Work Email' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_emp_work_email", editEmpWorkEmail);
+		
+		log.info("Employee_04 - Step 04: Enter new value to 'Other Email' textbox");
+		myInfoPage.enterToTextboxByID(driver, "contact_emp_oth_email", editEmpOthEmail);
+		
+		
 	}
 
 	@Test
