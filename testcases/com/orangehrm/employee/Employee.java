@@ -25,6 +25,8 @@ public class Employee extends BaseTest {
 	String empFirstName, empLastName, employeeID, statusValue, empFullName, empUserName, empPassword;
 	String editEmpFirstName, editEmpLastName, editEmpGender, editEmpMaritalStatus, editEmpNationality;
 	String editEmpContactStreet1, editEmpContactStreet2, editEmpCity, editEmpProvince, editEmpZipCode, editEmpCountry, editEmpTelephone, editEmpMobile, editEmpWorkTelephone, editEmpWorkEmail, editEmpOthEmail;
+	String empEmgContactsName, empEmgContactsRelationship, empEmgContactsHomeTelephone, empEmgContactsMobile, empEmgContactsWorkTelephone;
+	String empDependentName, empDependentRelationship, empDependentDoB;
 	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
 
 	@Parameters({ "browser", "url" })
@@ -46,7 +48,7 @@ public class Employee extends BaseTest {
 		editEmpFirstName = "VanThang";
 		editEmpLastName = "Le";
 		editEmpGender = "Male";
-		editEmpMaritalStatus = "Single";
+		editEmpMaritalStatus = "Married";
 		editEmpNationality = "Vietnamese";
 		
 		//Employee_04_Contact_Details
@@ -61,6 +63,18 @@ public class Employee extends BaseTest {
 		editEmpWorkTelephone = "0973956843";
 		editEmpWorkEmail = "thang.le.fc@gmail.com";
 		editEmpOthEmail = "thanglv@a89.com.vn";
+		
+		//Employee_05_Emergency_Details
+		empEmgContactsName = "Huyen";
+		empEmgContactsRelationship = "Wife";
+		empEmgContactsHomeTelephone = "0973956843";
+		empEmgContactsMobile = "0973956843";
+		empEmgContactsWorkTelephone = "0973956843";
+		
+		//Employee_06_Assigned_Dependents
+		empDependentName = "Mi";
+		empDependentRelationship = "Child";
+		empDependentDoB = "2017-01-13";
 		
 		log.info("Pre-condition: Step 02 - Login with Admin role");
 		dashboardPage = loginPage.loginToSystem(driver, GlobalConstants.ADMIN_USERNAME, GlobalConstants.ADMIN_PASSWORD);
@@ -240,64 +254,131 @@ public class Employee extends BaseTest {
 		log.info("Employee_04 - Step 04: Enter new value to 'Address Street 1' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_street1", editEmpContactStreet1);
 
-		log.info("Employee_04 - Step 04: Enter new value to 'Address Street 2' textbox");
+		log.info("Employee_04 - Step 05: Enter new value to 'Address Street 2' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_street2", editEmpContactStreet2);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'City' textbox");
+		log.info("Employee_04 - Step 06: Enter new value to 'City' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_city", editEmpCity);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'State/Province' textbox");
+		log.info("Employee_04 - Step 07: Enter new value to 'State/Province' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_province", editEmpProvince);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'Zip/Postal Code' textbox");
+		log.info("Employee_04 - Step 08: Enter new value to 'Zip/Postal Code' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_emp_zipcode", editEmpZipCode);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'Country' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_country", editEmpCountry);
+		log.info("Employee_04 - Step 09: Select new value to 'Country' dropdown");
+		myInfoPage.selectItemInDropdownByID(driver, "contact_country", editEmpCountry);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'Home Telephone' textbox");
+		log.info("Employee_04 - Step 10: Enter new value to 'Home Telephone' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_emp_hm_telephone", editEmpTelephone);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'Mobile' textbox");
+		log.info("Employee_04 - Step 11: Enter new value to 'Mobile' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_emp_mobile", editEmpMobile);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'Work Telephone' textbox");
+		log.info("Employee_04 - Step 12: Enter new value to 'Work Telephone' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_emp_work_telephone", editEmpWorkTelephone);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'Work Email' textbox");
+		log.info("Employee_04 - Step 13: Enter new value to 'Work Email' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_emp_work_email", editEmpWorkEmail);
 		
-		log.info("Employee_04 - Step 04: Enter new value to 'Other Email' textbox");
+		log.info("Employee_04 - Step 14: Enter new value to 'Other Email' textbox");
 		myInfoPage.enterToTextboxByID(driver, "contact_emp_oth_email", editEmpOthEmail);
 		
+		log.info("Employee_04 - Step 15: Verify 'Address Street 1' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_street1"), editEmpContactStreet1);
 		
+		log.info("Employee_04 - Step 16: Verify 'Address Street 2' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_street2"), editEmpContactStreet2);
+		
+		log.info("Employee_04 - Step 17: Verify 'City' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_city"), editEmpCity);
+		
+		log.info("Employee_04 - Step 18: Verify 'State/Province' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_province"), editEmpProvince);
+		
+		log.info("Employee_04 - Step 19: Verify 'Zip/Postal Code' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_zipcode"), editEmpZipCode);
+		
+		log.info("Employee_04 - Step 20: Verify 'Country' dropdown value is correct");
+		verifyEquals(myInfoPage.getSelectedValueInDropdownByID(driver, "contact_country"), editEmpCountry);
+		
+		log.info("Employee_04 - Step 21: Verify 'Home Telephone' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_hm_telephone"), editEmpTelephone);
+		
+		log.info("Employee_04 - Step 22: Verify 'Mobile' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_mobile"), editEmpMobile);
+		
+		log.info("Employee_04 - Step 23: Verify 'Work Telephone' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_work_telephone"), editEmpWorkTelephone);
+		
+		log.info("Employee_04 - Step 24: Verify 'Work Email' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_work_email"), editEmpWorkEmail);
+		
+		log.info("Employee_04 - Step 25: Verify 'Other Email' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_oth_email"), editEmpOthEmail);
 	}
 
 	@Test
-	public void Employee_05_Emergency_Details() {
-		log.info("Employee_05 - Step 01: ");
+	public void Employee_05_Emergency_Contacts() {
+		log.info("Employee_05 - Step 01: Open 'Emergency Contacts' tab at Side bar");
+		myInfoPage.openTabAtSideBarByName("Emergency Contacts");
 
-		log.info("Employee_05 - Step 02: ");
+		log.info("Employee_05 - Step 02: Click to 'Add' button at 'Assigned Emergency Contacts' form");
+		myInfoPage.clickToButtonByID(driver, "btnAddContact");
 
-		log.info("Employee_05 - Step 03: ");
+		log.info("Employee_05 - Step 03: Enter new value to 'Name' textbox");
+		myInfoPage.enterToTextboxByID(driver, "emgcontacts_name", empEmgContactsName);
 
-		log.info("Employee_05 - Step 01: ");
+		log.info("Employee_05 - Step 04: Enter new value to 'Relationship' textbox");
+		myInfoPage.enterToTextboxByID(driver, "emgcontacts_relationship", empEmgContactsRelationship);
 
-		log.info("Employee_05 - Step 01: ");
+		log.info("Employee_05 - Step 05: Enter new value to 'Home Telephone' textbox");
+		myInfoPage.enterToTextboxByID(driver, "emgcontacts_homePhone", empEmgContactsHomeTelephone);
+		
+		log.info("Employee_05 - Step 06: Enter new value to 'Mobile' textbox");
+		myInfoPage.enterToTextboxByID(driver, "emgcontacts_mobilePhone", empEmgContactsMobile);
+		
+		log.info("Employee_05 - Step 07: Enter new value to 'Work Telephone' textbox");
+		myInfoPage.enterToTextboxByID(driver, "emgcontacts_workPhone", empEmgContactsWorkTelephone);
+		
+		log.info("Employee_05 - Step 08: Click to 'Save' button");
+		myInfoPage.clickToButtonByID(driver, "btnSaveEContact");
+		
+		log.info("Employee_05 - Step 09: Verify 'Name' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_name"), empEmgContactsName);
+		
+		log.info("Employee_05 - Step 10: Verify 'Relationship' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_relationship"), empEmgContactsRelationship);
+		
+		log.info("Employee_05 - Step 11: Verify 'Home Telephone' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_homePhone"), empEmgContactsHomeTelephone);
+		
+		log.info("Employee_05 - Step 12: Verify 'Mobile' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_mobilePhone"), empEmgContactsMobile);
+		
+		log.info("Employee_05 - Step 13: Verify 'Work Telephone' textbox value is correct");
+		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_workPhone"), empEmgContactsWorkTelephone);
 
 	}
 
 	@Test
 	public void Employee_06_Assigned_Dependents() {
-		log.info("Employee_06 - Step 01: ");
+		log.info("Employee_06 - Step 01: Open 'Dependents' tab at Side bar");
+		myInfoPage.openTabAtSideBarByName("Dependents");
 
-		log.info("Employee_06 - Step 02: ");
+		log.info("Employee_06 - Step 02: Click to 'Add' button at 'Assigned Dependents' form");
+		myInfoPage.clickToButtonByID(driver, "btnAddDependent");
 
-		log.info("Employee_06 - Step 03: ");
-
-		log.info("Employee_06 - Step 01: ");
-
-		log.info("Employee_06 - Step 01: ");
+		log.info("Employee_06 - Step 03: Enter new value to 'Name' textbox");
+		myInfoPage.enterToTextboxByID(driver, "dependent_name", empEmgContactsName);
+		
+		log.info("Employee_06 - Step 04: Select new value to 'Relationship' dropdown");
+		myInfoPage.selectItemInDropdownByID(driver, "dependent_relationshipType", empDependentRelationship);
+		
+		log.info("Employee_06 - Step 05: Select new value to 'Date of Birth' dropdown");
+		myInfoPage.selectItemInDropdownByID(driver, "dependent_dateOfBirth", empDependentDoB);
+		
+		
 
 	}
 
