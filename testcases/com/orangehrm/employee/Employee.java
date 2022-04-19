@@ -72,9 +72,9 @@ public class Employee extends BaseTest {
 		empEmgContactsWorkTelephone = "0973956843";
 		
 		//Employee_06_Assigned_Dependents
-		empDependentName = "Mi";
+		empDependentName = "Dang";
 		empDependentRelationship = "Child";
-		empDependentDoB = "2017-01-13";
+		empDependentDoB = "2022-09-13";
 		
 		log.info("Pre-condition: Step 02 - Login with Admin role");
 		dashboardPage = loginPage.loginToSystem(driver, GlobalConstants.ADMIN_USERNAME, GlobalConstants.ADMIN_PASSWORD);
