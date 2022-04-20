@@ -54,10 +54,10 @@ public class Employee extends BaseTest {
 		//Employee_04_Contact_Details
 		editEmpContactStreet1 = "Duy Tan";
 		editEmpContactStreet2 = "Xuan Thuy";
-		editEmpCity = "Hanoi";
-		editEmpProvince = "Hanoi";
+		editEmpCity = "Ha Noi";
+		editEmpProvince = "Ha Noi";
 		editEmpZipCode = "10000";
-		editEmpCountry = "Vietnam";
+		editEmpCountry = "Viet Nam";
 		editEmpTelephone = "0973956843";
 		editEmpMobile = "0973956843";
 		editEmpWorkTelephone = "0973956843";
@@ -169,26 +169,26 @@ public class Employee extends BaseTest {
 		myInfoPage.openTabAtSideBarByName("Personal Details");
 		
 		log.info("Employee_03 - Step 02: Verify all fields at 'Personal Details' form are disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmpFirstName"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmpLastName"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmployeeId"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_optGender_1"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_optGender_2"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_cmbMarital"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_cmbNation"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_DOB"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtEmpFirstName"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtEmpLastName"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtEmployeeId"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_optGender_1"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_optGender_2"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_cmbMarital"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_cmbNation"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_DOB"));
 		
 		log.info("Employee_03 - Step 03: Click to 'Edit' button at 'Personal Details' form");
 		myInfoPage.clickToButtonByID(driver, "btnSave");
 		
 		log.info("Employee_03 - Step 04: Verify 'Employee Id' textbox is disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtEmployeeId"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtEmployeeId"));
 		
 		log.info("Employee_03 - Step 05: Verify 'Driver's License Number' textbox is disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_txtLicenNo"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtLicenNo"));
 		
 		log.info("Employee_03 - Step 06: Verify 'Date of Birth' textbox is disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "personal_DOB"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_DOB"));
 		
 		log.info("Employee_03 - Step 07: Enter new value to 'First Name' textbox");
 		myInfoPage.enterToTextboxByID(driver, "personal_txtEmpFirstName", editEmpFirstName);
@@ -236,17 +236,17 @@ public class Employee extends BaseTest {
 		myInfoPage.openTabAtSideBarByName("Contact Details");
 		
 		log.info("Employee_04 - Step 02: Verify all fields at 'Contact Details' form are disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_street1"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_street2"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_city"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_province"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_zipcode"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_country"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_hm_telephone"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_mobile"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_work_telephone"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_work_email"));
-		verifyFalse(myInfoPage.isFieldEnabledByName(driver, "contact_emp_oth_email"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_street1"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_street2"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_city"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_province"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_zipcode"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_country"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_hm_telephone"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_mobile"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_work_telephone"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_work_email"));
+		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_oth_email"));
 		
 		log.info("Employee_04 - Step 03: Click to 'Edit' button at 'Contact Details' form");
 		myInfoPage.clickToButtonByID(driver, "btnSave");

@@ -602,7 +602,7 @@ public class BasePage {
 		return isElementDisplayed(driver, BasePageUI.SUCCESS_MESSAGE_VALUE, messageValue);
 	}
 	
-	public boolean isFieldEnabledByName(WebDriver driver, String fieldID) {
+	public boolean isFieldEnabledByID(WebDriver driver, String fieldID) {
 		waitForElementVisible(driver, BasePageUI.ANY_FIELD_BY_ID, fieldID);
 		return isElementEnabled(driver, BasePageUI.ANY_FIELD_BY_ID, fieldID);
 	}
