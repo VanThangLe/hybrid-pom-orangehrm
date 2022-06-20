@@ -345,19 +345,24 @@ public class Employee extends BaseTest {
 		myInfoPage.clickToButtonByID(driver, "btnSaveEContact");
 		
 		log.info("Employee_05 - Step 09: Verify 'Name' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_name"), empEmgContactsName);
+		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_name"), empEmgContactsName);
+		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "emgContactName", "1"), empEmgContactsName);
 		
 		log.info("Employee_05 - Step 10: Verify 'Relationship' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_relationship"), empEmgContactsRelationship);
+		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_relationship"), empEmgContactsRelationship);
+		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "Relationship", "1"), empEmgContactsRelationship);
 		
 		log.info("Employee_05 - Step 11: Verify 'Home Telephone' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_homePhone"), empEmgContactsHomeTelephone);
+		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_homePhone"), empEmgContactsHomeTelephone);
+		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "Home Telephone", "1"), empEmgContactsHomeTelephone);
 		
 		log.info("Employee_05 - Step 12: Verify 'Mobile' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_mobilePhone"), empEmgContactsMobile);
+		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_mobilePhone"), empEmgContactsMobile);
+		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "Mobile", "1"), empEmgContactsMobile);
 		
 		log.info("Employee_05 - Step 13: Verify 'Work Telephone' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_workPhone"), empEmgContactsWorkTelephone);
+		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_workPhone"), empEmgContactsWorkTelephone);
+		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "Work Telephone", "1"), empEmgContactsWorkTelephone);
 
 	}
 
