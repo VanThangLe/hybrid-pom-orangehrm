@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="OrangeHRM" parallel="tests" thread-count="1">
-	<parameter name="url" value="https://opensource-demo.orangehrmlive.com/" />
+	<!-- <parameter name="url" value="https://opensource-demo.orangehrmlive.com/" /> -->
+	<parameter name="url" value="https://www.lazada.vn/" />
 
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />

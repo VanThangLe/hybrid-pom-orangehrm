@@ -35,6 +35,7 @@ public class Employee extends BaseTest {
 		log.info("Pre-condition: Step 01 - Open browser '" + browserName + "'and navigate to '" + appUrl + "'");
 		driver = getBrowserDriver(browserName, appUrl);
 		loginPage = PageGenerator.getLoginPage(driver);
+		loginPage.clickToDN(driver);
 
 		//Employee_01_Add_New_Employee
 		statusValue = "Enabled";

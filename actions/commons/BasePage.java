@@ -606,4 +606,9 @@ public class BasePage {
 		waitForElementVisible(driver, BasePageUI.ANY_FIELD_BY_ID, fieldID);
 		return isElementEnabled(driver, BasePageUI.ANY_FIELD_BY_ID, fieldID);
 	}
+	
+	public void clickToDN(WebDriver driver) {
+		waitForElementClickAble(driver, BasePageUI.A, "THAY ĐỔI NGÔN NGỮ");
+		clickToElement(driver, BasePageUI.A, "THAY ĐỔI NGÔN NGỮ");
+	}
 }

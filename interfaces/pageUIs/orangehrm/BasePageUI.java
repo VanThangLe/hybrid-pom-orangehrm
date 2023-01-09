@@ -11,6 +11,7 @@ public class BasePageUI {
 	public static final String MENU_BY_PAGE_NAME = "//div[@id='mainMenu']//a[string()='%s']";
 	public static final String SUCCESS_MESSAGE_VALUE = "//div[@class='inner']/div[contains(text(), '%s')]";
 	public static final String ANY_FIELD_BY_ID = "//*[@id='%s']";
+	public static final String A = "//span[contains(text(),'%s')]";
 	
 	public static final String WELCOME_USER_LINK = "//a[@id='welcome']";
 	public static final String LOGOUT_LINK = "//div[@id='welcome-menu']//a[text()='Logout']";
