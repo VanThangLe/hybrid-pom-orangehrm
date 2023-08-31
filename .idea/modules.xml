@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/hybrid-pom-orangehrm.iml" filepath="$PROJECT_DIR$/hybrid-pom-orangehrm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hybrid-pom-nopcommerce.iml" filepath="$PROJECT_DIR$/hybrid-pom-nopcommerce.iml" />
     </modules>
   </component>
 </project>
