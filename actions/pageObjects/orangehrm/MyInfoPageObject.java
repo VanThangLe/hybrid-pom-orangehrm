@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import commons.BasePage;
 import pageUIs.orangehrm.MyInfoPageUI;
 
-public class MyInfoPO extends BasePage {
+public class MyInfoPageObject extends BasePage {
 	private WebDriver driver;
 
-	public MyInfoPO(WebDriver driver) {
+	public MyInfoPageObject(WebDriver driver) {
 		super();
 		this.driver = driver;
 	}

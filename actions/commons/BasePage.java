@@ -17,8 +17,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pageObjects.orangehrm.DashboardPO;
-import pageObjects.orangehrm.LoginPO;
+import pageObjects.orangehrm.DashboardPageObject;
+import pageObjects.orangehrm.LoginPageObject;
 import pageObjects.orangehrm.PageGenerator;
 import pageUIs.orangehrm.BasePageUI;
 
@@ -577,7 +577,7 @@ public class BasePage {
 		return getElementText(driver, BasePageUI.TABLE_ROW_BY_COLUMN_INDEX_AND_ROW_INDEX, tableID, rowIndex, String.valueOf(columnIndex));
 	}
 	
-	public LoginPO logoutToSystem(WebDriver driver) {
+	public LoginPageObject logoutToSystem(WebDriver driver) {
 		waitForElementClickAble(driver, BasePageUI.WELCOME_USER_LINK);
 		clickToElement(driver, BasePageUI.WELCOME_USER_LINK);
 		waitForElementClickAble(driver, BasePageUI.LOGOUT_LINK);
@@ -585,7 +585,7 @@ public class BasePage {
 		return PageGenerator.getLoginPage(driver);
 	}
 	
-	public DashboardPO loginToSystem(WebDriver driver, String username, String password) {
+	public DashboardPageObject loginToSystem(WebDriver driver, String username, String password) {
 		waitForElementVisible(driver, BasePageUI.USERNAME_LOGIN_TEXTBOX);
 		sendkeyToElement(driver, BasePageUI.USERNAME_LOGIN_TEXTBOX, username);
 		sendkeyToElement(driver, BasePageUI.PASSWORD_LOGIN_TEXTBOX, password);
