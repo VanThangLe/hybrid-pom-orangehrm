@@ -8,7 +8,6 @@ public class DashboardPageObject extends BasePage {
 //	private WebDriver driver;
 
 	public DashboardPageObject(WebDriver driver) {
-		super();
 //		this.driver = driver;
 	}
 }

@@ -7,8 +7,7 @@ import commons.BasePage;
 public class EmployeeListPageObject extends BasePage {
 //	private WebDriver driver;
 
-	public EmployeeListPageObject(WebDriver driver) {
-		super();
-//		this.driver = driver;
+	public EmployeeListPageObject(WebDriver _driver) {
+//		this.driver = _driver;
 	}
 }

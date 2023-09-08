@@ -8,7 +8,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
@@ -20,7 +19,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 	private WebDriver driver;
-	private String projectPath = System.getProperty("user.dir");
 	protected final Log log;
 
 	protected BaseTest() {
@@ -28,7 +26,7 @@ public class BaseTest {
 	}
 
 	private enum Browser {
-		FIREFOX, CHROME, EDGE, COCCOC, SAFARI;
+		FIREFOX, CHROME, EDGE, SAFARI;
 	}
 
 	protected WebDriver getBrowserDriver(String browserName, String appUrl) {
@@ -45,13 +43,6 @@ public class BaseTest {
 		case EDGE:
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
-			break;
-		case COCCOC:
-			WebDriverManager.chromedriver().driverVersion("89.0.4389.23").setup();
-			System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
-			ChromeOptions options = new ChromeOptions();
-			options.setBinary("C:\\Users\\thang\\AppData\\Local\\CocCoc\\Browser\\Application\\browser.exe");
-			driver = new ChromeDriver(options);
 			break;
 		default:
 			throw new RuntimeException("Browser name is not correct!");

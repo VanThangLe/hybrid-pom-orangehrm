@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.orangehrm.data.Data;
+
 import commons.BaseTest;
 import commons.GlobalConstants;
 import pageObjects.orangehrm.AddEmployeePageObject;
@@ -13,7 +15,7 @@ import pageObjects.orangehrm.DashboardPageObject;
 import pageObjects.orangehrm.EmployeeListPageObject;
 import pageObjects.orangehrm.LoginPageObject;
 import pageObjects.orangehrm.PageGenerator;
-import pageObjects.orangehrm.MyInfoPageObject;
+import pageObjects.orangehrm.PersonalDetailsPageObject;
 
 public class Employee extends BaseTest {
 	WebDriver driver;
@@ -21,7 +23,7 @@ public class Employee extends BaseTest {
 	AddEmployeePageObject addEmployeePage;
 	DashboardPageObject dashboardPage;
 	EmployeeListPageObject employeeListPage;
-	MyInfoPageObject myInfoPage;
+	PersonalDetailsPageObject myInfoPage;
 	String employeeID;
 	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
 
@@ -31,48 +33,35 @@ public class Employee extends BaseTest {
 		log.info("Pre-condition: Step 01 - Open browser '" + browserName + "'and navigate to '" + appUrl + "'");
 		driver = getBrowserDriver(browserName, appUrl);
 		loginPage = PageGenerator.getLoginPage(driver);
-		loginPage.clickToDN(driver);
 		
 		log.info("Pre-condition: Step 02 - Login with Admin role");
-		dashboardPage = loginPage.loginToSystem(driver, GlobalConstants.ADMIN_USERNAME, GlobalConstants.ADMIN_PASSWORD);
+		loginPage.enterToTextboxByIDName(driver, "username", GlobalConstants.ADMIN_USERNAME);
+		loginPage.enterToTextboxByIDName(driver, "password", GlobalConstants.ADMIN_PASSWORD);
+		loginPage.clickToButtonByLabel(driver, "Login");
 	}
 
 	@Test
 	public void Employee_01_Add_New_Employee() {
 		log.info("Employee_01 - Step 01: Open 'Employee List' page");
-		dashboardPage.openSubMenuPage(driver, "PIM", "Employee List");
+		dashboardPage.openMenuPage(driver, "PIM");
 		employeeListPage = PageGenerator.getEmployeeListPage(driver);
 
 		log.info("Employee_01 - Step 02: Click to 'Add' button");
-		employeeListPage.clickToButtonByID(driver, "btnAdd");
+		employeeListPage.clickToButtonByLabel(driver, "Add");
 		addEmployeePage = PageGenerator.getAddEmployeePage(driver);
 
-		log.info("Employee_01 - Step 03: Enter valid info to 'First Name' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "firstName", empFirstName);
+		log.info("Employee_01 - Step 03: Input data to all fields");
+		addEmployeePage.enterToTextboxByIDName(driver, "firstName", Data.Employee_01_Add_New_Employee.EMP_FIRSTNAME);
+		addEmployeePage.enterToTextboxByIDName(driver, "middleName", Data.Employee_01_Add_New_Employee.EMP_MIDDLENAME);
+		addEmployeePage.enterToTextboxByIDName(driver, "lastName", Data.Employee_01_Add_New_Employee.EMP_LASTNAME);
+		addEmployeePage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
+		addEmployeePage.clickToCreateLoginDetails();
+		addEmployeePage.enterToTextboxByLabel(driver, "Username", Data.Employee_01_Add_New_Employee.EMP_USERNAME);
+		addEmployeePage.enterToTextboxByLabel(driver, "Password", Data.Employee_01_Add_New_Employee.EMP_PASSWORD);
+		addEmployeePage.enterToTextboxByLabel(driver, "Confirm Password", Data.Employee_01_Add_New_Employee.EMP_PASSWORD);
 
-		log.info("Employee_01 - Step 04: Enter valid info to 'Last Name' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "lastName", empLastName);
-
-		log.info("Employee_01 - Step 05: Get value of 'Employee ID'");
-		employeeID = addEmployeePage.getTextboxValueByID(driver, "employeeId");
-
-		log.info("Employee_01 - Step 06: Click to 'Create Login Details' checkbox");
-		addEmployeePage.clickToCheckboxByLabel(driver, "Create Login Details");
-
-		log.info("Employee_01 - Step 07: Enter valid info to 'User Name' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "user_name", empUserName);
-
-		log.info("Employee_01 - Step 08: Enter valid info to 'Password' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "user_password", empPassword);
-
-		log.info("Employee_01 - Step 09: Enter valid info to 'Confirm Password' textbox");
-		addEmployeePage.enterToTextboxByID(driver, "re_password", empPassword);
-
-		log.info("Employee_01 - Step 10: Select '" + statusValue + "' value in 'Status' dropdown");
-		addEmployeePage.selectItemInDropdownByID(driver, "status", statusValue);
-
-		log.info("Employee_01 - Step 11: Click to 'Save' button");
-		addEmployeePage.clickToButtonByID(driver, "btnSave");
+		log.info("Employee_01 - Step 04: Click to 'Save' button");
+		addEmployeePage.clickToButtonByLabel(driver, "Save");
 		myInfoPage = PageGenerator.getMyInfoPage(driver);
 
 		log.info("Employee_01 - Step 12: Open 'Employee List' page");
