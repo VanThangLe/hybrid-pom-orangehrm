@@ -543,4 +543,9 @@ public class BasePage {
 		waitForElementVisible(driver, BasePageUI.SUCCESS_TOAST_MESSAGE);
 		return isElementDisplayed(driver, BasePageUI.SUCCESS_TOAST_MESSAGE);
 	}
+	
+	public void clickToCreateLoginDetails(WebDriver driver) {
+		waitForElementClickAble(driver, BasePageUI.CREATE_LOGIN_DETAILS);
+		clickToElement(driver, BasePageUI.CREATE_LOGIN_DETAILS);
+	}
 }

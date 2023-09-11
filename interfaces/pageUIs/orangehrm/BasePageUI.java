@@ -8,4 +8,6 @@ public class BasePageUI {
 	public static final String UPLOAD_FILE = "//input[@type='file']";
 	
 	public static final String SUCCESS_TOAST_MESSAGE = "//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']";
+	
+	public static final String CREATE_LOGIN_DETAILS = "//span[starts-with(@class,'oxd-switch-input')]";
 }

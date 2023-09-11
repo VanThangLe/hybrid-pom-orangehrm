@@ -10,12 +10,7 @@ import com.orangehrm.data.Data;
 
 import commons.BaseTest;
 import commons.GlobalConstants;
-import pageObjects.orangehrm.AddEmployeePageObject;
-import pageObjects.orangehrm.DashboardPageObject;
-import pageObjects.orangehrm.EmployeeListPageObject;
-import pageObjects.orangehrm.LoginPageObject;
-import pageObjects.orangehrm.PageGenerator;
-import pageObjects.orangehrm.PersonalDetailsPageObject;
+import pageObjects.orangehrm.*;
 
 public class Employee extends BaseTest {
 	WebDriver driver;
@@ -24,6 +19,16 @@ public class Employee extends BaseTest {
 	DashboardPageObject dashboardPage;
 	EmployeeListPageObject employeeListPage;
 	PersonalDetailsPageObject personalDetailsPage;
+	ContactDetailsPageObject contactDetailsPage;
+	DependentsPageObject dependentsPage;
+	EmergencyContactsPageObject emergencyContactsPage;
+	ImmigrationPageObject immigrationPage;
+	JobPageObject jobPage;
+	MembershipsPageObject membershipPage;
+	QualificationsPageObject qualificationsPage;
+	ReportToPageObject reportToPage;
+	SalaryPageObject salaryPage;
+	TaxExemptionsPageObject taxExemptionsPage;
 
 	@Parameters({ "browserName", "appUrl" })
 	@BeforeClass
@@ -54,7 +59,7 @@ public class Employee extends BaseTest {
 		addEmployeePage.enterToTextboxByIDName(driver, "middleName", Data.Employee_01_Add_New_Employee.EMP_MIDDLENAME);
 		addEmployeePage.enterToTextboxByIDName(driver, "lastName", Data.Employee_01_Add_New_Employee.EMP_LASTNAME);
 		addEmployeePage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
-		addEmployeePage.clickToCreateLoginDetails();
+		addEmployeePage.clickToCreateLoginDetails(driver);
 		addEmployeePage.enterToTextboxByLabel(driver, "Username", Data.Employee_01_Add_New_Employee.EMP_USERNAME);
 		addEmployeePage.enterToTextboxByLabel(driver, "Password", Data.Employee_01_Add_New_Employee.EMP_PASSWORD);
 		addEmployeePage.enterToTextboxByLabel(driver, "Confirm Password", Data.Employee_01_Add_New_Employee.EMP_PASSWORD);

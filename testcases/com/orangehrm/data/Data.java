@@ -13,7 +13,7 @@ public class Data {
 		public static final String AVATAR = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
 	}
 	
-	public class Employee_03_Personal_Details {
+	public class Employee_02_Personal_Details {
 		public static final String editEmpFirstName = "VanThang";
 		public static final String editEmpLastName = "Le";
 		public static final String editEmpGender = "Male";
@@ -21,7 +21,7 @@ public class Data {
 		public static final String editEmpNationality = "Vietnamese";
 	}
 
-	public class Employee_04_Contact_Details {
+	public class Employee_03_Contact_Details {
 		public static final String editEmpContactStreet1 = "Duy Tan";
 		public static final String editEmpContactStreet2 = "Xuan Thuy";
 		public static final String editEmpCity = "Ha Noi";
@@ -35,7 +35,7 @@ public class Data {
 		public static final String editEmpOthEmail = "thanglv@a89.com.vn";
 	}
 
-	public class Employee_05_Emergency_Details {
+	public class Employee_04_Emergency_Contacts {
 		public static final String empEmgContactsName = "Huyen";
 		public static final String empEmgContactsRelationship = "Wife";
 		public static final String empEmgContactsHomeTelephone = "0973956843";
@@ -43,25 +43,57 @@ public class Data {
 		public static final String empEmgContactsWorkTelephone = "0973956843";
 	}
 	
-	public class Employee_06_Assigned_Dependents {
+	public class Employee_05_Assigned_Dependents {
 		public static final String empDependentName = "Dang";
 		public static final String empDependentRelationship = "Child";
 		public static final String empDependentDoB = "2022-09-13";
 	}
 	
-	public class Employee_07_Edit_View_Job {
+	public class Employee_06_Immigration {
 		
 	}
 
-	public class Employee_08_Edit_View_Salary {
+	public class Employee_07_Job {
 	
 	}
 
-	public class Employee_09_Edit_View_Tax {
+	public class Employee_08_Salary {
 	
 	}
 	
-	public class Employee_11_Search_Employee {
+	public class Employee_09_Tax_Exemptions {
 		
+	}
+	
+	public class Employee_10_Report_To_Assigned_Supervisors {
+		
+	}
+
+	public class Employee_11_Report_To_Assigned_Subordinates {
+	
+	}
+
+	public class Employee_12_Qualifications_Work_Experience {
+	
+	}
+
+	public class Employee_13_Qualifications_Education {
+	
+	}
+
+	public class Employee_14_Qualifications_Skill {
+	
+	}
+
+	public class Employee_15_Qualifications_Languages {
+	
+	}
+	
+	public class Employee_16_Qualifications_License {
+		
+	}
+
+	public class Employee_17_Memberships {
+	
 	}
 }
