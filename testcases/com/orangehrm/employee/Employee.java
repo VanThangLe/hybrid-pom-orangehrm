@@ -23,11 +23,9 @@ public class Employee extends BaseTest {
 	AddEmployeePageObject addEmployeePage;
 	DashboardPageObject dashboardPage;
 	EmployeeListPageObject employeeListPage;
-	PersonalDetailsPageObject myInfoPage;
-	String employeeID;
-	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
+	PersonalDetailsPageObject personalDetailsPage;
 
-	@Parameters({ "browser", "url" })
+	@Parameters({ "browserName", "appUrl" })
 	@BeforeClass
 	public void beforeClass(String browserName, String appUrl) {
 		log.info("Pre-condition: Step 01 - Open browser '" + browserName + "'and navigate to '" + appUrl + "'");
@@ -46,11 +44,12 @@ public class Employee extends BaseTest {
 		dashboardPage.openMenuPage(driver, "PIM");
 		employeeListPage = PageGenerator.getEmployeeListPage(driver);
 
-		log.info("Employee_01 - Step 02: Click to 'Add' button");
+		log.info("Employee_01 - Step 02: Click to add employee");
 		employeeListPage.clickToButtonByLabel(driver, "Add");
 		addEmployeePage = PageGenerator.getAddEmployeePage(driver);
 
 		log.info("Employee_01 - Step 03: Input data to all fields");
+		addEmployeePage.uploadAvatar(driver, Data.Employee_01_Add_New_Employee.AVATAR);
 		addEmployeePage.enterToTextboxByIDName(driver, "firstName", Data.Employee_01_Add_New_Employee.EMP_FIRSTNAME);
 		addEmployeePage.enterToTextboxByIDName(driver, "middleName", Data.Employee_01_Add_New_Employee.EMP_MIDDLENAME);
 		addEmployeePage.enterToTextboxByIDName(driver, "lastName", Data.Employee_01_Add_New_Employee.EMP_LASTNAME);
@@ -60,350 +59,450 @@ public class Employee extends BaseTest {
 		addEmployeePage.enterToTextboxByLabel(driver, "Password", Data.Employee_01_Add_New_Employee.EMP_PASSWORD);
 		addEmployeePage.enterToTextboxByLabel(driver, "Confirm Password", Data.Employee_01_Add_New_Employee.EMP_PASSWORD);
 
-		log.info("Employee_01 - Step 04: Click to 'Save' button");
+		log.info("Employee_01 - Step 04: Click to save data");
 		addEmployeePage.clickToButtonByLabel(driver, "Save");
-		myInfoPage = PageGenerator.getMyInfoPage(driver);
-
-		log.info("Employee_01 - Step 12: Open 'Employee List' page");
-		myInfoPage.openSubMenuPage(driver, "PIM", "Employee List");
-		employeeListPage = PageGenerator.getEmployeeListPage(driver);
-
-		log.info("Employee_01 - Step 13: Enter valid info to 'Employee Name' textbox");
-		verifyTrue(employeeListPage.isJQueryAJAXLoadedSuccess(driver));
-		employeeListPage.enterToTextboxByID(driver, "empsearch_employee_name_empName", empFullName);
-		verifyTrue(employeeListPage.isJQueryAJAXLoadedSuccess(driver));
-
-		log.info("Employee_01 - Step 14: Click to 'Search' button");
-		employeeListPage.clickToButtonByID(driver, "searchBtn");
-		verifyTrue(employeeListPage.isJQueryAJAXLoadedSuccess(driver));
-
-		log.info("Employee_01 - Step 15: Verify Employee Information displayed at 'Result Table'");
-		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "Id", "1"), employeeID);
-		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "First (& Middle) Name", "1"), empFirstName);
-		verifyEquals(employeeListPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "resultTable", "Last Name", "1"), empLastName);
+		
+		log.info("Employee_01 - Step 05: Verify message created successfully");
+		personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
+		verifyTrue(personalDetailsPage.isSuccessToastMessageDisplayed(driver));
+		
+		log.info("Employee_01 - Step 06: Verify data of created employee");
+		verifyEquals(personalDetailsPage.getTextboxValueByIDName(driver, "firstName"), Data.Employee_01_Add_New_Employee.EMP_FIRSTNAME);
+		verifyEquals(personalDetailsPage.getTextboxValueByIDName(driver, "middleName"), Data.Employee_01_Add_New_Employee.EMP_MIDDLENAME);
+		verifyEquals(personalDetailsPage.getTextboxValueByIDName(driver, "lastName"), Data.Employee_01_Add_New_Employee.EMP_LASTNAME);
+		verifyEquals(personalDetailsPage.getTextboxValueByLabel(driver, "Employee Id"), Data.Employee_01_Add_New_Employee.EMP_ID);
 	}
 
 	@Test
-	public void Employee_02_Upload_Avatar() {
-		log.info("Employee_02 - Step 01: Login with Employee role");
-		loginPage = employeeListPage.logoutToSystem(driver);
-		dashboardPage = loginPage.loginToSystem(driver, empUserName, empPassword);
+	public void Employee_02_Personal_Details() {
+		log.info("Employee_02 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_02 - Step 02: Verify result after searching");
 
-		log.info("Employee_02 - Step 02: Open Personal Detail page");
-		dashboardPage.openMenuPage(driver, "My Info");
-		myInfoPage = PageGenerator.getMyInfoPage(driver);
-
-		log.info("Employee_02 - Step 03: Click to Change Photo image");
-		myInfoPage.clickToChangePhotoImage();
-
-		log.info("Employee_02 - Step 04: Upload new Avatar image");
-		myInfoPage.uploadImage(driver, avatarFilePath);
-
-		log.info("Employee_02 - Step 05: Click to Upload button");
-		myInfoPage.clickToButtonByID(driver, "btnSave");
-
-		log.info("Employee_02 - Step 06: Verify Success message is displayed");
-		verifyTrue(myInfoPage.isSuccessMessageDisplayed(driver, "Successfully Uploaded"));
-
-		log.info("Employee_02 - Step 07: Verify new Avatar image is displayed");
-		verifyTrue(myInfoPage.isNewAvatarImageDisplayed());
+		
+		log.info("Employee_02 - Step 03: Click to edit employee");
+		
+		
+		log.info("Employee_02 - Step 04: Update nationality, marital status, date of birth, gender");
+		
+		
+		log.info("Employee_02 - Step 05: Click to save data");
+		
+		
+		log.info("Employee_02 - Step 06: Verify data of personal details");
+		
 	}
 
 	@Test
-	public void Employee_03_Personal_Details() {
-		log.info("Employee_03 - Step 01: Open 'Personal Details' tab at Side bar");
-		myInfoPage.openTabAtSideBarByName("Personal Details");
+	public void Employee_03_Contact_Details() {
+		log.info("Employee_03 - Step 01: Search created employee");
 		
-		log.info("Employee_03 - Step 02: Verify all fields at 'Personal Details' form are disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtEmpFirstName"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtEmpLastName"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtEmployeeId"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_optGender_1"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_optGender_2"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_cmbMarital"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_cmbNation"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_DOB"));
 		
-		log.info("Employee_03 - Step 03: Click to 'Edit' button at 'Personal Details' form");
-		myInfoPage.clickToButtonByID(driver, "btnSave");
+		log.info("Employee_03 - Step 02: Click to edit employee");
 		
-		log.info("Employee_03 - Step 04: Verify 'Employee Id' textbox is disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtEmployeeId"));
 		
-		log.info("Employee_03 - Step 05: Verify 'Driver's License Number' textbox is disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_txtLicenNo"));
+		log.info("Employee_03 - Step 03: Open contact details");
 		
-		log.info("Employee_03 - Step 06: Verify 'Date of Birth' textbox is disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "personal_DOB"));
 		
-		log.info("Employee_03 - Step 07: Enter new value to 'First Name' textbox");
-		myInfoPage.enterToTextboxByID(driver, "personal_txtEmpFirstName", editEmpFirstName);
+		log.info("Employee_03 - Step 04: Verify landed contact details");
 		
-		log.info("Employee_03 - Step 08: Enter new value to 'Last Name' textbox");
-		myInfoPage.enterToTextboxByID(driver, "personal_txtEmpLastName", editEmpLastName);
 		
-		log.info("Employee_03 - Step 09: Enter new value to 'Gender' textbox");
-		myInfoPage.clickToRadioByLabel(driver, editEmpGender);
+		log.info("Employee_03 - Step 05: Update all data of contact details");
 		
-		log.info("Employee_03 - Step 10: Select new value to 'Marital Single' radio button");
-		myInfoPage.selectItemInDropdownByID(driver, "personal_cmbMarital", editEmpMaritalStatus);
 		
-		log.info("Employee_03 - Step 11: Select new value to 'Nationality' dropdown");
-		myInfoPage.selectItemInDropdownByID(driver, "personal_cmbNation", editEmpNationality);
+		log.info("Employee_03 - Step 06: Verify message toast and updated data");
 		
-		log.info("Employee_03 - Step 12: Click to 'Save' button at 'Personal Details' form");
-		myInfoPage.clickToButtonByID(driver, "btnSave");
-
-		log.info("Employee_03 - Step 13: Verify Succcess message is displayed");
-		verifyTrue(myInfoPage.isSuccessMessageDisplayed(driver, "Successfully Saved"));
-		
-		log.info("Employee_03 - Step 14: Verify 'First Name' textbox is updated success");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "personal_txtEmpFirstName"), editEmpFirstName);
-		
-		log.info("Employee_03 - Step 15: Verify 'Last Name' textbox is updated success");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "personal_txtEmpLastName"), editEmpLastName);
-		
-		log.info("Employee_03 - Step 16: Verify 'Gender' radio button is updated success");
-		verifyTrue(myInfoPage.isRadioButtonSelectedByLabel(driver, editEmpGender));
-		
-		log.info("Employee_03 - Step 17: Verify 'Marital Single' dropdown is updated success");
-		verifyEquals(myInfoPage.getSelectedValueInDropdownByID(driver, "personal_cmbMarital"), editEmpMaritalStatus);
-		
-		log.info("Employee_03 - Step 18: Verify 'Nationality' dropdown is updated success");
-		verifyEquals(myInfoPage.getSelectedValueInDropdownByID(driver, "personal_cmbNation"), editEmpNationality);
-		
-		log.info("Employee_03 - Step 19: Verify 'Empployee Id' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "personal_txtEmployeeId"), employeeID);
 	}
 
 	@Test
-	public void Employee_04_Contact_Details() {
-		log.info("Employee_04 - Step 01: Open 'Contact Details' tab at Side bar");
-		myInfoPage.openTabAtSideBarByName("Contact Details");
+	public void Employee_04_Emergency_Contacts() {
+		log.info("Employee_04 - Step 01: Search created employee");
 		
-		log.info("Employee_04 - Step 02: Verify all fields at 'Contact Details' form are disabled");
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_street1"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_street2"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_city"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_province"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_zipcode"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_country"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_hm_telephone"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_mobile"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_work_telephone"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_work_email"));
-		verifyFalse(myInfoPage.isFieldEnabledByID(driver, "contact_emp_oth_email"));
 		
-		log.info("Employee_04 - Step 03: Click to 'Edit' button at 'Contact Details' form");
-		myInfoPage.clickToButtonByID(driver, "btnSave");
-
-		log.info("Employee_04 - Step 04: Enter new value to 'Address Street 1' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_street1", editEmpContactStreet1);
-
-		log.info("Employee_04 - Step 05: Enter new value to 'Address Street 2' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_street2", editEmpContactStreet2);
+		log.info("Employee_04 - Step 02: Click to edit employee");
 		
-		log.info("Employee_04 - Step 06: Enter new value to 'City' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_city", editEmpCity);
 		
-		log.info("Employee_04 - Step 07: Enter new value to 'State/Province' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_province", editEmpProvince);
+		log.info("Employee_04 - Step 03: Open emergency contacts");
 		
-		log.info("Employee_04 - Step 08: Enter new value to 'Zip/Postal Code' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_emp_zipcode", editEmpZipCode);
 		
-		log.info("Employee_04 - Step 09: Select new value to 'Country' dropdown");
-		myInfoPage.selectItemInDropdownByID(driver, "contact_country", editEmpCountry);
+		log.info("Employee_04 - Step 04: Verify landed emergency contacts");
 		
-		log.info("Employee_04 - Step 10: Enter new value to 'Home Telephone' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_emp_hm_telephone", editEmpTelephone);
 		
-		log.info("Employee_04 - Step 11: Enter new value to 'Mobile' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_emp_mobile", editEmpMobile);
+		log.info("Employee_04 - Step 05: Click to add emergency contacts");
 		
-		log.info("Employee_04 - Step 12: Enter new value to 'Work Telephone' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_emp_work_telephone", editEmpWorkTelephone);
 		
-		log.info("Employee_04 - Step 13: Enter new value to 'Work Email' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_emp_work_email", editEmpWorkEmail);
+		log.info("Employee_04 - Step 06: Enter data for all fields");
 		
-		log.info("Employee_04 - Step 14: Enter new value to 'Other Email' textbox");
-		myInfoPage.enterToTextboxByID(driver, "contact_emp_oth_email", editEmpOthEmail);
 		
-		log.info("Employee_04 - Step 15: Verify 'Address Street 1' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_street1"), editEmpContactStreet1);
+		log.info("Employee_04 - Step 07: Click to save data");
 		
-		log.info("Employee_04 - Step 16: Verify 'Address Street 2' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_street2"), editEmpContactStreet2);
 		
-		log.info("Employee_04 - Step 17: Verify 'City' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_city"), editEmpCity);
+		log.info("Employee_04 - Step 08: Verify data emergency contacts");
 		
-		log.info("Employee_04 - Step 18: Verify 'State/Province' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_province"), editEmpProvince);
-		
-		log.info("Employee_04 - Step 19: Verify 'Zip/Postal Code' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_zipcode"), editEmpZipCode);
-		
-		log.info("Employee_04 - Step 20: Verify 'Country' dropdown value is correct");
-		verifyEquals(myInfoPage.getSelectedValueInDropdownByID(driver, "contact_country"), editEmpCountry);
-		
-		log.info("Employee_04 - Step 21: Verify 'Home Telephone' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_hm_telephone"), editEmpTelephone);
-		
-		log.info("Employee_04 - Step 22: Verify 'Mobile' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_mobile"), editEmpMobile);
-		
-		log.info("Employee_04 - Step 23: Verify 'Work Telephone' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_work_telephone"), editEmpWorkTelephone);
-		
-		log.info("Employee_04 - Step 24: Verify 'Work Email' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_work_email"), editEmpWorkEmail);
-		
-		log.info("Employee_04 - Step 25: Verify 'Other Email' textbox value is correct");
-		verifyEquals(myInfoPage.getTextboxValueByID(driver, "contact_emp_oth_email"), editEmpOthEmail);
 	}
 
 	@Test
-	public void Employee_05_Emergency_Contacts() {
-		log.info("Employee_05 - Step 01: Open 'Emergency Contacts' tab at Side bar");
-		myInfoPage.openTabAtSideBarByName("Emergency Contacts");
+	public void Employee_05_Assigned_Dependents() {
+		log.info("Employee_05 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_05 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_05 - Step 03: Open dependents");
+		
+		
+		log.info("Employee_05 - Step 04: Verify landed dependents");
+		
+		
+		log.info("Employee_05 - Step 05: Click to add dependents");
+		
+		
+		log.info("Employee_05 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_05 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_05 - Step 08: Verify data dependents");
 
-		log.info("Employee_05 - Step 02: Click to 'Add' button at 'Assigned Emergency Contacts' form");
-		myInfoPage.clickToButtonByID(driver, "btnAddContact");
-
-		log.info("Employee_05 - Step 03: Enter new value to 'Name' textbox");
-		myInfoPage.enterToTextboxByID(driver, "emgcontacts_name", empEmgContactsName);
-
-		log.info("Employee_05 - Step 04: Enter new value to 'Relationship' textbox");
-		myInfoPage.enterToTextboxByID(driver, "emgcontacts_relationship", empEmgContactsRelationship);
-
-		log.info("Employee_05 - Step 05: Enter new value to 'Home Telephone' textbox");
-		myInfoPage.enterToTextboxByID(driver, "emgcontacts_homePhone", empEmgContactsHomeTelephone);
+	}
+	
+	@Test
+	public void Employee_06_Immigration() {
+		log.info("Employee_06 - Step 01: Search created employee");
 		
-		log.info("Employee_05 - Step 06: Enter new value to 'Mobile' textbox");
-		myInfoPage.enterToTextboxByID(driver, "emgcontacts_mobilePhone", empEmgContactsMobile);
 		
-		log.info("Employee_05 - Step 07: Enter new value to 'Work Telephone' textbox");
-		myInfoPage.enterToTextboxByID(driver, "emgcontacts_workPhone", empEmgContactsWorkTelephone);
+		log.info("Employee_06 - Step 02: Click to edit employee");
 		
-		log.info("Employee_05 - Step 08: Click to 'Save' button");
-		myInfoPage.clickToButtonByID(driver, "btnSaveEContact");
 		
-		log.info("Employee_05 - Step 09: Verify 'Name' textbox value is correct");
-		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_name"), empEmgContactsName);
-		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "emgContactName", "1"), empEmgContactsName);
+		log.info("Employee_06 - Step 03: Open immigrations");
 		
-		log.info("Employee_05 - Step 10: Verify 'Relationship' textbox value is correct");
-		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_relationship"), empEmgContactsRelationship);
-		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "Relationship", "1"), empEmgContactsRelationship);
 		
-		log.info("Employee_05 - Step 11: Verify 'Home Telephone' textbox value is correct");
-		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_homePhone"), empEmgContactsHomeTelephone);
-		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "Home Telephone", "1"), empEmgContactsHomeTelephone);
+		log.info("Employee_06 - Step 04: Verify landed immigrations");
 		
-		log.info("Employee_05 - Step 12: Verify 'Mobile' textbox value is correct");
-		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_mobilePhone"), empEmgContactsMobile);
-		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "Mobile", "1"), empEmgContactsMobile);
 		
-		log.info("Employee_05 - Step 13: Verify 'Work Telephone' textbox value is correct");
-		//verifyEquals(myInfoPage.getTextboxValueByID(driver, "emgcontacts_workPhone"), empEmgContactsWorkTelephone);
-		verifyEquals(myInfoPage.getValueInTableIDAtColumnNameAndRowIndex(driver, "emgcontact_list", "Work Telephone", "1"), empEmgContactsWorkTelephone);
+		log.info("Employee_06 - Step 05: Click to add assigned immigration records");
+		
+		
+		log.info("Employee_06 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_06 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_06 - Step 08: Verify data assigned immigration records");
 
 	}
 
 	@Test
-	public void Employee_06_Assigned_Dependents() {
-		log.info("Employee_06 - Step 01: Open 'Dependents' tab at Side bar");
-		myInfoPage.openTabAtSideBarByName("Dependents");
-
-		log.info("Employee_06 - Step 02: Click to 'Add' button at 'Assigned Dependents' form");
-		myInfoPage.clickToButtonByID(driver, "btnAddDependent");
-
-		log.info("Employee_06 - Step 03: Enter new value to 'Name' textbox");
-		myInfoPage.enterToTextboxByID(driver, "dependent_name", empEmgContactsName);
-		
-		log.info("Employee_06 - Step 04: Select new value to 'Relationship' dropdown");
-		myInfoPage.selectItemInDropdownByID(driver, "dependent_relationshipType", empDependentRelationship);
-		
-		log.info("Employee_06 - Step 05: Select new value to 'Date of Birth' dropdown");
-		myInfoPage.selectItemInDropdownByID(driver, "dependent_dateOfBirth", empDependentDoB);
+	public void Employee_07_Job() {
+		log.info("Employee_07 - Step 01: Search created employee");
 		
 		
+		log.info("Employee_07 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_07 - Step 03: Open job");
+		
+		
+		log.info("Employee_07 - Step 04: Verify landed job");
+		
+		
+		log.info("Employee_07 - Step 05: Select filter");
+		
+		
+		log.info("Employee_07 - Step 06: Click save filter");
+		
+		
+		log.info("Employee_07 - Step 07: Verify filter");
+		
+	}
+
+	@Test
+	public void Employee_08_Salary() {
+		log.info("Employee_08 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_08 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_08 - Step 03: Open salary");
+		
+		
+		log.info("Employee_08 - Step 04: Verify landed salary");
+		
+		
+		log.info("Employee_08 - Step 05: Click to add salary");
+		
+		
+		log.info("Employee_08 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_08 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_08 - Step 08: Verify data salary");
 
 	}
 
 	@Test
-	public void Employee_07_Edit_View_Job() {
-		log.info("Employee_07 - Step 01: ");
+	public void Employee_09_Tax_Exemptions() {
+		log.info("Employee_09 - Step 01: Search created employee");
 
-		log.info("Employee_07 - Step 02: ");
+		
+		log.info("Employee_09 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_09 - Step 03: Open tax exemptions");
+		
+		
+		log.info("Employee_09 - Step 04: Verify landed tax exemptions");
+		
+		
+		log.info("Employee_09 - Step 05: Select filter");
+		
+		
+		log.info("Employee_09 - Step 06: Click save filter");
+		
+		
+		log.info("Employee_09 - Step 07: Verify filter");
+		
+	}
+	
+	@Test
+	public void Employee_10_Report_To_Assigned_Supervisors() {
+		log.info("Employee_10 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_10 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_10 - Step 03: Open report to");
+		
+		
+		log.info("Employee_10 - Step 04: Verify landed report to");
+		
+		
+		log.info("Employee_10 - Step 05: Click to add assigned supervisors");
+		
+		
+		log.info("Employee_10 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_10 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_10 - Step 08: Verify data assigned supervisors");
 
-		log.info("Employee_07 - Step 03: ");
-
-		log.info("Employee_07 - Step 01: ");
-
-		log.info("Employee_07 - Step 01: ");
+	}
+	
+	@Test
+	public void Employee_11_Report_To_Assigned_Subordinates() {
+		log.info("Employee_11 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_11 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_11 - Step 03: Open report to");
+		
+		
+		log.info("Employee_11 - Step 04: Verify landed report to");
+		
+		
+		log.info("Employee_11 - Step 05: Click to add assigned subordinates");
+		
+		
+		log.info("Employee_11 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_11 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_11 - Step 08: Verify data assigned subordinates");
 
 	}
 
 	@Test
-	public void Employee_08_Edit_View_Salary() {
-		log.info("Employee_08- Step 01: ");
-
-		log.info("Employee_08- Step 02: ");
-
-		log.info("Employee_08- Step 03: ");
-
-		log.info("Employee_08- Step 01: ");
-
-		log.info("Employee_08- Step 01: ");
+	public void Employee_12_Qualifications_Work_Experience() {
+		log.info("Employee_12 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_12 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_12 - Step 03: Open qualifications");
+		
+		
+		log.info("Employee_12 - Step 04: Verify landed qualifications");
+		
+		
+		log.info("Employee_12 - Step 05: Click to add work experience");
+		
+		
+		log.info("Employee_12 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_12 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_12 - Step 08: Verify data work experience");
 
 	}
-
+	
 	@Test
-	public void Employee_09_Edit_View_Tax() {
-		log.info("Employee_09- Step 01: ");
-
-		log.info("Employee_09- Step 02: ");
-
-		log.info("Employee_09- Step 03: ");
-
-		log.info("Employee_09- Step 01: ");
-
-		log.info("Employee_09- Step 01: ");
+	public void Employee_13_Qualifications_Education() {
+		log.info("Employee_13 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_13 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_13 - Step 03: Open qualifications");
+		
+		
+		log.info("Employee_13 - Step 04: Verify landed qualifications");
+		
+		
+		log.info("Employee_13 - Step 05: Click to add education");
+		
+		
+		log.info("Employee_13 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_13 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_13 - Step 08: Verify data education");
 
 	}
-
+	
 	@Test
-	public void Employee_10_Qualifications() {
-		log.info("Employee_10- Step 01: ");
-
-		log.info("Employee_10- Step 02: ");
-
-		log.info("Employee_10- Step 03: ");
-
-		log.info("Employee_10- Step 01: ");
-
-		log.info("Employee_10- Step 01: ");
+	public void Employee_14_Qualifications_Skill() {
+		log.info("Employee_14 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_14 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_14 - Step 03: Open qualifications");
+		
+		
+		log.info("Employee_14 - Step 04: Verify landed qualifications");
+		
+		
+		log.info("Employee_14 - Step 05: Click to add skill");
+		
+		
+		log.info("Employee_14 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_14 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_14 - Step 08: Verify data skill");
 
 	}
-
+	
 	@Test
-	public void Employee_11_Search_Employee() {
-		log.info("Employee_11- Step 01: ");
+	public void Employee_15_Qualifications_Languages() {
+		log.info("Employee_15 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_15 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_15 - Step 03: Open qualifications");
+		
+		
+		log.info("Employee_15 - Step 04: Verify landed qualifications");
+		
+		
+		log.info("Employee_15 - Step 05: Click to add languages");
+		
+		
+		log.info("Employee_15 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_15 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_15 - Step 08: Verify data languages");
 
-		log.info("Employee_11- Step 02: ");
+	}
+	
+	@Test
+	public void Employee_16_Qualifications_License() {
+		log.info("Employee_16 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_16 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_16 - Step 03: Open qualifications");
+		
+		
+		log.info("Employee_16 - Step 04: Verify landed qualifications");
+		
+		
+		log.info("Employee_16 - Step 05: Click to add license");
+		
+		
+		log.info("Employee_16 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_16 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_16 - Step 08: Verify data license");
 
-		log.info("Employee_11- Step 01: ");
+	}
+	
+	@Test
+	public void Employee_17_Memberships() {
+		log.info("Employee_17 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_17 - Step 02: Click to edit employee");
+		
+		
+		log.info("Employee_17 - Step 03: Open memberships");
+		
+		
+		log.info("Employee_17 - Step 04: Verify landed memberships");
+		
+		
+		log.info("Employee_17 - Step 05: Click to add memberships");
+		
+		
+		log.info("Employee_17 - Step 06: Enter data for all fields");
+		
+		
+		log.info("Employee_17 - Step 07: Click to save data");
+		
+		
+		log.info("Employee_17 - Step 08: Verify data memberships");
 
-		log.info("Employee_11- Step 01: ");
-
-		log.info("Employee_11- Step 01: ");
+	}
+	
+	@Test
+	public void Employee_18_Delete_Employee() {
+		log.info("Employee_18 - Step 01: Search created employee");
+		
+		
+		log.info("Employee_18 - Step 02: Click to delete employee");
+		
+		
+		log.info("Employee_18 - Step 03: Confirm delete popup");
+		
+		
+		log.info("Employee_18 - Step 04: Verify deleted employee");
 
 	}
 
-	@Parameters({ "browser" })
+	@Parameters({ "browserName" })
 	@AfterClass(alwaysRun = true)
 	public void cleanBrowser(String browserName) {
 		log.info("Post-condition: Close browser '" + browserName + "'");

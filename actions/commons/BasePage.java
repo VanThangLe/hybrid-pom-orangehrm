@@ -520,7 +520,7 @@ public class BasePage {
 		sendkeyToElement(driver, BasePageUI.TEXTBOX_BY_ID_NAME, value, textboxIDName);
 	}
 	
-	public String getTextboxValueByID(WebDriver driver, String textboxIDName) {
+	public String getTextboxValueByIDName(WebDriver driver, String textboxIDName) {
 		waitForElementVisible(driver, BasePageUI.TEXTBOX_BY_ID_NAME, textboxIDName);
 		return getElementText(driver, BasePageUI.TEXTBOX_BY_ID_NAME, textboxIDName);
 	}
@@ -528,5 +528,19 @@ public class BasePage {
 	public void enterToTextboxByLabel(WebDriver driver, String textboxLabel, String value) {
 		waitForElementVisible(driver, BasePageUI.TEXTBOX_BY_LABEL, textboxLabel);
 		sendkeyToElement(driver, BasePageUI.TEXTBOX_BY_ID_NAME, value, textboxLabel);
+	}
+	
+	public String getTextboxValueByLabel(WebDriver driver, String textboxLabel) {
+		waitForElementVisible(driver, BasePageUI.BUTTON_BY_LABEL);
+		return getElementText(driver, BasePageUI.BUTTON_BY_LABEL);
+	}
+	
+	public void uploadAvatar(WebDriver driver, String fileName) {
+		uploadOneFile(driver, BasePageUI.UPLOAD_FILE, fileName);
+	}
+	
+	public boolean isSuccessToastMessageDisplayed(WebDriver driver) {
+		waitForElementVisible(driver, BasePageUI.SUCCESS_TOAST_MESSAGE);
+		return isElementDisplayed(driver, BasePageUI.SUCCESS_TOAST_MESSAGE);
 	}
 }

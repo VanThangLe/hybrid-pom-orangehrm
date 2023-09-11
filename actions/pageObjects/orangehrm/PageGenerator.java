@@ -22,4 +22,44 @@ public class PageGenerator {
 	public static PersonalDetailsPageObject getPersonalDetailsPage(WebDriver driver) {
 		return new PersonalDetailsPageObject(driver);
 	}
+	
+	public static ContactDetailsPageObject getContactDetailsPage(WebDriver driver) {
+		return new ContactDetailsPageObject(driver);
+	}
+	
+	public static DependentsPageObject getDependentsPage(WebDriver driver) {
+		return new DependentsPageObject(driver);
+	}
+	
+	public static EmergencyContactsPageObject getEmergencyContactsPage(WebDriver driver) {
+		return new EmergencyContactsPageObject(driver);
+	}
+	
+	public static ImmigrationPageObject getImmigrationPage(WebDriver driver) {
+		return new ImmigrationPageObject(driver);
+	}
+	
+	public static JobPageObject getJobPage(WebDriver driver) {
+		return new JobPageObject(driver);
+	}
+	
+	public static MembershipsPageObject getMembershipsPage(WebDriver driver) {
+		return new MembershipsPageObject(driver);
+	}
+	
+	public static QualificationsPageObject getQualificationsPage(WebDriver driver) {
+		return new QualificationsPageObject(driver);
+	}
+	
+	public static ReportToPageObject getReportToPage(WebDriver driver) {
+		return new ReportToPageObject(driver);
+	}
+	
+	public static SalaryPageObject getSalaryPage(WebDriver driver) {
+		return new SalaryPageObject(driver);
+	}
+	
+	public static TaxExemptionsPageObject getTaxExemptionsPage(WebDriver driver) {
+		return new TaxExemptionsPageObject(driver);
+	}
 }

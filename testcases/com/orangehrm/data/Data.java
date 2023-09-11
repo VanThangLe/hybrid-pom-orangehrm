@@ -1,5 +1,7 @@
 package com.orangehrm.data;
 
+import commons.GlobalConstants;
+
 public class Data {
 	public static class Employee_01_Add_New_Employee {
 		public static final String EMP_FIRSTNAME = "Selenium";
@@ -8,6 +10,7 @@ public class Data {
 		public static final String EMP_ID = "1111";
 		public static final String EMP_USERNAME = "seleniumautomationtesting";
 		public static final String EMP_PASSWORD = "sat123456";
+		public static final String AVATAR = GlobalConstants.UPLOAD_FOLDER_PATH + "a.jpg";
 	}
 	
 	public class Employee_03_Personal_Details {

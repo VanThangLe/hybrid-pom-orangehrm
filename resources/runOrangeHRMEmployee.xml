@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="OrangeHRM" parallel="tests" thread-count="1">
-	<parameter name="url" value="https://opensource-demo.orangehrmlive.com/" />
+	<parameter name="appUrl" value="https://opensource-demo.orangehrmlive.com/" />
 
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
@@ -10,7 +11,7 @@
 	</listeners>
 
 	<test name="Run on CHROME">
-		<parameter name="browser" value="chrome" />
+		<parameter name="browserName" value="chrome" />
 		<classes>
 			<class name="com.orangehrm.employee.Employee" />
 		</classes>
