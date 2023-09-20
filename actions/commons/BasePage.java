@@ -196,12 +196,12 @@ public class BasePage {
 		}
 	}
 	
-	public void selectItemInCustomDropdown(WebDriver driver, String parentLocator, String childItemLocator, String expectedItem) {
-		getWebElement(driver, parentLocator).click();
+	public void selectItemInCustomDropdown(WebDriver driver, String parentLocator, String childItemLocator, String expectedItem, String... values) {
+		getWebElement(driver, castRestParameter(parentLocator, values)).click();
 		sleepInSecond(1);
 
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(childItemLocator)));
+		List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(castRestParameter(childItemLocator, values))));
 
 		for (WebElement item : allItems) {
 			if (item.getText().trim().equals(expectedItem)) {
@@ -495,24 +495,34 @@ public class BasePage {
 		return explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator, values)));
 	}
 	
-	public void openMenuPage(WebDriver driver, String menuPageName) {
+	public void openMenuByPageName(WebDriver driver, String menuPageName) {
 		waitForElementClickAble(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
 		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
 	}
 	
-	public void openSubMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
-		waitForElementClickAble(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
-		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
-		
-		waitForElementClickAble(driver, BasePageUI.MENU_BY_PAGE_NAME, subMenuPageName);
-		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, subMenuPageName);
-		
-		isJQueryAJAXLoadedSuccess(driver);
+	public void openTabMenuByPageName(WebDriver driver, String tabMenuPageName) {
+		waitForElementClickAble(driver, BasePageUI.TAB_MENU_BY_PAGE_NAME, tabMenuPageName);
+		clickToElement(driver, BasePageUI.TAB_MENU_BY_PAGE_NAME, tabMenuPageName);
 	}
 	
-	public void clickToButtonByLabel(WebDriver driver, String buttonXpath) {
-		waitForElementClickAble(driver, BasePageUI.BUTTON_BY_LABEL, buttonXpath);
-		clickToElement(driver, BasePageUI.BUTTON_BY_LABEL, buttonXpath);
+	public boolean isTitleFormDisplayed(WebDriver driver, String titleForm) {
+		waitForElementClickAble(driver, BasePageUI.TITLE_FORM, titleForm);
+		return isElementDisplayed(driver, BasePageUI.TITLE_FORM, titleForm);
+	}
+	
+	public String getValueByRowBodyNumberAndColumnBodyNumber(WebDriver driver, String rowBodyNumber, String columnBodyNumber) {
+		waitForElementVisible(driver, BasePageUI.VALUE_BY_ROW_BODY_NUMBER_AND_COLUMN_BODY_NUMBER, rowBodyNumber, columnBodyNumber);
+		return getElementText(driver, BasePageUI.VALUE_BY_ROW_BODY_NUMBER_AND_COLUMN_BODY_NUMBER, rowBodyNumber, columnBodyNumber);
+	}
+	
+	public void clickToButtonByLabel(WebDriver driver, String buttonLabel) {
+		waitForElementClickAble(driver, BasePageUI.BUTTON_BY_LABEL, buttonLabel);
+		clickToElement(driver, BasePageUI.BUTTON_BY_LABEL, buttonLabel);
+	}
+	
+	public void clickToAddButtonByTitleForm(WebDriver driver, String titleForm) {
+		waitForElementClickAble(driver, BasePageUI.ADD_BUTTON_BY_TITLE_FORM, titleForm);
+		clickToElement(driver, BasePageUI.ADD_BUTTON_BY_TITLE_FORM, titleForm);
 	}
 	
 	public void enterToTextboxByIDName(WebDriver driver, String textboxIDName, String value) {
@@ -544,8 +554,43 @@ public class BasePage {
 		return isElementDisplayed(driver, BasePageUI.SUCCESS_TOAST_MESSAGE);
 	}
 	
-	public void clickToCreateLoginDetails(WebDriver driver) {
-		waitForElementClickAble(driver, BasePageUI.CREATE_LOGIN_DETAILS);
-		clickToElement(driver, BasePageUI.CREATE_LOGIN_DETAILS);
+	public void clickToSwitchCheckbox(WebDriver driver) {
+		waitForElementClickAble(driver, BasePageUI.SWITCH_CHECKBOX);
+		clickToElement(driver, BasePageUI.SWITCH_CHECKBOX);
+	}
+	
+	public void clickToIconActionInList(WebDriver driver, String icon) {
+		waitForElementClickAble(driver, BasePageUI.ICON_IN_TABLE, icon);
+		clickToElement(driver, BasePageUI.ICON_IN_TABLE, icon);
+	}
+	
+	public void clickToRadioByLabel(WebDriver driver, String radioLabel) {
+		waitForElementClickAble(driver, BasePageUI.RADIO_BY_LABEL, radioLabel);
+		checkToCheckboxOrRadio(driver, BasePageUI.RADIO_BY_LABEL, radioLabel);
+	}
+	
+	public boolean isRadioButtonSelectedByLabel(WebDriver driver, String radioLabel) {
+		waitForElementVisible(driver, BasePageUI.RADIO_BY_LABEL, radioLabel);
+		return isElementSelected(driver, BasePageUI.RADIO_BY_LABEL, radioLabel);
+	}
+	
+	public void clickToCheckboxByLabel(WebDriver driver, String checkboxLabel) {
+		waitForElementClickAble(driver, BasePageUI.CHECKBOX_BY_LABEL, checkboxLabel);
+		checkToCheckboxOrRadio(driver, BasePageUI.CHECKBOX_BY_LABEL, checkboxLabel);
+	}
+	
+	public boolean isCheckboxButtonSelectedByLabel(WebDriver driver, String checkboxLabel) {
+		waitForElementVisible(driver, BasePageUI.CHECKBOX_BY_LABEL, checkboxLabel);
+		return isElementSelected(driver, BasePageUI.CHECKBOX_BY_LABEL, checkboxLabel);
+	}
+	
+	public void selectValueInCustomDropdownByLabel(WebDriver driver, String dropdownLabel, String value) {
+		waitForElementClickAble(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, dropdownLabel);
+		selectItemInCustomDropdown(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, BasePageUI.CHILD_DROPDOWN_BY_LABEL, value, dropdownLabel);
+	}
+	
+	public String getValueInCustomDropdownByLabel(WebDriver driver, String dropdownLabel) {
+		waitForElementVisible(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, dropdownLabel);
+		return getElementText(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, dropdownLabel);
 	}
 }

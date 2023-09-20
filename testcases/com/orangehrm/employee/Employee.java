@@ -46,7 +46,7 @@ public class Employee extends BaseTest {
 	@Test
 	public void Employee_01_Add_New_Employee() {
 		log.info("Employee_01 - Step 01: Open 'Employee List' page");
-		dashboardPage.openMenuPage(driver, "PIM");
+		dashboardPage.openMenuByPageName(driver, "PIM");
 		employeeListPage = PageGenerator.getEmployeeListPage(driver);
 
 		log.info("Employee_01 - Step 02: Click to add employee");
@@ -54,12 +54,12 @@ public class Employee extends BaseTest {
 		addEmployeePage = PageGenerator.getAddEmployeePage(driver);
 
 		log.info("Employee_01 - Step 03: Input data to all fields");
-		addEmployeePage.uploadAvatar(driver, Data.Employee_01_Add_New_Employee.AVATAR);
+		addEmployeePage.uploadAvatar(driver, Data.Employee_01_Add_New_Employee.EMP_AVATAR);
 		addEmployeePage.enterToTextboxByIDName(driver, "firstName", Data.Employee_01_Add_New_Employee.EMP_FIRSTNAME);
 		addEmployeePage.enterToTextboxByIDName(driver, "middleName", Data.Employee_01_Add_New_Employee.EMP_MIDDLENAME);
 		addEmployeePage.enterToTextboxByIDName(driver, "lastName", Data.Employee_01_Add_New_Employee.EMP_LASTNAME);
 		addEmployeePage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
-		addEmployeePage.clickToCreateLoginDetails(driver);
+		addEmployeePage.clickToSwitchCheckbox(driver);
 		addEmployeePage.enterToTextboxByLabel(driver, "Username", Data.Employee_01_Add_New_Employee.EMP_USERNAME);
 		addEmployeePage.enterToTextboxByLabel(driver, "Password", Data.Employee_01_Add_New_Employee.EMP_PASSWORD);
 		addEmployeePage.enterToTextboxByLabel(driver, "Confirm Password", Data.Employee_01_Add_New_Employee.EMP_PASSWORD);
@@ -80,204 +80,338 @@ public class Employee extends BaseTest {
 
 	@Test
 	public void Employee_02_Personal_Details() {
-		log.info("Employee_02 - Step 01: Search created employee");
+		log.info("Employee_02 - Step 01: Search created employee by employee id");
+		personalDetailsPage.openMenuByPageName(driver, "PIM");
+		employeeListPage = PageGenerator.getEmployeeListPage(driver);
+		employeeListPage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
 		
+		log.info("Employee_02 - Step 02: Click to search employee");
+		employeeListPage.clickToButtonByLabel(driver, "Search");
 		
-		log.info("Employee_02 - Step 02: Verify result after searching");
-
+		log.info("Employee_02 - Step 03: Verify result after searching");
+		verifyEquals(employeeListPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "2"), Data.Employee_01_Add_New_Employee.EMP_ID);
+		verifyEquals(employeeListPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "3"), Data.Employee_01_Add_New_Employee.EMP_FIRSTNAME + Data.Employee_01_Add_New_Employee.EMP_MIDDLENAME);
+		verifyEquals(employeeListPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "4"), Data.Employee_01_Add_New_Employee.EMP_LASTNAME);
 		
-		log.info("Employee_02 - Step 03: Click to edit employee");
+		log.info("Employee_02 - Step 04: Click to edit personal details");
+		employeeListPage.clickToIconActionInList(driver, "oxd-icon bi-pencil-fill");
+		personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
 		
+		log.info("Employee_02 - Step 05: Update personal details");
+		personalDetailsPage.enterToTextboxByLabel(driver, "Driver's License Number", Data.Employee_02_Personal_Details.EMP_DRIVER_LICENSE_NUMBER);
+		personalDetailsPage.enterToTextboxByLabel(driver, "License Expiry Date", Data.Employee_02_Personal_Details.EMP_LICENSE_EXPIRY_DATE);
+		personalDetailsPage.enterToTextboxByLabel(driver, "SSN Number", Data.Employee_02_Personal_Details.EMP_SSN_NUMBER);
+		personalDetailsPage.enterToTextboxByLabel(driver, "SIN Number", Data.Employee_02_Personal_Details.EMP_SIN_NUMBER);
+		personalDetailsPage.selectValueInCustomDropdownByLabel(driver, "Marital Status", Data.Employee_02_Personal_Details.EMP_MARITAL_STATUS);
+		personalDetailsPage.selectValueInCustomDropdownByLabel(driver, "Nationality", Data.Employee_02_Personal_Details.EMP_NATIONALITY);
+		personalDetailsPage.enterToTextboxByLabel(driver, "Date of Birth", Data.Employee_02_Personal_Details.EMP_DATE_OF_BIRTH);
+		personalDetailsPage.clickToRadioByLabel(driver, "Male");
+		personalDetailsPage.enterToTextboxByLabel(driver, "Military Service", Data.Employee_02_Personal_Details.EMP_MILITARY_SERVICE);
+		personalDetailsPage.clickToCheckboxByLabel(driver, "Yes");
+		personalDetailsPage.selectValueInCustomDropdownByLabel(driver, "Blood Type", Data.Employee_02_Personal_Details.EMP_BLOOD_TYPE);
 		
-		log.info("Employee_02 - Step 04: Update nationality, marital status, date of birth, gender");
+		log.info("Employee_02 - Step 06: Click to save data");
+		personalDetailsPage.clickToFirstSaveButton();
+		personalDetailsPage.clickToSecondSaveButton();
 		
-		
-		log.info("Employee_02 - Step 05: Click to save data");
-		
-		
-		log.info("Employee_02 - Step 06: Verify data of personal details");
-		
+		log.info("Employee_02 - Step 07: Verify message success and data of personal details");
+		verifyTrue(personalDetailsPage.isSuccessToastMessageDisplayed(driver));
+		verifyEquals(personalDetailsPage.getTextboxValueByLabel(driver, "Driver's License Number"), Data.Employee_02_Personal_Details.EMP_DRIVER_LICENSE_NUMBER);
+		verifyEquals(personalDetailsPage.getTextboxValueByLabel(driver, "License Expiry Date"), Data.Employee_02_Personal_Details.EMP_LICENSE_EXPIRY_DATE);
+		verifyEquals(personalDetailsPage.getTextboxValueByLabel(driver, "SSN Number"), Data.Employee_02_Personal_Details.EMP_SSN_NUMBER);
+		verifyEquals(personalDetailsPage.getTextboxValueByLabel(driver, "SIN Number"), Data.Employee_02_Personal_Details.EMP_SIN_NUMBER);
+		verifyEquals(personalDetailsPage.getTextboxValueByLabel(driver, "Date of Birth"), Data.Employee_02_Personal_Details.EMP_DATE_OF_BIRTH);
+		verifyEquals(personalDetailsPage.getTextboxValueByLabel(driver, "Military Service"), Data.Employee_02_Personal_Details.EMP_MILITARY_SERVICE);
+		verifyEquals(personalDetailsPage.getValueInCustomDropdownByLabel(driver, "Marital Status"), Data.Employee_02_Personal_Details.EMP_MARITAL_STATUS);
+		verifyEquals(personalDetailsPage.getValueInCustomDropdownByLabel(driver, "Nationality"), Data.Employee_02_Personal_Details.EMP_NATIONALITY);
+		verifyEquals(personalDetailsPage.getValueInCustomDropdownByLabel(driver, "Blood Type"), Data.Employee_02_Personal_Details.EMP_BLOOD_TYPE);
+		verifyTrue(personalDetailsPage.isCheckboxButtonSelectedByLabel(driver, "Male"));
+		verifyTrue(personalDetailsPage.isRadioButtonSelectedByLabel(driver, "Yes"));
 	}
 
 	@Test
 	public void Employee_03_Contact_Details() {
 		log.info("Employee_03 - Step 01: Search created employee");
-		
+		personalDetailsPage.openMenuByPageName(driver, "PIM");
+		employeeListPage = PageGenerator.getEmployeeListPage(driver);
+		employeeListPage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
+		employeeListPage.clickToButtonByLabel(driver, "Search");
 		
 		log.info("Employee_03 - Step 02: Click to edit employee");
-		
+		employeeListPage.clickToIconActionInList(driver, "oxd-icon bi-pencil-fill");
+		personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
 		
 		log.info("Employee_03 - Step 03: Open contact details");
-		
+		personalDetailsPage.openTabMenuByPageName(driver, "Contact Details");
+		contactDetailsPage = PageGenerator.getContactDetailsPage(driver);
 		
 		log.info("Employee_03 - Step 04: Verify landed contact details");
-		
+		verifyTrue(contactDetailsPage.isTitleFormDisplayed(driver, "Contact Details"));
 		
 		log.info("Employee_03 - Step 05: Update all data of contact details");
+		contactDetailsPage.enterToTextboxByLabel(driver, "Street 1", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "Street 2", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "City", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "State/Province", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "Zip/Postal Code", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "Home", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "Mobile", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "Work", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "Work Email", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.enterToTextboxByLabel(driver, "Other Email", Data.Employee_03_Contact_Details.EMP_STREET_1);
+		contactDetailsPage.selectValueInCustomDropdownByLabel(driver, "Country", Data.Employee_03_Contact_Details.EMP_COUNTRY);
 		
+		log.info("Employee_03 - Step 06: Click to save data");
+		contactDetailsPage.clickToButtonByLabel(driver, "Save");
 		
-		log.info("Employee_03 - Step 06: Verify message toast and updated data");
-		
+		log.info("Employee_03 - Step 07: Verify message toast and updated data");
+		verifyTrue(contactDetailsPage.isSuccessToastMessageDisplayed(driver));
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "Street 1"), Data.Employee_03_Contact_Details.EMP_STREET_1);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "Street 2"), Data.Employee_03_Contact_Details.EMP_STREET_2);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "City"), Data.Employee_03_Contact_Details.EMP_CITY);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "State/Province"), Data.Employee_03_Contact_Details.EMP_STATE_PROVINCE);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "Zip/Postal Code"), Data.Employee_03_Contact_Details.EMP_ZIP_CODE);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "Home"), Data.Employee_03_Contact_Details.EMP_TELEPHONE_HOME);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "Mobile"), Data.Employee_03_Contact_Details.EMP_TELEPHONE_MOBILE);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "Work"), Data.Employee_03_Contact_Details.EMP_TELEPHONE_WORK);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "Work Email"), Data.Employee_03_Contact_Details.EMP_WORK_EMAIL);
+		verifyEquals(contactDetailsPage.getTextboxValueByLabel(driver, "Other Email"), Data.Employee_03_Contact_Details.EMP_OTHER_EMAIL);
+		verifyEquals(contactDetailsPage.getValueInCustomDropdownByLabel(driver, "Country"), Data.Employee_03_Contact_Details.EMP_COUNTRY);
 	}
 
 	@Test
 	public void Employee_04_Emergency_Contacts() {
 		log.info("Employee_04 - Step 01: Search created employee");
-		
+		contactDetailsPage.openMenuByPageName(driver, "PIM");
+		employeeListPage = PageGenerator.getEmployeeListPage(driver);
+		employeeListPage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
+		employeeListPage.clickToButtonByLabel(driver, "Search");
 		
 		log.info("Employee_04 - Step 02: Click to edit employee");
-		
+		employeeListPage.clickToIconActionInList(driver, "oxd-icon bi-pencil-fill");
+		personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
 		
 		log.info("Employee_04 - Step 03: Open emergency contacts");
-		
+		personalDetailsPage.openTabMenuByPageName(driver, "Emergency Contacts");
+		emergencyContactsPage = PageGenerator.getEmergencyContactsPage(driver);
 		
 		log.info("Employee_04 - Step 04: Verify landed emergency contacts");
-		
+		verifyTrue(emergencyContactsPage.isTitleFormDisplayed(driver, "Assigned Emergency Contacts"));
 		
 		log.info("Employee_04 - Step 05: Click to add emergency contacts");
-		
+		emergencyContactsPage.clickToAddButtonByTitleForm(driver, "Assigned Emergency Contacts");
 		
 		log.info("Employee_04 - Step 06: Enter data for all fields");
-		
+		emergencyContactsPage.enterToTextboxByLabel(driver, "Name", Data.Employee_04_Emergency_Contacts.EMERGENCY_NAME);
+		emergencyContactsPage.enterToTextboxByLabel(driver, "Relationship", Data.Employee_04_Emergency_Contacts.EMERGENCY_RELATIONSHIP);
+		emergencyContactsPage.enterToTextboxByLabel(driver, "Home Telephone", Data.Employee_04_Emergency_Contacts.EMERGENCY_HOME_TELEPHONE);
+		emergencyContactsPage.enterToTextboxByLabel(driver, "Mobile", Data.Employee_04_Emergency_Contacts.EMERGENCY_MOBILE);
+		emergencyContactsPage.enterToTextboxByLabel(driver, "Work Telephone", Data.Employee_04_Emergency_Contacts.EMERGENCY_WORK_TELEPHONE);
 		
 		log.info("Employee_04 - Step 07: Click to save data");
+		emergencyContactsPage.clickToButtonByLabel(driver, "Save");
 		
-		
-		log.info("Employee_04 - Step 08: Verify data emergency contacts");
-		
+		log.info("Employee_04 - Step 08: Verify toast message and data emergency contacts");
+		verifyTrue(emergencyContactsPage.isSuccessToastMessageDisplayed(driver));
+		verifyEquals(emergencyContactsPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "2"), Data.Employee_04_Emergency_Contacts.EMERGENCY_NAME);
+		verifyEquals(emergencyContactsPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "3"), Data.Employee_04_Emergency_Contacts.EMERGENCY_RELATIONSHIP);
+		verifyEquals(emergencyContactsPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "4"), Data.Employee_04_Emergency_Contacts.EMERGENCY_HOME_TELEPHONE);
+		verifyEquals(emergencyContactsPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "5"), Data.Employee_04_Emergency_Contacts.EMERGENCY_MOBILE);
+		verifyEquals(emergencyContactsPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "6"), Data.Employee_04_Emergency_Contacts.EMERGENCY_WORK_TELEPHONE);
 	}
 
 	@Test
 	public void Employee_05_Assigned_Dependents() {
 		log.info("Employee_05 - Step 01: Search created employee");
-		
+		emergencyContactsPage.openMenuByPageName(driver, "PIM");
+		employeeListPage = PageGenerator.getEmployeeListPage(driver);
+		employeeListPage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
+		employeeListPage.clickToButtonByLabel(driver, "Search");
 		
 		log.info("Employee_05 - Step 02: Click to edit employee");
-		
+		employeeListPage.clickToIconActionInList(driver, "oxd-icon bi-pencil-fill");
+		personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
 		
 		log.info("Employee_05 - Step 03: Open dependents");
-		
+		personalDetailsPage.openTabMenuByPageName(driver, "Dependents");
+		dependentsPage = PageGenerator.getDependentsPage(driver);
 		
 		log.info("Employee_05 - Step 04: Verify landed dependents");
-		
+		verifyTrue(dependentsPage.isTitleFormDisplayed(driver, "Assigned Dependents"));
 		
 		log.info("Employee_05 - Step 05: Click to add dependents");
-		
+		dependentsPage.clickToAddButtonByTitleForm(driver, "Assigned Dependents");
 		
 		log.info("Employee_05 - Step 06: Enter data for all fields");
-		
+		dependentsPage.enterToTextboxByLabel(driver, "Name", Data.Employee_05_Assigned_Dependents.DEPENDENTS_NAME);
+		dependentsPage.enterToTextboxByLabel(driver, "Relationship", Data.Employee_05_Assigned_Dependents.DEPENDENTS_RELATIONSHIP);
+		dependentsPage.enterToTextboxByLabel(driver, "Date of Birth", Data.Employee_05_Assigned_Dependents.DEPENDENTS_DATE_OF_BIRTH);
 		
 		log.info("Employee_05 - Step 07: Click to save data");
+		dependentsPage.clickToButtonByLabel(driver, "Save");
 		
-		
-		log.info("Employee_05 - Step 08: Verify data dependents");
+		log.info("Employee_05 - Step 08: Verify toast message and data dependents");
+		verifyTrue(dependentsPage.isSuccessToastMessageDisplayed(driver));
+		verifyEquals(dependentsPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "2"), Data.Employee_05_Assigned_Dependents.DEPENDENTS_NAME);
+		verifyEquals(dependentsPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "3"), Data.Employee_05_Assigned_Dependents.DEPENDENTS_RELATIONSHIP);
+		verifyEquals(dependentsPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "4"), Data.Employee_05_Assigned_Dependents.DEPENDENTS_DATE_OF_BIRTH);
+	}
 
+	@Test
+	public void Employee_06_Job() {
+		log.info("Employee_06 - Step 01: Search created employee");
+		dependentsPage.openMenuByPageName(driver, "PIM");
+		employeeListPage = PageGenerator.getEmployeeListPage(driver);
+		employeeListPage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
+		employeeListPage.clickToButtonByLabel(driver, "Search");
+		
+		log.info("Employee_06 - Step 02: Click to edit employee");
+		employeeListPage.clickToIconActionInList(driver, "oxd-icon bi-pencil-fill");
+		personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
+		
+		log.info("Employee_06 - Step 03: Open job");
+		personalDetailsPage.openTabMenuByPageName(driver, "Job");
+		jobPage = PageGenerator.getJobPage(driver);
+		
+		log.info("Employee_06 - Step 04: Verify landed job");
+		verifyTrue(jobPage.isTitleFormDisplayed(driver, "Job Details"));
+		
+		log.info("Employee_06 - Step 05: Select filter");
+		jobPage.selectValueInCustomDropdownByLabel(driver, "Joined Date", Data.Employee_06_Job.JOINED_DATE);
+		jobPage.selectValueInCustomDropdownByLabel(driver, "Job Title", Data.Employee_06_Job.JOB_TITLE);
+		jobPage.selectValueInCustomDropdownByLabel(driver, "Job Category", Data.Employee_06_Job.JOB_CATEGORY);
+		jobPage.selectValueInCustomDropdownByLabel(driver, "Sub Unit", Data.Employee_06_Job.SUB_UNIT);
+		jobPage.selectValueInCustomDropdownByLabel(driver, "Location", Data.Employee_06_Job.LOCATION);
+		jobPage.selectValueInCustomDropdownByLabel(driver, "Employment Status", Data.Employee_06_Job.EMPLOYMENT_STATUS);
+		jobPage.clickToSwitchCheckbox(driver);
+		jobPage.selectValueInCustomDropdownByLabel(driver, "Contract Start Date", Data.Employee_06_Job.CONTRACT_START_DATE);
+		jobPage.selectValueInCustomDropdownByLabel(driver, "Contract End Date", Data.Employee_06_Job.CONTRACT_END_DATE);
+		
+		log.info("Employee_06 - Step 06: Click save filter");
+		jobPage.clickToButtonByLabel(driver, "Save");
+		
+		log.info("Employee_06 - Step 07: Verify filter");
+		verifyTrue(jobPage.isSuccessToastMessageDisplayed(driver));
+		verifyEquals(jobPage.getValueInCustomDropdownByLabel(driver, "Joined Date"), Data.Employee_06_Job.JOINED_DATE);
+		verifyEquals(jobPage.getValueInCustomDropdownByLabel(driver, "Job Title"), Data.Employee_06_Job.JOB_TITLE);
+		verifyEquals(jobPage.getValueInCustomDropdownByLabel(driver, "Job Category"), Data.Employee_06_Job.JOB_CATEGORY);
+		verifyEquals(jobPage.getValueInCustomDropdownByLabel(driver, "Sub Unit"), Data.Employee_06_Job.SUB_UNIT);
+		verifyEquals(jobPage.getValueInCustomDropdownByLabel(driver, "Location"), Data.Employee_06_Job.LOCATION);
+		verifyEquals(jobPage.getValueInCustomDropdownByLabel(driver, "Employment Status"), Data.Employee_06_Job.EMPLOYMENT_STATUS);
+		verifyEquals(jobPage.getValueInCustomDropdownByLabel(driver, "Contract Start Date"), Data.Employee_06_Job.CONTRACT_START_DATE);
+		verifyEquals(jobPage.getValueInCustomDropdownByLabel(driver, "Contract End Date"), Data.Employee_06_Job.CONTRACT_END_DATE);
+	}
+
+	@Test
+	public void Employee_07_Salary() {
+		log.info("Employee_07 - Step 01: Search created employee");
+		jobPage.openMenuByPageName(driver, "PIM");
+		employeeListPage = PageGenerator.getEmployeeListPage(driver);
+		employeeListPage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
+		employeeListPage.clickToButtonByLabel(driver, "Search");
+		
+		log.info("Employee_07 - Step 02: Click to edit employee");
+		employeeListPage.clickToIconActionInList(driver, "oxd-icon bi-pencil-fill");
+		personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
+		
+		log.info("Employee_07 - Step 03: Open salary");
+		personalDetailsPage.openTabMenuByPageName(driver, "Salary");
+		salaryPage = PageGenerator.getSalaryPage(driver);
+		
+		log.info("Employee_07 - Step 04: Verify landed salary");
+		verifyTrue(salaryPage.isTitleFormDisplayed(driver, "Assigned Salary Components"));
+		
+		log.info("Employee_07 - Step 05: Click to add salary");
+		salaryPage.clickToAddButtonByTitleForm(driver, "Assigned Salary Components");
+		
+		log.info("Employee_07 - Step 06: Enter data for all fields");
+		salaryPage.enterToTextboxByLabel(driver, "Salary Component", Data.Employee_07_Salary.SALARY_COMPONENT);
+		salaryPage.selectValueInCustomDropdownByLabel(driver, "Pay Frequency", Data.Employee_07_Salary.PAY_FREQUENCY);
+		salaryPage.selectValueInCustomDropdownByLabel(driver, "Currency", Data.Employee_07_Salary.CURRENCY);
+		salaryPage.enterToTextboxByLabel(driver, "pim.amount", Data.Employee_07_Salary.PIM_AMMOUNT);
+		
+		log.info("Employee_07 - Step 07: Click to save data");
+		salaryPage.clickToButtonByLabel(driver, "Save");
+		
+		log.info("Employee_07 - Step 08: Verify data salary");
+		verifyTrue(salaryPage.isSuccessToastMessageDisplayed(driver));
+		verifyEquals(salaryPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "2"), Data.Employee_07_Salary.SALARY_COMPONENT);
+		verifyEquals(salaryPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "3"), Data.Employee_07_Salary.PIM_AMMOUNT);
+		verifyEquals(salaryPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "4"), Data.Employee_07_Salary.CURRENCY);
+		verifyEquals(salaryPage.getValueByRowBodyNumberAndColumnBodyNumber(driver, "1", "5"), Data.Employee_07_Salary.PAY_FREQUENCY);
+	}
+
+	@Test
+	public void Employee_08_Tax_Exemptions() {
+		log.info("Employee_08 - Step 01: Search created employee");
+		salaryPage.openMenuByPageName(driver, "PIM");
+		employeeListPage = PageGenerator.getEmployeeListPage(driver);
+		employeeListPage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
+		employeeListPage.clickToButtonByLabel(driver, "Search");
+		
+		log.info("Employee_08 - Step 02: Click to edit employee");
+		employeeListPage.clickToIconActionInList(driver, "oxd-icon bi-pencil-fill");
+		personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
+		
+		log.info("Employee_08 - Step 03: Open tax exemptions");
+		personalDetailsPage.openTabMenuByPageName(driver, "Tax Exemptions");
+		taxExemptionsPage = PageGenerator.getTaxExemptionsPage(driver);
+		
+		log.info("Employee_08 - Step 04: Verify landed tax exemptions");
+		verifyTrue(taxExemptionsPage.isTitleFormDisplayed(driver, "Tax Exemptions"));
+		
+		log.info("Employee_08 - Step 05: Select filter");
+		taxExemptionsPage.selectStatusField("Federal Income Tax", "Status", Data.Employee_08_Tax_Exemptions.FEDERAL_TAX_STATUS);
+		taxExemptionsPage.enterToExemtionsField("Federal Income Tax", "Exemptions", Data.Employee_08_Tax_Exemptions.FEDERAL_TAX_EXEMPTIONS);
+		taxExemptionsPage.selectValueInCustomDropdownByLabel(driver, "State", Data.Employee_08_Tax_Exemptions.STATE_TAX_STATE);
+		taxExemptionsPage.selectStatusField("State Income Tax", "Status", Data.Employee_08_Tax_Exemptions.STATE_TAX_STATUS);
+		taxExemptionsPage.enterToExemtionsField("State Income Tax", "Exemptions", Data.Employee_08_Tax_Exemptions.STATE_TAX_EXEMPTIONS);
+		taxExemptionsPage.selectValueInCustomDropdownByLabel(driver, "Unemployment State", Data.Employee_08_Tax_Exemptions.STATE_TAX_UNEMPLOYMENT_STATE);
+		taxExemptionsPage.selectValueInCustomDropdownByLabel(driver, "Work State", Data.Employee_08_Tax_Exemptions.STATE_TAX_WORK_STATE);
+		
+		log.info("Employee_08 - Step 06: Click save filter");
+		taxExemptionsPage.clickToButtonByLabel(driver, "Save");
+		
+		log.info("Employee_08 - Step 07: Verify filter");
+		verifyTrue(taxExemptionsPage.isSuccessToastMessageDisplayed(driver));
+		verifyEquals(taxExemptionsPage.getValueStatusField("Federal Income Tax", "Status"), Data.Employee_08_Tax_Exemptions.FEDERAL_TAX_STATUS);
+		verifyEquals(taxExemptionsPage.getValueExemtionsField("Federal Income Tax", "Exemptions"), Data.Employee_08_Tax_Exemptions.FEDERAL_TAX_EXEMPTIONS);
+		verifyEquals(taxExemptionsPage.getValueInCustomDropdownByLabel(driver, "State"), Data.Employee_08_Tax_Exemptions.STATE_TAX_STATE);
+		verifyEquals(taxExemptionsPage.getValueStatusField("State Income Tax", "Status"), Data.Employee_08_Tax_Exemptions.STATE_TAX_STATUS);
+		verifyEquals(taxExemptionsPage.getValueExemtionsField("Federal Income Tax", "Exemptions"), Data.Employee_08_Tax_Exemptions.STATE_TAX_EXEMPTIONS);
+		verifyEquals(taxExemptionsPage.getValueInCustomDropdownByLabel(driver, "Unemployment State"), Data.Employee_08_Tax_Exemptions.STATE_TAX_UNEMPLOYMENT_STATE);
+		verifyEquals(taxExemptionsPage.getValueInCustomDropdownByLabel(driver, "Work State"), Data.Employee_08_Tax_Exemptions.STATE_TAX_WORK_STATE);
 	}
 	
 	@Test
-	public void Employee_06_Immigration() {
-		log.info("Employee_06 - Step 01: Search created employee");
-		
-		
-		log.info("Employee_06 - Step 02: Click to edit employee");
-		
-		
-		log.info("Employee_06 - Step 03: Open immigrations");
-		
-		
-		log.info("Employee_06 - Step 04: Verify landed immigrations");
-		
-		
-		log.info("Employee_06 - Step 05: Click to add assigned immigration records");
-		
-		
-		log.info("Employee_06 - Step 06: Enter data for all fields");
-		
-		
-		log.info("Employee_06 - Step 07: Click to save data");
-		
-		
-		log.info("Employee_06 - Step 08: Verify data assigned immigration records");
-
-	}
-
-	@Test
-	public void Employee_07_Job() {
-		log.info("Employee_07 - Step 01: Search created employee");
-		
-		
-		log.info("Employee_07 - Step 02: Click to edit employee");
-		
-		
-		log.info("Employee_07 - Step 03: Open job");
-		
-		
-		log.info("Employee_07 - Step 04: Verify landed job");
-		
-		
-		log.info("Employee_07 - Step 05: Select filter");
-		
-		
-		log.info("Employee_07 - Step 06: Click save filter");
-		
-		
-		log.info("Employee_07 - Step 07: Verify filter");
-		
-	}
-
-	@Test
-	public void Employee_08_Salary() {
-		log.info("Employee_08 - Step 01: Search created employee");
-		
-		
-		log.info("Employee_08 - Step 02: Click to edit employee");
-		
-		
-		log.info("Employee_08 - Step 03: Open salary");
-		
-		
-		log.info("Employee_08 - Step 04: Verify landed salary");
-		
-		
-		log.info("Employee_08 - Step 05: Click to add salary");
-		
-		
-		log.info("Employee_08 - Step 06: Enter data for all fields");
-		
-		
-		log.info("Employee_08 - Step 07: Click to save data");
-		
-		
-		log.info("Employee_08 - Step 08: Verify data salary");
-
-	}
-
-	@Test
-	public void Employee_09_Tax_Exemptions() {
+	public void Employee_09_Report_To_Assigned_Supervisors() {
 		log.info("Employee_09 - Step 01: Search created employee");
-
+		
 		
 		log.info("Employee_09 - Step 02: Click to edit employee");
 		
 		
-		log.info("Employee_09 - Step 03: Open tax exemptions");
+		log.info("Employee_09 - Step 03: Open report to");
 		
 		
-		log.info("Employee_09 - Step 04: Verify landed tax exemptions");
+		log.info("Employee_09 - Step 04: Verify landed report to");
 		
 		
-		log.info("Employee_09 - Step 05: Select filter");
+		log.info("Employee_09 - Step 05: Click to add assigned supervisors");
 		
 		
-		log.info("Employee_09 - Step 06: Click save filter");
+		log.info("Employee_09 - Step 06: Enter data for all fields");
 		
 		
-		log.info("Employee_09 - Step 07: Verify filter");
+		log.info("Employee_09 - Step 07: Click to save data");
 		
+		
+		log.info("Employee_09 - Step 08: Verify data assigned supervisors");
+
 	}
 	
 	@Test
-	public void Employee_10_Report_To_Assigned_Supervisors() {
+	public void Employee_10_Report_To_Assigned_Subordinates() {
 		log.info("Employee_10 - Step 01: Search created employee");
 		
 		
@@ -290,7 +424,7 @@ public class Employee extends BaseTest {
 		log.info("Employee_10 - Step 04: Verify landed report to");
 		
 		
-		log.info("Employee_10 - Step 05: Click to add assigned supervisors");
+		log.info("Employee_10 - Step 05: Click to add assigned subordinates");
 		
 		
 		log.info("Employee_10 - Step 06: Enter data for all fields");
@@ -299,25 +433,25 @@ public class Employee extends BaseTest {
 		log.info("Employee_10 - Step 07: Click to save data");
 		
 		
-		log.info("Employee_10 - Step 08: Verify data assigned supervisors");
+		log.info("Employee_10 - Step 08: Verify data assigned subordinates");
 
 	}
-	
+
 	@Test
-	public void Employee_11_Report_To_Assigned_Subordinates() {
+	public void Employee_11_Qualifications_Work_Experience() {
 		log.info("Employee_11 - Step 01: Search created employee");
 		
 		
 		log.info("Employee_11 - Step 02: Click to edit employee");
 		
 		
-		log.info("Employee_11 - Step 03: Open report to");
+		log.info("Employee_11 - Step 03: Open qualifications");
 		
 		
-		log.info("Employee_11 - Step 04: Verify landed report to");
+		log.info("Employee_11 - Step 04: Verify landed qualifications");
 		
 		
-		log.info("Employee_11 - Step 05: Click to add assigned subordinates");
+		log.info("Employee_11 - Step 05: Click to add work experience");
 		
 		
 		log.info("Employee_11 - Step 06: Enter data for all fields");
@@ -326,12 +460,12 @@ public class Employee extends BaseTest {
 		log.info("Employee_11 - Step 07: Click to save data");
 		
 		
-		log.info("Employee_11 - Step 08: Verify data assigned subordinates");
+		log.info("Employee_11 - Step 08: Verify data work experience");
 
 	}
-
+	
 	@Test
-	public void Employee_12_Qualifications_Work_Experience() {
+	public void Employee_12_Qualifications_Education() {
 		log.info("Employee_12 - Step 01: Search created employee");
 		
 		
@@ -344,7 +478,7 @@ public class Employee extends BaseTest {
 		log.info("Employee_12 - Step 04: Verify landed qualifications");
 		
 		
-		log.info("Employee_12 - Step 05: Click to add work experience");
+		log.info("Employee_12 - Step 05: Click to add education");
 		
 		
 		log.info("Employee_12 - Step 06: Enter data for all fields");
@@ -353,12 +487,12 @@ public class Employee extends BaseTest {
 		log.info("Employee_12 - Step 07: Click to save data");
 		
 		
-		log.info("Employee_12 - Step 08: Verify data work experience");
+		log.info("Employee_12 - Step 08: Verify data education");
 
 	}
 	
 	@Test
-	public void Employee_13_Qualifications_Education() {
+	public void Employee_13_Qualifications_Skill() {
 		log.info("Employee_13 - Step 01: Search created employee");
 		
 		
@@ -371,7 +505,7 @@ public class Employee extends BaseTest {
 		log.info("Employee_13 - Step 04: Verify landed qualifications");
 		
 		
-		log.info("Employee_13 - Step 05: Click to add education");
+		log.info("Employee_13 - Step 05: Click to add skill");
 		
 		
 		log.info("Employee_13 - Step 06: Enter data for all fields");
@@ -380,12 +514,12 @@ public class Employee extends BaseTest {
 		log.info("Employee_13 - Step 07: Click to save data");
 		
 		
-		log.info("Employee_13 - Step 08: Verify data education");
+		log.info("Employee_13 - Step 08: Verify data skill");
 
 	}
 	
 	@Test
-	public void Employee_14_Qualifications_Skill() {
+	public void Employee_14_Qualifications_Languages() {
 		log.info("Employee_14 - Step 01: Search created employee");
 		
 		
@@ -398,7 +532,7 @@ public class Employee extends BaseTest {
 		log.info("Employee_14 - Step 04: Verify landed qualifications");
 		
 		
-		log.info("Employee_14 - Step 05: Click to add skill");
+		log.info("Employee_14 - Step 05: Click to add languages");
 		
 		
 		log.info("Employee_14 - Step 06: Enter data for all fields");
@@ -407,12 +541,12 @@ public class Employee extends BaseTest {
 		log.info("Employee_14 - Step 07: Click to save data");
 		
 		
-		log.info("Employee_14 - Step 08: Verify data skill");
+		log.info("Employee_14 - Step 08: Verify data languages");
 
 	}
 	
 	@Test
-	public void Employee_15_Qualifications_Languages() {
+	public void Employee_15_Qualifications_License() {
 		log.info("Employee_15 - Step 01: Search created employee");
 		
 		
@@ -425,7 +559,7 @@ public class Employee extends BaseTest {
 		log.info("Employee_15 - Step 04: Verify landed qualifications");
 		
 		
-		log.info("Employee_15 - Step 05: Click to add languages");
+		log.info("Employee_15 - Step 05: Click to add license");
 		
 		
 		log.info("Employee_15 - Step 06: Enter data for all fields");
@@ -434,25 +568,25 @@ public class Employee extends BaseTest {
 		log.info("Employee_15 - Step 07: Click to save data");
 		
 		
-		log.info("Employee_15 - Step 08: Verify data languages");
+		log.info("Employee_15 - Step 08: Verify data license");
 
 	}
 	
 	@Test
-	public void Employee_16_Qualifications_License() {
+	public void Employee_16_Memberships() {
 		log.info("Employee_16 - Step 01: Search created employee");
 		
 		
 		log.info("Employee_16 - Step 02: Click to edit employee");
 		
 		
-		log.info("Employee_16 - Step 03: Open qualifications");
+		log.info("Employee_16 - Step 03: Open memberships");
 		
 		
-		log.info("Employee_16 - Step 04: Verify landed qualifications");
+		log.info("Employee_16 - Step 04: Verify landed memberships");
 		
 		
-		log.info("Employee_16 - Step 05: Click to add license");
+		log.info("Employee_16 - Step 05: Click to add memberships");
 		
 		
 		log.info("Employee_16 - Step 06: Enter data for all fields");
@@ -461,49 +595,24 @@ public class Employee extends BaseTest {
 		log.info("Employee_16 - Step 07: Click to save data");
 		
 		
-		log.info("Employee_16 - Step 08: Verify data license");
+		log.info("Employee_16 - Step 08: Verify data memberships");
 
 	}
 	
 	@Test
-	public void Employee_17_Memberships() {
+	public void Employee_17_Delete_Employee() {
 		log.info("Employee_17 - Step 01: Search created employee");
+		personalDetailsPage.openMenuByPageName(driver, "PIM");
+		employeeListPage = PageGenerator.getEmployeeListPage(driver);
+		employeeListPage.enterToTextboxByLabel(driver, "Employee Id", Data.Employee_01_Add_New_Employee.EMP_ID);
+		
+		log.info("Employee_17 - Step 02: Click to delete employee");
+		employeeListPage.clickToIconActionInList(driver, "oxd-icon bi-trash");
+		
+		log.info("Employee_17 - Step 03: Confirm delete popup");
 		
 		
-		log.info("Employee_17 - Step 02: Click to edit employee");
-		
-		
-		log.info("Employee_17 - Step 03: Open memberships");
-		
-		
-		log.info("Employee_17 - Step 04: Verify landed memberships");
-		
-		
-		log.info("Employee_17 - Step 05: Click to add memberships");
-		
-		
-		log.info("Employee_17 - Step 06: Enter data for all fields");
-		
-		
-		log.info("Employee_17 - Step 07: Click to save data");
-		
-		
-		log.info("Employee_17 - Step 08: Verify data memberships");
-
-	}
-	
-	@Test
-	public void Employee_18_Delete_Employee() {
-		log.info("Employee_18 - Step 01: Search created employee");
-		
-		
-		log.info("Employee_18 - Step 02: Click to delete employee");
-		
-		
-		log.info("Employee_18 - Step 03: Confirm delete popup");
-		
-		
-		log.info("Employee_18 - Step 04: Verify deleted employee");
+		log.info("Employee_17 - Step 04: Verify deleted employee");
 
 	}
 
