@@ -22,7 +22,6 @@ public class Employee extends BaseTest {
 	ContactDetailsPageObject contactDetailsPage;
 	DependentsPageObject dependentsPage;
 	EmergencyContactsPageObject emergencyContactsPage;
-	ImmigrationPageObject immigrationPage;
 	JobPageObject jobPage;
 	MembershipsPageObject membershipPage;
 	QualificationsPageObject qualificationsPage;

@@ -35,10 +35,6 @@ public class PageGenerator {
 		return new EmergencyContactsPageObject(driver);
 	}
 	
-	public static ImmigrationPageObject getImmigrationPage(WebDriver driver) {
-		return new ImmigrationPageObject(driver);
-	}
-	
 	public static JobPageObject getJobPage(WebDriver driver) {
 		return new JobPageObject(driver);
 	}
