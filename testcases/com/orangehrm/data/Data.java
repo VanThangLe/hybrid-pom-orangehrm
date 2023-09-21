@@ -102,18 +102,13 @@ public class Data {
 
 	public class Employee_12_Qualifications_Education {
 		public static final String LEVEL = "";
-		public static final String INSTITUTE = "";
-		public static final String MAJOR_SPECIALIZATION = "";
 		public static final String YEAR = "";
 		public static final String GPA_SCORE = "";
-		public static final String START_DATE = "";
-		public static final String END_DATE = "";
 	}	
 
 	public class Employee_13_Qualifications_Skill {
 		public static final String SKILL = "";
-		public static final String YEAR_OF_EXPERIENCE = "";
-		public static final String COMMENTS = "";
+		public static final String YEARS_OF_EXPERIENCE = "";
 	}
 
 	public class Employee_14_Qualifications_Languages {
@@ -125,7 +120,6 @@ public class Data {
 	
 	public class Employee_15_Qualifications_License {
 		public static final String LICENSE_TYPE = "";
-		public static final String LICENSE_NUMBER = "";
 		public static final String ISSUED_DATE = "";
 		public static final String EXPIRY_DATE = "";
 	}
