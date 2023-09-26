@@ -76,7 +76,7 @@ public class Data {
 		public static final String FEDERAL_TAX_EXEMPTIONS = "2000";
 		public static final String STATE_TAX_STATE = "New York";
 		public static final String STATE_TAX_STATUS = "Married";
-		public static final String STATE_TAX_EXEMPTIONS = "2000";
+		public static final String STATE_TAX_EXEMPTIONS = "3000";
 		public static final String STATE_TAX_UNEMPLOYMENT_STATE = "New York";
 		public static final String STATE_TAX_WORK_STATE = "New York";
 	}
